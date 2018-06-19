@@ -1,0 +1,41 @@
+﻿@model Model.User
+    @{ 
+        Layout = null;
+    }
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div>
+        <div>
+            <a href="@Url.Action("Index","Index")" title="SEE">
+                  <img src="~/images/logo.png" title="SEE"/>   
+            </a>
+        </div>
+        <div>
+            @using (Html.BeginForm("Login", "User", FormMethod.Post))
+            {
+                @Html.ValidationSummary("");
+
+                <div>
+                    <div>
+                        @Html.TextBoxFor(user => user.User_Name )
+                    </div>
+                    <div>
+                        @Html.PasswordFor(user=>user.User_Pwd)
+                    </div>
+                    <div>
+                        <input type="submit" value="登录"/>
+                    </div>
+                </div>
+                @Html.Hidden("returnUrl",Request.UrlReferrer.ToString())
+            }
+        </div>
+        <div>
+            <a href="@Url.Action("Register","User")"><span>注册账号</span></a>
+        </div>
+    </div>
+</body>
+</html>

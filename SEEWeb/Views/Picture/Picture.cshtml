@@ -1,0 +1,42 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Picture>
+@{
+    ViewBag.Title = "Picture";
+    Layout = null;
+}
+
+<h2>Picture</h2>
+
+<div>
+    <div>
+        <div id="Div1">
+            @foreach (var p in Model)
+            {
+                <a href="@Url.Action("Details", new {id=p.Pic_ID})">
+                    <div>
+                        <img src="@p.Pic_Pic" widht="200" height="200" />
+                    </div>
+                    <div>
+                        @p.Pic_Mes
+                    </div>
+                    <div>
+                        @p.Picture_Type.Name
+                    </div>
+                    <div>
+                        @p.Pic_Time
+                    </div>
+                    <div>
+                        @p.User.User_Name
+                    </div>
+
+
+                </a>
+            }
+        </div>
+        <div class="page-list">
+            <div class="pagecout">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", "Picture", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+}
+@Html.ActionLink("修改个人信息", "Edit",new { id = @Session["User_ID"] })|
+<h2>Index</h2>
+
+@Session["User_Name"]

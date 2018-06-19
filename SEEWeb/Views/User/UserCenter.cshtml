@@ -1,0 +1,49 @@
+﻿@model Model.User
+@{
+    ViewBag.Title = "UserCenter";
+}
+
+<h2>UserCenter</h2>
+
+<div>
+    <div>
+        <a href="@Url.Action("Album","User")">我的相册</a>
+        <a href="@Url.Action("Picture","User")">我的图片</a>
+        <a href="@Url.Action("Save","User")">我的收藏</a>
+        <a href="@Url.Action("focusme","User")">我的粉丝</a>
+        <a href="@Url.Action("focus","User")">我关注的</a>
+    </div>
+    <div>
+        <div>
+            <p>
+                <span>用户名</span>
+                @Model.User_Name
+            </p>
+            @*<p>
+            <span>用户密码</span>
+            @Model.User_Pwd
+        </p>*@
+            <p>
+                <span>用户头像</span>
+                <img src="@Model.User_Img" height="100" width="100" />
+            </p>
+            
+         
+            <p>
+                <span>用户性别</span>
+                @Model.User_Sex
+            </p>
+            <p>
+                <span>用户邮箱</span>
+                @Model.User_Ema
+            </p>
+            <P>
+                <span>用户号码</span>
+                @Model.User_Pho
+            </P>
+            <p>
+                @{ Html.RenderAction("Index", "User");}
+            </p>
+        </div>
+    </div>
+</div>

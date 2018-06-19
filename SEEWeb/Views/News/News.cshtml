@@ -1,0 +1,46 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.News>
+@{
+    ViewBag.Title = "News";
+    Layout = null;
+}
+<!DOCTYPE html>
+<style>
+</style>
+<div>
+    <div>
+
+    </div>
+    <div>
+        <h2>图片列表</h2>
+        <div>
+            <ul>
+                @foreach (var p in Model)
+                {
+                    <li>
+                        <div>
+                            <a href="@Url.Action("Details",new {id=p.News_ID})">
+                                <img width="100" height="100" src="@p.News_Pic" />
+                            </a>
+                        </div>
+
+                        <div>
+                            @p.News_Mes
+                        </div>
+                        <div>
+                            @p.News_Time
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div>
+            <div>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", "News", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

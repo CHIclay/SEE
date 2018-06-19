@@ -1,0 +1,118 @@
+﻿@using PagedList.Mvc
+@using Model
+@model SEEWeb.ViewModel.PictureViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <div>
+        <div>
+            <div>
+                <img src="@Model.Picture1.Pic_Pic" width="150" height="200" />
+                @Model.Picture1.Pic_Mes
+                @Model.Picture1.Pic_Time
+                <p>点赞数：</p>
+                @Model.Pic_Point.Count()
+               
+            </div>
+            <div>
+                @using (Html.BeginForm("Comments", "Pic_Comment", FormMethod.Post, new { id = "pinglun" }))
+                {
+                    <div>
+                        <textarea class="textarea" name="textarea"></textarea>
+                    </div>
+                    <input type="hidden" name="Pic_ID" value="@Model.Picture1.Pic_ID" />
+                    if (Session["User_Name"] != null)
+                    {
+                        <a href="javascript:document.getElementById('pinglun').submit()" class="u-btn btn-postcmt">发表评论</a>
+
+                    }
+                    else
+                    {
+                        <a href="#" id="example2" class="u-btn btn-postcmt">发表评论</a>
+
+                    }
+                }
+            </div>
+            <div>
+                <div>
+                    <div>
+                        @if (Session["User_Name"] != null)
+                        {
+                            <a href="@Url.Action("Point", "Picture", new {Pic_ID=Model.Picture1.Pic_ID})">
+
+                                <p>点赞</p>
+                            </a>
+                        }
+                        else
+                        {
+                            <p>nothing</p>
+                        }
+                    </div>
+                   
+                </div>
+                <div>
+                    <a href="@Url.Action("Add", "Picture_In_Album", new {Pic_ID=Model.Picture1.Pic_ID})">
+
+                        <p>收藏到相册</p>
+                    </a>
+                </div>
+            </div>
+            <div>
+
+                <div>
+                    @{ string tempid;}
+                      @foreach (Pic_Comment p in Model.Pic_Comment)
+                    {
+                                        tempid = "dev" + p.PC_ID;
+
+
+                                        @p.PC_Mes
+                                        <a href="@Url.Action("UserIndex","User", new {User_ID=p.User_ID})">@p.User.User_Name</a>
+                                        @p.PC_Time
+                                        <button class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">回复</button>
+                        <div id="@tempid" style="display:none;" >
+                            @using (Html.BeginForm("ReplyComments", "Pic_Comment_Comment", new { PC_ID = p.PC_ID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+                            {
+                                <div class="PostRly01">
+                                    <textarea style="resize:none;" class="form-control" rows="3" name="textarea1" placeholder="我也要简单说两句"></textarea>
+                                </div>
+                                <div class="PostRly02">
+                                    <div class="Rly02-A">
+                        
+                                    </div>
+                                    <div class="Rly02-B">
+                                        @if (Session["User_ID"] != null)
+                                        {
+                                            <input type="submit" value="提交" class="btn btn-xs btn-default" />
+                                        }
+                                        else
+                                        {
+                                           
+                                            <input onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;" type="button" value="提交">
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div>
+                            @foreach(Model.Pic_Comment_Comment B in p.Pic_Comment_Comment.Where(c=>c.PC_ID==p.PC_ID).ToList().AsReadOnly())
+                            {
+                                <div>
+                                    <img src="@B.User.User_Img" widht="20" height="20" />
+                                 
+                                    @B.User.User_Name 回复 @B.Pic_Comment.User.User_Name
+                                    @B.PCC_Mes
+                                    @B.PCC_Time
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

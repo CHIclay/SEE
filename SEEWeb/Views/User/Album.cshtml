@@ -1,0 +1,20 @@
+﻿@model List<Model.Album>
+@{
+    ViewBag.Title = "Album";
+}
+
+
+<div>
+    <div>
+        <p>我的相册</p>
+        @*@foreach (var p in Model)
+        {
+            <img src="@p.Alb_Pic" height="100" width="100" />
+            @p.Alb_Name
+            @p.Alb_Mes
+            @p.Alb_Time
+            @p.Album_Point.Count()
+        }*@
+        @{ Html.RenderAction("Album1", "Album");}
+    </div>
+</div>

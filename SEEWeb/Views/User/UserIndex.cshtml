@@ -1,0 +1,77 @@
+﻿@model SEEWeb.ViewModel.UserViewModel
+@using Model
+@{
+    ViewBag.Title = "UserIndex";
+}
+
+<h2>UserIndex</h2>
+
+<div>
+    <div>
+        
+        <div>
+            @Model.User1.User_Name<p>的主页</p>
+            <img src="@Model.User1.User_Img" height="50" width="50"/>
+            <div>
+                @if (Session["User_Name"] != null)
+                {
+                    if (ViewBag.attentionde!= null)
+                    {
+                        <a href="@Url.Action("attention","User",new { to_User_ID=Model.User1.User_ID}) ">
+                            <b>已关注</b>   @*<p>取消关注</p>*@
+                        </a>
+                    }
+                    if(ViewBag.attentionde==null)
+                    {
+                        <a href="@Url.Action("attention","User",new { To_User_ID=Model.User1.User_ID}) ">
+                            关注
+                        </a>
+                    }
+
+                }
+                else
+                {
+                    <a></a>
+                }
+
+            </div>
+        </div>
+        他/她发布的图片
+        <div>
+            @foreach(Picture p in Model.Picture1)
+            {
+                <img src="@p.Pic_Pic" height="100" width="100" />
+            }
+        </div>
+        他/她的相册
+        <div>
+            @foreach(Album p in Model.Album1)
+            {
+                @p.Alb_Name
+                <img src="@p.Alb_Pic" height="100" width="100" />
+            }
+        </div>
+        他/她收藏的相册
+        <div>
+            @foreach(Album_Save p in Model.Album_Save1)
+            {
+                @p.Album.Alb_Name
+                <img src="@p.Album.Alb_Pic" height="100" width="100" />
+            }
+        </div>
+        
+        他/她关注的
+        <div>
+            @*@foreach(Attention p in Model.Attention1)
+            {
+                <img src="@p.User1.User_Img"width="50" height="50" />
+            }*@
+            @{ Html.RenderAction("UserAttention1", "User");}
+        </div>
+        关注他/她的
+        <div>
+            @{ Html.RenderAction("UserAttention", "User");}
+        </div>
+    </div>
+</div>
+

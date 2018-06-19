@@ -1,0 +1,47 @@
+﻿@model Model.News
+@{
+    ViewBag.Title = "Add";
+}
+
+ 
+<body>
+    @using (Html.BeginForm("Add", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "")
+        <div>
+            @Html.LabelFor(model => model.News_Name)
+            <div>
+                @Html.EditorFor(model => model.News_Name)
+                @Html.ValidationMessageFor(model => model.News_Name)
+              
+
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.News_Pic)
+            <div>
+                <input type="file" name="newsimage" />
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.News_Mes)
+            <div>
+
+                @Html.EditorFor(model => model.News_Mes)
+                @Html.ValidationMessageFor(model => model.News_Mes)
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="发布新闻" />
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("返回新闻列表", "List")
+        </div>
+    }
+
+</body>

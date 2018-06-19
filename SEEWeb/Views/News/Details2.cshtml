@@ -1,0 +1,75 @@
+﻿@model Model.News
+
+@{
+    ViewBag.Title = "Details2";
+}
+
+<h2>Details2</h2>
+
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.News_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Man_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Man_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News_Pic)
+        </dt>
+
+        <dd>
+           <div>
+                    @if (string.IsNullOrEmpty(Model.News_Pic))
+                    {
+                        @:none
+                    }
+                    else
+                    {
+                        <img width="75" height="75" src="@Url.Content(Model.News_Pic)" alt="images" />
+                    }
+                </div>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News_Mes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News_Mes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("返回列表", "Index")
+</p>

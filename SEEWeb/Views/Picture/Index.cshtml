@@ -1,0 +1,33 @@
+﻿@using Model;
+@model SEEWeb.ViewModel.PictureViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div>
+    <div>
+        <a href="@Url.Action("Create","Picture")">发表图片</a>
+    </div>
+    <div>
+   <div>
+       <div>
+           @Ajax.ActionLink("全部","Index","Picture",null)
+           @foreach(Picture_Type p in Model.Type1)
+           {
+               @Ajax.ActionLink(p.Name, "Index", "Picture", new { typeInfoFrom = p.Name},new AjaxOptions()
+          {
+              UpdateTargetId="Div1",
+              InsertionMode=InsertionMode.Replace,
+              HttpMethod="Get"
+          }
+              )
+           }
+       </div>
+       @{ Html.RenderAction("Picture", "Picture");}
+   </div>
+    </div>
+</div>
+

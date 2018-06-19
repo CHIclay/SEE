@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Model.Pic_Comment_Comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+ 
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PCC_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PC_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PCC_Mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PCC_Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PCC_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.User_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PC_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PCC_Mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PCC_Time)
+        </td>
+        <td>
+            
+            @Html.ActionLink("删除", "Delete", new { id=item.PCC_ID })
+        </td>
+    </tr>
+}
+
+</table>

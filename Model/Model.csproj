@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BB89B14-AAE1-43C8-996E-3625812D18AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Album.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumMetaData.cs" />
+    <Compile Include="Album_Comment.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Album_CommentMetaData.cs" />
+    <Compile Include="Album_Point.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Album_Save.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Attention.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttentionMetaData.cs" />
+    <Compile Include="Manager.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerMetaData.cs" />
+    <Compile Include="News.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewsMetaData.cs" />
+    <Compile Include="News_Comment.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="News_CommentMetaData.cs" />
+    <Compile Include="Picture.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PictureMetaData.cs" />
+    <Compile Include="Picture_In_Album.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Picture_Type.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pic_Comment.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pic_CommentMetaData.cs" />
+    <Compile Include="Pic_Comment_Comment.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pic_Comment_CommentMetaData.cs" />
+    <Compile Include="Pic_Point.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Picture_TypeMetaData.cs" />
+    <Compile Include="SEE.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEE.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEE.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMetaData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="SEE.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SEE.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SEE.edmx.diagram">
+      <DependentUpon>SEE.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+    <Content Include="SEE.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEE.edmx</DependentUpon>
+      <LastGenOutput>SEE.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SEE.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEE.edmx</DependentUpon>
+      <LastGenOutput>SEE.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

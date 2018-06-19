@@ -1,0 +1,36 @@
+﻿@model Model.Manager
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>管理员</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Man_ID)
+        <div>
+            @Html.LabelFor(model => model.Man_Name)
+            <div>
+                @Html.EditorFor(model => model.Man_Name)
+                @Html.ValidationMessageFor(model => model.Man_Name);
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Man_Pas)
+            <div>
+                @Html.EditorFor(model => model.Man_Pas)
+                @Html.ValidationMessageFor(model => model.Man_Pas);
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="确定" />
+            </div>
+        </div>
+    </div>
+}
+
+

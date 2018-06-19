@@ -1,0 +1,44 @@
+﻿@model Model.Manager
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div>
+        <div>
+            <a href="@Url.Action("Index","Index")" title="SEE">
+                <img src="~/images/logo.png" title="SEE" />
+            </a>
+        </div>
+        <div>
+            @using (Html.BeginForm("Login", "Manager", FormMethod.Post))
+            {
+                @Html.ValidationSummary("");
+
+                <div>
+                    <div>
+                        @Html.TextBoxFor(manager=>manager.Man_Name)
+                    </div>
+                    <div>
+                        @Html.PasswordFor(manager=>manager.Man_Pas)
+                    </div>
+                    <div>
+                        <input type="submit" value="登录" />
+                    </div>
+                </div>
+                
+            }
+        </div>
+        <div>
+        
+        </div>
+    </div>
+</body>
+</html>
+
+

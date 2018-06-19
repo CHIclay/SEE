@@ -1,0 +1,53 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Album>
+@{
+    ViewBag.Title = "Album";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<style>
+</style>
+<div>
+    <div>
+
+    </div>
+    <div>
+        <h2>图片列表</h2>
+        <div>
+
+            @foreach (var p in Model)
+            {
+
+                <div>
+                    <a href="@Url.Action("Details",new {id=p.Alb_ID})">
+                        <img width="100" height="100" src="@p.Alb_Pic" />
+                    </a>
+                </div>
+                <div>
+                    @p.User.User_Name
+                </div>
+                <div>
+                    @p.Alb_Mes
+                </div>
+                <div>
+                    @p.Alb_Time
+                </div>
+                <div>
+                
+                    <a href="@Url.Action("Delete1","Album",new { id = p.Alb_ID})">删除</a>
+                </div>
+
+            }
+
+        </div>
+        <div>
+            <div>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", "Album", new { page }))
+            </div>
+        </div>
+    </div>
+</div>

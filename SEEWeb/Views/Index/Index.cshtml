@@ -1,0 +1,61 @@
+﻿ @using Model
+@model SEEWeb.ViewModel.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@section head{
+    }*@
+<div>
+    <div>
+        <h2>Index</h2>
+
+        <a href="@Url.Action("Login","User")">登录</a>
+
+        <a href="@Url.Action("Login","Manager")">管理员登录</a>
+    </div>
+    <div>
+        <div>
+            最赞图片
+            @foreach (Picture p in Model.Picture2)
+            {
+
+                <img src="@p.Pic_Pic" width="100" height="100" />
+                @p.Pic_Point.Count()
+                @p.User.User_Name
+            }
+        </div>
+        <div>
+            最新图片
+            @foreach (Picture p in Model.Picture1)
+            {
+                <img src="@p.Pic_Pic" width="100" height="100" />
+                @p.User.User_Name
+            }
+        </div>
+        <div>
+            热评新闻
+            @foreach(News p in Model.News1)
+            {
+                <img src="@p.News_Pic" width="100" height="100" />
+                @p.News_Name
+               <p>评论数：</p> @p.News_Comment.Count();
+            }
+        </div>
+        <div>
+            最in相册
+            @foreach(Album p in Model.Album)
+            {
+                <img src="@p.Alb_Pic" width="100" height="100" />
+                @p.Alb_Name
+                <p>点赞数</p> @p.Album_Point.Count();
+            }
+        </div>
+     </div>
+
+</div>
+
+
+
+@*@section Foot{
+}*@

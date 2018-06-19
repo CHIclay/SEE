@@ -1,0 +1,12 @@
+﻿@model SEEWeb.ViewModel.NewsViewModel
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+<h2>Index</h2>
+<div>
+    <div>
+        @{ Html.RenderAction("News", "News");}
+    </div>
+</div>

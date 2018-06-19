@@ -1,0 +1,27 @@
+﻿@model SEEWeb.ViewModel.AlbumViewModel
+    @using Model;
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<div>
+    <div>
+        <div>
+           
+                @*@Model.Picture.Pic_ID*@
+            @*<input type="hidden" name="picid" value="@Model.Picture.Pic_ID" />*@
+            @foreach (var p in Model.Album2)
+            {
+                <a href="@Url.Action("Add2","Picture_In_Album" ,new {albid=p.Alb_ID,picid=Model.Picture.Pic_ID } )">
+                    @p.Alb_Name
+                    @*<input type="hidden" name="albid" value="@p.Alb_ID" />*@
+                </a>
+
+
+            }
+
+        </div>
+    </div>
+</div>

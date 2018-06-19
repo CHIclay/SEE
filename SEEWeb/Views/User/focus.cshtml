@@ -1,0 +1,17 @@
+﻿@model List<Model.Attention>
+@{
+    ViewBag.Title = "focus";
+}
+
+<h2>focusme</h2>
+
+<div>
+    <div>
+        @foreach (var p in Model)
+        {
+            <img src="@p.User1.User_Img" width="100" height="100" />
+            @p.User1.User_Name
+            <a href="@Url.Action("Delete_Att",new { id=p.Att_ID})" onclick="return confirm('确认取消关注么')">取消关注</a>
+        }
+    </div>
+</div>

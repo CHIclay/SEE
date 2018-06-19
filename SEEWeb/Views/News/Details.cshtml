@@ -1,0 +1,60 @@
+﻿@using PagedList.Mvc
+@using Model
+@model SEEWeb.ViewModel.NewsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <div>
+        <h4>图片</h4>
+        <hr />
+        <div>
+
+            <img src="@Model.News1.News_Pic" width="150" height="200"/>
+            @Model.News1.News_Name
+            @Model.News1.News_Mes
+            @Model.News1.News_Time
+
+
+
+        </div>
+    </div>
+    <hr />
+    <div>
+        <div class="comment-primary">
+            @using (Html.BeginForm("NC_Add", "News", FormMethod.Post, new { id = "pinglun", @class = "postbox", enctype = "multipart/form-data" }))
+            {
+
+                <div class="textarea-wrapper">
+                    <textarea class="textarea" name="pcmes"></textarea>
+                </div>
+                <input type="hidden" name="picid" value="@Model.News1.News_ID" />
+                if (Session["User_Name"] != null)
+                {
+                    <a href="javascript:document.getElementById('pinglun').submit()" class="u-btn btn-postcmt">发表评论</a>
+
+                }
+                else
+                {
+                    <a href="#" id="example2" class="u-btn btn-postcmt">发表评论</a>
+
+                }
+            }
+        </div>
+    </div>
+    <div>
+        @*@{ Html.RenderAction("News_Comment", "News_Comment");}*@
+        @foreach (News_Comment p in Model.News_Comment)
+        {
+            @p.User.User_Name
+            @p.NC_Mes
+
+            @p.NC_Time
+            <br />
+        }
+    </div>
+
+</div>

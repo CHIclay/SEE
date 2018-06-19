@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc
+@using Model
+@model SEEWeb.ViewModel.AlbumViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <div>
+        <h4>相册</h4>
+        <hr />
+        <div>
+            <img src="@Model.Album1.Alb_Pic" width="150" height="200" />
+            @Model.Album1.Alb_Mes
+            @Model.Album1.Alb_Time
+            <p>点赞数</p>
+            @Model.Album_Point.Count()
+            <p>收藏数</p>
+            @Model.Album_Save.Count()
+        </div>
+        <div>
+            包含的图片
+            @{ Html.RenderAction("Index", "Picture_In_Album");}
+        </div>
+    </div>
+    <div>
+        <div>
+            @if(Session["User_Name"]!=null)
+            {
+                <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
+                    <p>收藏</p>
+                </a>
+            }
+            else
+            {
+                <p>nothing</p>
+            }
+        </div>
+    </div>
+    <div>
+       
+    </div>
+    <div class="comment-primary">
+        @using (Html.BeginForm("AC_Add", "Album", FormMethod.Post, new { id = "pinglun", @class = "postbox", enctype = "multipart/form-data" }))
+        {
+
+            <div class="textarea-wrapper">
+                <textarea class="textarea" name="acmes"></textarea>
+            </div>
+            <input type="hidden" name="albid" value="@Model.Album1.Alb_ID" />
+            if (Session["User_Name"] != null)
+            {
+                <a href="javascript:document.getElementById('pinglun').submit()" class="u-btn btn-postcmt">发表评论</a>
+
+            }
+            else
+            {
+                <a href="#" id="example2" class="u-btn btn-postcmt">发表评论</a>
+
+            }
+        }
+    </div>
+
+    <div>
+        <div>
+            @if (Session["User_Name"] != null)
+            {
+                <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
+
+                    <p>点赞</p>
+                </a>
+            }
+            else
+            {
+                <p>nothing</p>
+            }
+        </div>
+    </div>
+    <div>
+        @*@{ Html.RenderAction("News_Comment", "News_Comment");}*@
+        @foreach (Album_Comment p in Model.Album_Comment)
+        {
+            @p.User.User_Name
+            @p.AC_Mes
+
+            @p.AC_Time
+            <br />
+        }
+    </div>
+
+</div>

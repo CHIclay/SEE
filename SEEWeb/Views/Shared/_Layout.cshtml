@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lte9 lte8" lang="en-US">	<![endif]-->
+<!--[if IE 9]><html class="ie ie9 lte9" lang="en-US"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="noIE" lang="en-US">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @RenderSection("head",false)
+</head>
+
+<body>
+    <ul>
+        <li><a href="@Url.Action("Index","Index")">主页</a></li>
+        <li><a href="@Url.Action("Index","News")">新闻</a></li>
+        <li><a href="@Url.Action("Index","Picture")">图片</a></li>
+        <li><a href="@Url.Action("Index","Album")">相册</a></li>
+        
+        @if (Session["User_Name"] != null)
+        {
+            <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
+        }
+        else
+        {
+            <p></p>
+        }
+
+    </ul>
+    
+    <div>
+        @RenderBody()
+    </div>
+       
+   
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="copy" style="color:black">
+                        Copyright &copy; 2018  SEE
+                    </div>
+                </div>
+
+                <div style="float:right">
+                    江西师范大学
+                </div>
+
+
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </footer>
+
+    @RenderSection("Foot",false)
+
+    
+
+</body>
+</html>

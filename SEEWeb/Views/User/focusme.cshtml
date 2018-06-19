@@ -1,0 +1,16 @@
+﻿@model List<Model.Attention>
+@{
+    ViewBag.Title = "focusme";
+}
+
+<h2>focusme</h2>
+
+<div>
+    <div>
+        @foreach(var p in Model)
+        {
+            <img src="@p.User.User_Img" width="100" height="100" />
+            @p.User.User_Name
+        }
+    </div>
+</div>

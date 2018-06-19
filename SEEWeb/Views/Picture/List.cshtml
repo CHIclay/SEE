@@ -1,0 +1,83 @@
+﻿@using Model
+@model Common.PagingHelper<Picture>
+@{
+    ViewBag.Title = "List";
+}
+
+<div>
+    <div>
+        <h3>图片管理</h3>
+    </div>
+    <section>
+        <table>
+            <thead>
+               <tr>
+                   <th>图片ID</th>
+                   <th>用户ID</th>
+                   <th>图片</th>
+                   <th>图片描述</th>
+                   <th>图片分类</th>
+                   <th>上传时间</th>
+                   <th></th>
+               </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.GetPagingData())
+                {
+                    <tr>
+                        <td>
+                              @Html.DisplayFor(modelItem=>item.Pic_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.User_ID)
+                        </td>
+                        <td>
+                            @if (string.IsNullOrEmpty(item.Pic_Pic))
+                            {
+                                @:none
+                            }
+                            else
+                            {
+                                <img width="75" height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Pic_Mes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Picture_Type.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Pic_Time)
+                        </td>
+                        <td>
+                            @Html.ActionLink("删除", "Delete", new { id=item.Pic_ID})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    @if (Model.HasPrev)
+                    {
+                        <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
+                    }
+                    else
+                    {
+                        <td><em style="color:Gray">上一页</em></td>
+                    }
+                    @if (Model.HasNext)
+                    {
+                        <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex + 1 })">下一页</a></td>
+                    }
+                    else
+                    {
+                        <td><em style="color:Gray">下一页</em></td>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+</div>

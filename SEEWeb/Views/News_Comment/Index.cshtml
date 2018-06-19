@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Model.News_Comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+ 
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NC_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NC_Mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NC_Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NC_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.News_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NC_Mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NC_Time)
+        </td>
+        <td>
+            @Html.ActionLink("查看详细", "Details", new { id=item.NC_ID }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.NC_ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Model.User>
+@{
+    ViewBag.Title = "List";
+}
+
+
+<table class="table">
+    <tbody id="list"></tbody>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Pwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ConPwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Ema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Pho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Time)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_ID)
+            </td>
+            <td>
+                <div>
+                    @if (string.IsNullOrEmpty(item.User_Img))
+                    {
+                        @:none
+                    }
+                    else
+                    {
+                        <img width="75" height="75" src="@Url.Content(item.User_Img)" alt="images" />
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Pwd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_ConPwd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Ema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Pho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Time)
+            </td>
+            <td>
+                
+
+                @Html.ActionLink("删除", "Delete", new { id = item.User_ID })
+            </td>
+        </tr>
+    }
+
+</table>

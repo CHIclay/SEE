@@ -1,0 +1,10 @@
+﻿@model List<Model.Picture_In_Album>
+
+@{ 
+    Layout = null;
+}
+@foreach (var p in Model)
+{
+    <img src="@p.Picture.Pic_Pic" width="200" height="200" />
+    
+}

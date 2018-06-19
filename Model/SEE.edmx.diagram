@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9e52790a1064270b23ea8a465cbf351" Name="Diagram1">
+        <EntityTypeShape EntityType="SEEModel.Album" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Album_Comment" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Album_Point" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Album_Save" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Attention" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Manager" Width="1.5" PointX="1.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.News" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.News_Comment" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Pic_Comment" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Pic_Comment_Comment" Width="1.5" PointX="8.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Pic_Point" Width="1.5" PointX="8" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Picture" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Picture_In_Album" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.Picture_Type" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.User" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="SEEModel.FK_Album_Comment_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Point_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Save_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Point_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Save_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Attention_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Attention_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_News_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_News_Comment_News" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_News_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_Comment_Pic_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Point_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Point_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Picture_Picture_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Picture_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

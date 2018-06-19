@@ -1,0 +1,15 @@
+﻿@using Model
+@model SEEWeb.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "UserAttention1";
+    Layout = null;
+}
+
+<div>
+    @foreach (Attention p in Model.Attention1)
+    {
+        <img src="@p.User1.User_Img" width="50" height="50" />
+    }
+</div>
+
+

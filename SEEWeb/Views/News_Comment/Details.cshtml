@@ -1,0 +1,57 @@
+﻿@model Model.News_Comment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>News_Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NC_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NC_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NC_Mes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NC_Mes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NC_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NC_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回列表", "Index")
+</p>

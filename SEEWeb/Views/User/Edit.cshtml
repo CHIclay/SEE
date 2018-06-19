@@ -1,0 +1,82 @@
+﻿@model Model.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>用户_修改</h2>
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()//防止跨站攻击的一种措施
+
+    <div>
+        <h4>用户</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.User_ID)
+        <div>
+            @Html.LabelFor(model => model.User_Name)
+            <div>
+                @Html.EditorFor(model => model.User_Name)
+                @Html.ValidationMessageFor(model => model.User_Name);
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.User_Img)
+            <div>
+                <input type="file" name="image" />
+            </div>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.User_Pwd)
+            <div>
+                @Html.EditorFor(model => model.User_Pwd)
+                @Html.ValidationMessageFor(model => model.User_Pwd)
+            </div>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.User_ConPwd)
+            <div>
+                @Html.EditorFor(model => model.User_ConPwd)
+                @Html.ValidationMessageFor(model => model.User_ConPwd)
+            </div>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.User_Sex)
+            <div>
+                @Html.EditorFor(model => model.User_Sex)
+                @Html.ValidationMessageFor(model => model.User_Sex)
+            </div>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.User_Ema)
+            <dvi>
+                @Html.EditorFor(model => model.User_Ema)
+                @Html.ValidationMessageFor(model => model.User_Ema)
+            </dvi>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(model => model.User_Pho)
+            <div>
+                @Html.EditorFor(model => model.User_Pho)
+                @Html.ValidationMessageFor(model => model.User_Pho)
+            </div>
+        </div>
+        <br />
+        <div>
+            <div>
+                <input type="submit" value="确定" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("返回个人主页", "Index")
+    </div>
+}
+

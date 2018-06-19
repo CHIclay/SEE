@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Model.Manager>
+
+    @{ 
+        ViewBag.Title = "Index";
+    }
+<h2>管理员—主页</h2>
+<div>
+    <a href="@Url.Action("List","User")">用户管理</a>"
+</div>
+<div>
+    <a href="@Url.Action("List","News")">新闻管理</a>"
+</div>
+<div>
+    <a href="@Url.Action("List","Picture")">图片管理</a>"
+</div>
+<div>
+    <a href="@Url.Action("List","Album")">相册管理</a>"
+</div>
+<div>
+    <a href="@Url.Action("Add","Manager")">添加管理员</a>
+</div>
+<div>
+    <a href="@Url.Action("Create","Picture_Type")">添加图片分类</a>"
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Man_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Man_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Man_Pas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Man_Time)
+        </th>
+        <th>
+            @Session["Man_Name"];
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Man_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Man_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Man_Pas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Man_Time)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Man_ID })|
+                @Html.ActionLink("删除", "Delete", new { id = item.Man_ID })
+            </td>
+
+        </tr>
+    }
+</table>
