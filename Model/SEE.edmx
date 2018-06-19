@@ -153,6 +153,18 @@
           <Property Name="User_Pho" Type="nvarchar" MaxLength="50" />
           <Property Name="User_Time" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Album_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Album1" Type="Self.Album" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Alb_ID" />
+            </Principal>
+            <Dependent Role="Album1">
+              <PropertyRef Name="Alb_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Album_Comment_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
           <End Role="Album_Comment" Type="Self.Album_Comment" Multiplicity="*" />
@@ -369,6 +381,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Picture_In_Album_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Picture_In_Album" Type="Self.Picture_In_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Alb_ID" />
+            </Principal>
+            <Dependent Role="Picture_In_Album">
+              <PropertyRef Name="Alb_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_In_Album_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="Picture_In_Album" Type="Self.Picture_In_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Pic_ID" />
+            </Principal>
+            <Dependent Role="Picture_In_Album">
+              <PropertyRef Name="Pic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="Picture1" Type="Self.Picture" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Pic_ID" />
+            </Principal>
+            <Dependent Role="Picture1">
+              <PropertyRef Name="Pic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Picture_Picture_Type">
           <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
@@ -409,6 +457,10 @@
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Album1" EntitySet="Album" />
+          </AssociationSet>
           <AssociationSet Name="FK_Album_Comment_Album" Association="Self.FK_Album_Comment_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Comment" EntitySet="Album_Comment" />
@@ -481,6 +533,18 @@
             <End Role="User" EntitySet="User" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
+          <AssociationSet Name="FK_Picture_In_Album_Album" Association="Self.FK_Picture_In_Album_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_In_Album_Picture" Association="Self.FK_Picture_In_Album_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Picture" Association="Self.FK_Picture_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Picture1" EntitySet="Picture" />
+          </AssociationSet>
           <AssociationSet Name="FK_Picture_Picture_Type" Association="Self.FK_Picture_Picture_Type">
             <End Role="Picture_Type" EntitySet="Picture_Type" />
             <End Role="Picture" EntitySet="Picture" />
@@ -505,10 +569,13 @@
           <Property Name="Alb_Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Alb_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Alb_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Album1" Relationship="Self.FK_Album_Album" FromRole="Album" ToRole="Album1" />
+          <NavigationProperty Name="Album2" Relationship="Self.FK_Album_Album" FromRole="Album1" ToRole="Album" />
           <NavigationProperty Name="Album_Comment" Relationship="Self.FK_Album_Comment_Album" FromRole="Album" ToRole="Album_Comment" />
           <NavigationProperty Name="Album_Point" Relationship="Self.FK_Album_Point_Album" FromRole="Album" ToRole="Album_Point" />
           <NavigationProperty Name="Album_Save" Relationship="Self.FK_Album_Save_Album" FromRole="Album" ToRole="Album_Save" />
           <NavigationProperty Name="User" Relationship="Self.FK_Album_User" FromRole="Album" ToRole="User" />
+          <NavigationProperty Name="Picture_In_Album" Relationship="Self.FK_Picture_In_Album_Album" FromRole="Album" ToRole="Picture_In_Album" />
         </EntityType>
         <EntityType Name="Album_Comment">
           <Key>
@@ -638,6 +705,9 @@
           <Property Name="Pic_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_Picture" FromRole="Picture" ToRole="Pic_Comment" />
           <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_Picture" FromRole="Picture" ToRole="Pic_Point" />
+          <NavigationProperty Name="Picture_In_Album" Relationship="Self.FK_Picture_In_Album_Picture" FromRole="Picture" ToRole="Picture_In_Album" />
+          <NavigationProperty Name="Picture1" Relationship="Self.FK_Picture_Picture" FromRole="Picture" ToRole="Picture1" />
+          <NavigationProperty Name="Picture2" Relationship="Self.FK_Picture_Picture" FromRole="Picture1" ToRole="Picture" />
           <NavigationProperty Name="Picture_Type" Relationship="Self.FK_Picture_Picture_Type" FromRole="Picture" ToRole="Picture_Type" />
           <NavigationProperty Name="User" Relationship="Self.FK_Picture_User" FromRole="Picture" ToRole="User" />
         </EntityType>
@@ -649,6 +719,8 @@
           <Property Name="Alb_ID" Type="Int32" Nullable="false" />
           <Property Name="Pic_ID" Type="Int32" Nullable="false" />
           <Property Name="PIA_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Album" Relationship="Self.FK_Picture_In_Album_Album" FromRole="Picture_In_Album" ToRole="Album" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_In_Album_Picture" FromRole="Picture_In_Album" ToRole="Picture" />
         </EntityType>
         <EntityType Name="Picture_Type">
           <Key>
@@ -683,6 +755,18 @@
           <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_User" FromRole="User" ToRole="Pic_Point" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_User" FromRole="User" ToRole="Picture" />
         </EntityType>
+        <Association Name="FK_Album_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Album1" Type="Self.Album" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Alb_ID" />
+            </Principal>
+            <Dependent Role="Album1">
+              <PropertyRef Name="Alb_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Album_Comment_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
           <End Role="Album_Comment" Type="Self.Album_Comment" Multiplicity="*" />
@@ -728,6 +812,18 @@
             </Principal>
             <Dependent Role="Album">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_In_Album_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Picture_In_Album" Type="Self.Picture_In_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Alb_ID" />
+            </Principal>
+            <Dependent Role="Picture_In_Album">
+              <PropertyRef Name="Alb_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -899,6 +995,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Picture_In_Album_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="Picture_In_Album" Type="Self.Picture_In_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Pic_ID" />
+            </Principal>
+            <Dependent Role="Picture_In_Album">
+              <PropertyRef Name="Pic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="Picture1" Type="Self.Picture" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Pic_ID" />
+            </Principal>
+            <Dependent Role="Picture1">
+              <PropertyRef Name="Pic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Picture_Picture_Type">
           <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
@@ -939,6 +1059,10 @@
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Album1" EntitySet="Album" />
+          </AssociationSet>
           <AssociationSet Name="FK_Album_Comment_Album" Association="Self.FK_Album_Comment_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Comment" EntitySet="Album_Comment" />
@@ -954,6 +1078,10 @@
           <AssociationSet Name="FK_Album_User" Association="Self.FK_Album_User">
             <End Role="User" EntitySet="User" />
             <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_In_Album_Album" Association="Self.FK_Picture_In_Album_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
           </AssociationSet>
           <AssociationSet Name="FK_Album_Comment_User" Association="Self.FK_Album_Comment_User">
             <End Role="User" EntitySet="User" />
@@ -1010,6 +1138,14 @@
           <AssociationSet Name="FK_Pic_Point_User" Association="Self.FK_Pic_Point_User">
             <End Role="User" EntitySet="User" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_In_Album_Picture" Association="Self.FK_Picture_In_Album_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Picture" Association="Self.FK_Picture_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Picture1" EntitySet="Picture" />
           </AssociationSet>
           <AssociationSet Name="FK_Picture_Picture_Type" Association="Self.FK_Picture_Picture_Type">
             <End Role="Picture_Type" EntitySet="Picture_Type" />

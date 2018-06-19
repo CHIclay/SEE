@@ -16,7 +16,7 @@ namespace SEEWeb.Controllers
         public ActionResult Index(int pageIndex=1)
         {
            var pt = ptmanager.GetAll();
-           PagingHelper<Picture_Type> PicturePaging = new PagingHelper<Picture_Type>(3,pt); //初始化分页器
+           PagingHelper<Picture_Type> PicturePaging = new PagingHelper<Picture_Type>(10,pt); //初始化分页器
            PicturePaging.PageIndex = pageIndex; //指定当前页
            return View(PicturePaging); //返回分页器实例到视图
         }

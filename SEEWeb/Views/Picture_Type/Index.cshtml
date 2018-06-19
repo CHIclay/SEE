@@ -2,62 +2,78 @@
 @model Common.PagingHelper<Picture_Type>
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-
-<h2>Index</h2>
-<div>
+<body class="app sidebar-mini rtl">
     <div>
-        <div>
-            @Html.ActionLink("创建分类","Create")
+        <div class="app-title">
+            <div class="div">
+                <h1><i class="fa fa-dashboard"></i>类别List</h1>
+                <p>合理的管理会带来合适的流量增长</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","Picture_Type")">类别List</a></li>
+            </ul>
+        </div>
+        <div class="tile mb-4">
+            <div>
+                <div>
+                    @Html.ActionLink("创建分类", "Create")
+                </div>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>分类名称</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.GetPagingData())
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Type_ID)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("修改", "Edit", new { id = item.Type_ID })|
+                                    @Html.ActionLink("删除", "Delete", new { id = item.Type_ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            @if (Model.HasPrev)
+                            {
+                                <td><a href="@Url.Action("Index","Picture_Type",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
+                            }
+                            else
+                            {
+                                <td><em style="color:dimgray">上一页</em></td>
+                            }
+                            @if (Model.HasNext)
+                            {
+                                <td>
+                                    <a href="@Url.Action("Index", "Picture_Type", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td><em style="color:dimgray">下一页</em></td>
+                            }
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>分类名称</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.GetPagingData())
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem=>item.Type_ID)</td>
-                        <td>
-                            @Html.DisplayFor(modelItem=>item.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("修改", "Edit", new { id=item.Type_ID})|
-                            @Html.ActionLink("删除","Delete",new {id=item.Type_ID })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    @if(Model.HasPrev)
-                    {
-                        <td><a href="@Url.Action("Index","Picture_Type",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">上一页</em></td>
-                    }
-                    @if(Model.HasNext)
-                    {
-                        <td>
-                            <a href="@Url.Action("Inedx", "Picture_Type", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">下一页</em></td>
-                    }
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
+</body>
+    
+    
 

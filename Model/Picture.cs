@@ -19,6 +19,7 @@ namespace Model
         {
             this.Pic_Comment = new HashSet<Pic_Comment>();
             this.Pic_Point = new HashSet<Pic_Point>();
+            this.Picture_In_Album = new HashSet<Picture_In_Album>();
         }
     
         public int Pic_ID { get; set; }
@@ -32,6 +33,10 @@ namespace Model
         public virtual ICollection<Pic_Comment> Pic_Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pic_Point> Pic_Point { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Picture_In_Album> Picture_In_Album { get; set; }
+        public virtual Picture Picture1 { get; set; }
+        public virtual Picture Picture2 { get; set; }
         public virtual Picture_Type Picture_Type { get; set; }
         public virtual User User { get; set; }
     }

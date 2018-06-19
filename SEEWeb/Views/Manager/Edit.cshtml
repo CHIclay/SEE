@@ -1,6 +1,7 @@
 ﻿@model Model.Manager
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm("Edit", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))

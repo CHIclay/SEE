@@ -28,11 +28,14 @@ namespace SEEWeb.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Add(News news)
         {
+            string mes = Request["News_Mes"];
             HttpPostedFileBase file = Request.Files["newsimage"];
             if (ModelState.IsValid)
             {
+              
                 if (file != null)
                 {
                     string filePath = file.FileName;
@@ -43,10 +46,11 @@ namespace SEEWeb.Controllers
                     news.News_Pic = relativepath;
 
                 }
+                news.News_Mes = mes;
                 news.Man_ID = Convert.ToInt32(Session["Man_ID"].ToString());
                 news.News_Time = DateTime.Now;
                 newsmanager.InsertNews(news);
-                return Content("<script>alert('添加成功！');window.open('" + Url.Action("Index", "Picture") + "','_self');</script>");
+                return Content("<script>alert('添加成功！');window.open('" + Url.Action("List", "News") + "','_self');</script>");
             }
             return View(news);
         }

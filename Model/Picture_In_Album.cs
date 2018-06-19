@@ -18,5 +18,8 @@ namespace Model
         public int Alb_ID { get; set; }
         public int Pic_ID { get; set; }
         public Nullable<System.DateTime> PIA_Time { get; set; }
+    
+        public virtual Album Album { get; set; }
+        public virtual Picture Picture { get; set; }
     }
 }

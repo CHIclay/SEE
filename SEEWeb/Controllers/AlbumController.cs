@@ -216,6 +216,7 @@ namespace SEEWeb.Controllers
             AlbumPaging.PageIndex = pageIndex;
             return View(AlbumPaging);
         }
+
         #endregion
     }
 }

@@ -2,55 +2,69 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<h2>Index</h2>
+ 
+<body class="app sidebar-mini rtl">
 
-<p>
+    <div class="app-title">
+        <div class="div">
+            <h1><i class="fa fa-dashboard"></i>相册评论管理</h1>
+            <p>言语的公正与否从来都是由掌权者来决定的</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Album_Comment")">相册评论</a></li>
+        </ul>
+    </div>
+    <div class="tile mb-4">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AC_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.User_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Alb_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AC_Mes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AC_Time)
+                </th>
+                <th></th>
+            </tr>
 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AC_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.User_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Alb_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AC_Mes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AC_Time)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AC_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.User_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alb_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AC_Mes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AC_Time)
+                    </td>
+                    <td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AC_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.User_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Alb_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AC_Mes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AC_Time)
-        </td>
-        <td>
-            
-            @Html.ActionLink("删除", "Delete", new { id=item.AC_ID })
-        </td>
-    </tr>
-}
+                        @Html.ActionLink("删除", "Delete", new { id = item.AC_ID })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</body>
+   

@@ -2,26 +2,9 @@
 
     @{ 
         ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutManager.cshtml";
     }
 <h2>管理员—主页</h2>
-<div>
-    <a href="@Url.Action("List","User")">用户管理</a>"
-</div>
-<div>
-    <a href="@Url.Action("List","News")">新闻管理</a>"
-</div>
-<div>
-    <a href="@Url.Action("List","Picture")">图片管理</a>"
-</div>
-<div>
-    <a href="@Url.Action("List","Album")">相册管理</a>"
-</div>
-<div>
-    <a href="@Url.Action("Add","Manager")">添加管理员</a>
-</div>
-<div>
-    <a href="@Url.Action("Create","Picture_Type")">添加图片分类</a>"
-</div>
 <table class="table">
     <tr>
         <th>

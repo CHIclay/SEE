@@ -1,9 +1,34 @@
 ﻿@model Model.News
 @{
     ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
- 
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    @*百度富文本框*@
+    <!-- 配置文件 -->
+    <script src="~/utf8-net/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script src="~/utf8-net/ueditor.all.js"></script>
+    <link href="~/utf8-net/themes/iframe.css" rel="stylesheet" />
+    <script src="~/utf8-net/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        //实例化编辑器
+        var editor = new baidu.editor.ui.Editor({
+            autoHeightEnabled: true,//高度自动增长
+            minFrameHeight: 500//最小高度
+        });
+        editor.render('editor');
+    </script>
+
+
+
+</head>
+
+
 <body>
     @using (Html.BeginForm("Add", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
@@ -15,7 +40,7 @@
             <div>
                 @Html.EditorFor(model => model.News_Name)
                 @Html.ValidationMessageFor(model => model.News_Name)
-              
+
 
             </div>
         </div>
@@ -29,10 +54,9 @@
         <div>
             @Html.LabelFor(model => model.News_Mes)
             <div>
-
-                @Html.EditorFor(model => model.News_Mes)
-                @Html.ValidationMessageFor(model => model.News_Mes)
+                 <textarea id="editor" name="News_Mes"></textarea>
             </div>
+          
         </div>
         <div>
             <div>
@@ -43,5 +67,8 @@
             @Html.ActionLink("返回新闻列表", "List")
         </div>
     }
-
+ 
+   
 </body>
+
+</html>

@@ -20,6 +20,7 @@ namespace Model
             this.Album_Comment = new HashSet<Album_Comment>();
             this.Album_Point = new HashSet<Album_Point>();
             this.Album_Save = new HashSet<Album_Save>();
+            this.Picture_In_Album = new HashSet<Picture_In_Album>();
         }
     
         public int Alb_ID { get; set; }
@@ -29,6 +30,8 @@ namespace Model
         public string Alb_Mes { get; set; }
         public System.DateTime Alb_Time { get; set; }
     
+        public virtual Album Album1 { get; set; }
+        public virtual Album Album2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album_Comment> Album_Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -36,5 +39,7 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album_Save> Album_Save { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Picture_In_Album> Picture_In_Album { get; set; }
     }
 }

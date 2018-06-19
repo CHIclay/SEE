@@ -1,41 +1,60 @@
 ﻿@model Model.Picture_Type
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
 
-<h2>Edit</h2>
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div>
-            @Html.ValidationSummary(true,"")
-            @Html.HiddenFor(model=>model.Type_ID)
+<body class="app sidebar-mini rtl">
+    <div>
+        <div class="app-title">
+            <div class="div">
+                <h1><i class="fa fa-dashboard"></i>类别修改</h1>
+                <p>有什么地方不对？修改一下就好了</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","Picture_Type")">类别List</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Edit","Picture_Type")">类别修改</a></li>
+            </ul>
+        </div>
+        <div class="tile mb-4">
             <div>
-                @Html.Label("类型ID")
-                <div>
-                    @Html.DisplayFor(model => model.Type_ID)
-                </div>
+                @Html.ActionLink("返回列表", "Index")
             </div>
             <div>
-                @Html.Label("分类名称")
-                <div>
-                    @Html.EditorFor(model=>model.Name)
-                    @Html.ValidationMessageFor(model=>Model.Name)
-                </div>
-            </div>
-         
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div>
+                        @Html.ValidationSummary(true, "")
+                        @Html.HiddenFor(model => model.Type_ID)
+                        <div>
+                            @Html.Label("类型ID")
+                            <div>
+                                @Html.DisplayFor(model => model.Type_ID)
+                            </div>
+                        </div>
+                        <div>
+                            @Html.Label("分类名称")
+                            <div>
+                                @Html.EditorFor(model => model.Name, new { @class = "form-control-label" })
+                                @Html.ValidationMessageFor(model => Model.Name)
+                            </div>
+                        </div>
 
-        </div>
-        <div>
-            <div>
-                <input type="submit" value="修改" />
+
+                    </div>
+                    <div>
+                        <div>
+                            <input type="submit" value="修改" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                }
             </div>
         </div>
-        
-    }
-</div>
-<div>
-    @Html.ActionLink("返回列表","Index")
-</div>
+    </div>
+</body>
+      
+          
