@@ -54,7 +54,7 @@
                         @Html.DisplayFor(modelItem => item.Man_ID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.News_Name)
+                     @Html.Raw(@Html.DisplayFor(modelItem => item.News_Name))      
                     </td>
                     <td>
                         @if (string.IsNullOrEmpty(item.News_Pic))

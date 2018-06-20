@@ -21,7 +21,8 @@
 
                 <img src="@Model.News1.News_Pic" width="150" height="200" />
                 @Model.News1.News_Name
-                <p>@Model.News1.News_Mes</p>
+                @Html.Raw(@Model.News1.News_Mes)
+           
                 @Model.News1.News_Time
 
 
