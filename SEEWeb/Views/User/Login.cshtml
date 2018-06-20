@@ -1,41 +1,118 @@
 ﻿@model Model.User
-    @{ 
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
+
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-</head>
-<body>
-    <div>
-        <div>
-            <a href="@Url.Action("Index","Index")" title="SEE">
-                  <img src="~/images/logo.png" title="SEE"/>   
-            </a>
-        </div>
-        <div>
-            @using (Html.BeginForm("Login", "User", FormMethod.Post))
-            {
-                @Html.ValidationSummary("");
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login In SEE</title>
 
-                <div>
-                    <div>
-                        @Html.TextBoxFor(user => user.User_Name )
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="~/Content/_share/Login/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/css/form-elements.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/css/style.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+    <!-- Top content -->
+    <div class="top-content" style="background-image: url('../../images/header1.jpg'); background-repeat: no-repeat; background-position: center center; background-size: cover; background-attachment: fixed; ">
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4 form-box">
                     </div>
-                    <div>
-                        @Html.PasswordFor(user=>user.User_Pwd)
+                    <div class="col-sm-4 col-sm-offset-4 form-box">
+                  
                     </div>
-                    <div>
-                        <input type="submit" value="登录"/>
+
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                           <a href="@Url.Action("Index","Index")"> <img src="~/images/logo.png" /> </a> 
+                        </div>
+
+                        <div class="col-sm-4 col-sm-offset-4 form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>加入我们</h3>
+                                    <p>更好的风景、更好的欣赏</p>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div>
+                                @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                                {
+                                    @Html.ValidationSummary("");
+
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-first-name">用户名</label>
+                                            @Html.TextBoxFor(user => user.User_Name, new { name = "form-first-name", placeholder = "请输入用户名", @class = "form-first-name form-control", id = "form-first-name" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-last-name">密码</label>
+                                            @Html.PasswordFor(user => user.User_Pwd, new { name = "form-last-name", placeholder = "请输入密码", @class = "form-last-name form-control", id = "form-last-name" })
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="登录" class="  btn" style="float:left"/>
+                                          
+                                        </div>
+                                    </div>
+                                    @Html.Hidden("returnUrl", Request.UrlReferrer.ToString())
+                                }
+                                    <div class="form-group">
+                                        <a href="@Url.Action("Register","User")" style="float:right"><button class="btn-dark" style="color:black">注册 </button> </a>
+                                    </div>
+
+                            </div>
+                            <br /><br /><br /><br /><br /><br /><br />
+                        </div>
                     </div>
                 </div>
-                @Html.Hidden("returnUrl",Request.UrlReferrer.ToString())
-            }
         </div>
-        <div>
-            <a href="@Url.Action("Register","User")"><span>注册账号</span></a>
-        </div>
+
     </div>
+
+
+    <!-- Javascript -->
+    <script src="~/Content/_share/Login/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/_share/Login/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/retina-1.1.0.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/scripts.js"></script>
+    <script src="~/Content/_share/Login/assets/js/placeholder.js"></script>
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
+
 </body>
+
 </html>

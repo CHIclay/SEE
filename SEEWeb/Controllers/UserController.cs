@@ -53,6 +53,7 @@ namespace SEEWeb.Controllers
                 Session["User_Name"] = user.User_Name;
                 User users = usermanager.GetUserByName(user.User_Name);
                 Session["User_ID"] = users.User_ID.ToString();
+                Session["User_Img"] = users.User_Img;
                 return Content("<script>alert('注册成功！');window.open('" + Url.Action("Index", "Index") + "','_self');</script>");
             }
             //else
@@ -97,6 +98,7 @@ namespace SEEWeb.Controllers
                 Session["User_Name"] = user.User_Name; 
                 User users = usermanager.GetUserByName(Session["User_Name"].ToString());
                 Session["User_ID"] = users.User_ID;
+                Session["User_Img"] = users.User_Img;
                 if(returnUrl!=null)
                 {
                     return Redirect(returnUrl);
@@ -350,6 +352,16 @@ namespace SEEWeb.Controllers
             db.Attention.Remove(atten);
             db.SaveChanges();
             return RedirectToAction("focus");
+        }
+        #endregion
+
+        #region 用户退出登录
+        public ActionResult LogOff()
+        {
+            Session["User_Name"] = null;
+            Session["User_ID"] = null;
+            Session["User_Img"] = null;
+            return RedirectToAction("Index", "Index");
         }
         #endregion
 

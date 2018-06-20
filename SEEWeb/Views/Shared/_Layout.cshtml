@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <!--[if IE 7 ]><html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
 <!--[if IE 8]><html class="ie ie8 lte9 lte8" lang="en-US">	<![endif]-->
 <!--[if IE 9]><html class="ie ie9 lte9" lang="en-US"><![endif]-->
@@ -6,55 +7,125 @@
 <html class="noIE" lang="en-US">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    @RenderSection("head",false)
+    <!-- meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>S  E  E</title>
+    <link href="~/Content/_share/User/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/main.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/section.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/portfolio.css" rel="stylesheet" />
+    <link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Manager/svg-with-js/css/fa-svg-with-js.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.js"></script>
+        <script src="assets/js/respond.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+        <script src="assets/js/selectivizr.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-    <ul>
-        <li><a href="@Url.Action("Index","Index")">主页</a></li>
-        <li><a href="@Url.Action("Index","News")">新闻</a></li>
-        <li><a href="@Url.Action("Index","Picture")">图片</a></li>
-        <li><a href="@Url.Action("Index","Album")">相册</a></li>
-        
-        
-            <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
-       
-     
-    </ul>
-    
+
+    <!-- Home -->
+    <section class="portfolio-header" id="header">
+
+        <nav class="navbar navbar-default _navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index","Index")">S    E    E</a>
+                </div> <!-- /.navbar-header -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                        <li><a href="@Url.Action("Index","News")">新闻</a></li>
+                        <li><a href="@Url.Action("Index","Picture")">图片</a></li>
+                        <li><a href="@Url.Action("Index","Album")">相册</a></li>
+                        <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
+                        @if (Session["User_ID"] != null)
+                        {
+                        <li>
+                            <img src="@Session["User_Img"]" height="35" width="35" />
+                        </li>
+                       
+                        <li>
+                            <a href="@Url.Action("LogOff","User")">登出</a>
+                        </li>
+
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Login","User")">登录</a></li>
+                        }
+                    </ul> <!-- /.nav -->
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+    </section> <!-- /#header -->
+    <!-- Section Background -->
+ 
+    <!-- Portfolio -->
     <div>
         @RenderBody()
     </div>
-       
-   
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="copy" style="color:black">
-                        Copyright &copy; 2018  SEE
+                    <div class="copy">
+                        <p>Copyright &copy;   S         E        E</p> 
+                        SEE开发小组版权所有
                     </div>
                 </div>
-
-                <div style="float:right">
-                    江西师范大学
+                <div class="col-sm-4 text-center">
+                    <div class="social-icon">
+                         
+                        <a href="#">
+                            
+                        </a>
+                        <a href="https://github.com/CHIclay">
+                                <i class="ion-social-github fa-3x"></i>
+                        </a>
+                        
+                            &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                         
+                        <a href="@Url.Action("Login","Manager")">
+                            <i class="ion-android-contact fa-3x"></i>
+                        </a>
+                    </div>
                 </div>
-
-
+                <div class="col-sm-4 text-right">
+                    <div class="copy">
+                        <p>2018年江西师范大学下学年</p> 工作室作品 
+                    </div>
+                </div>
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </footer>
 
-    @RenderSection("Foot",false)
+    <script src="~/Content/_share/User/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/contact.js"></script>
+    <script src="~/Content/_share/User/assets/js/script.js"></script>
 
     
+
 
 </body>
 </html>

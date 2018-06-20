@@ -61,6 +61,8 @@
             <tfoot>
                 <tr>
                     <td></td>
+                    <td></td>
+                    <td></td>
                     @if (Model.HasPrev)
                     {
                         <td><a href="@Url.Action("Index","Manager",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>

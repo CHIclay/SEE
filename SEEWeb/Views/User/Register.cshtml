@@ -1,10 +1,42 @@
-﻿@model Model.User
-    @{ 
-        Layout = null;
-    }
+﻿ 
+
+@model Model.User
+@{
+    Layout = null;
+}
+
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log In SEE</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="~/Content/_share/Login/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/css/form-elements.css" rel="stylesheet" />
+    <link href="~/Content/_share/Login/assets/css/style.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
     <script>
         $(function () {
             //用户名检测异步请求
@@ -19,71 +51,104 @@
                     }
                 });
             });
-     </script>
+    </script>
 </head>
+
 <body>
-    <div>
-        <div>
-            <a href="@Url.Action("Index","Index")" title="SEE">
 
-                <img src="~/images/logo.png" width="70" title="SEE" />
-            </a>
-        </div>
-        <div>
-            <div>
-                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <div>
-                        <div>
-                            用户名：
-                            @Html.TextBoxFor(user => user.User_Name)
-                            @Html.ValidationMessageFor(user => user.User_Name)
-                        </div>
-                        <div>
-                            密码：
-                            @Html.TextBoxFor(user => user.User_Pwd)
-                            @Html.ValidationMessageFor(user => user.User_Pwd)
-                        </div>
-                        <div>
-                            确认密码：
-                            @Html.TextBoxFor(user => user.User_ConPwd)
-                            @Html.ValidationMessageFor(user => user.User_ConPwd)
-                        </div>
-                        <div>
-                            用户头像:
-                             
-                            <div>
-                                <input type="file" name="image1" />
+    <!-- Top content -->
+    <div class="top-content" style="  background-image: url('../../images/Register.jpg'); background-repeat: no-repeat; background-position: center center; background-size: cover; background-attachment: fixed;">
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                 
+
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <a href="@Url.Action("Index","Index")"> <img src="~/images/logo.png" /> </a>
+                    </div>
+
+                    <div class="col-sm-4 col-sm-offset-4 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>加入我们</h3>
+                                <p>更好的风景、更好的欣赏</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-user"></i>
                             </div>
                         </div>
                         <div>
-                            用户性别：
-                            @Html.EditorFor(model => model.User_Sex)
-                            @Html.ValidationMessageFor(model => model.User_Sex)
-                        </div>
-                        <div>
-                            邮箱：
-                            @Html.EditorFor(model => model.User_Ema)
-                            @Html.ValidationMessageFor(model => model.User_Ema)
-                        </div>
-                        <div>
-                            电话：
-                            @Html.EditorFor(model => model.User_Pho)
-                            @Html.ValidationMessageFor(model => model.User_Pho)
-                        </div>
-                        <div>
+                            @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
                             <div>
-                                <input type="submit" value="创建" />
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-first-name">用户名</label>
+                                    @Html.TextBoxFor(user => user.User_Name, new { name = "form-first-name", placeholder = "请输入用户名", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(user => user.User_Name)
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">密码</label>
+                                    @Html.TextBoxFor(user => user.User_Pwd, new { name = "form-first-name", placeholder = "请输入密码", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(user => user.User_Pwd)
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">确认密码</label>
+                                    @Html.TextBoxFor(user => user.User_ConPwd, new { name = "form-first-name", placeholder = "请确认密码", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(user => user.User_ConPwd)
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">用户头像</label>
+                                    <input type="file" name="image1" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">用户性别</label>
+                                    @Html.TextBoxFor(model => model.User_Sex, new { name = "form-first-name", placeholder = "请确认性别", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(model => model.User_Sex)
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">用户邮箱</label>
+                                    @Html.TextBoxFor(model => model.User_Ema, new { name = "form-first-name", placeholder = "请输入邮箱", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(model => model.User_Ema)
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-last-name">用户电话</label>
+                                    @Html.TextBoxFor(model => model.User_Pho, new { name = "form-first-name", placeholder = "请输入电话", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.ValidationMessageFor(model => model.User_Pho)
+                                </div>
+                                <div>
+                                    <div>
+                                        <input type="submit" value="创建"  class="  btn" style="float:right"/>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div>
-                        @Html.ActionLink("返回主页", "Index","Index")
-                    </div>
+                                 
+                            }
 
-                }
+      
+
+                        </div>
+                        <br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+
+
+    <!-- Javascript -->
+    <script src="~/Content/_share/Login/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/_share/Login/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/retina-1.1.0.min.js"></script>
+    <script src="~/Content/_share/Login/assets/js/scripts.js"></script>
+    <script src="~/Content/_share/Login/assets/js/placeholder.js"></script>
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
+
 </body>
+
 </html>
