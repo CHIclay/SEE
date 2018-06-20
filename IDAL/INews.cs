@@ -7,7 +7,7 @@ using Model;
 
 namespace IDAL
 {
-    public interface INews
+    public interface INews:IBase<News>
     {
         void InsertNews(News news);
         List<News> SelectNews(string News_Name);

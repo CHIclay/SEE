@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using System.Data.Entity;
+using Common;
 
 namespace SEEWeb.Controllers
 {
@@ -12,10 +13,12 @@ namespace SEEWeb.Controllers
     {
         SEEEntities db = new SEEEntities();
         // GET: Pic_Comment_Comment
-        public ActionResult Index()
+        public ActionResult Index(int pageIndex=1)
         {
-            var piccc = db.Pic_Comment_Comment.Include(n => n.User).Include(n => n.Pic_Comment);
-            return View(piccc.ToList());
+            var piccc = db.Pic_Comment_Comment.Include(n => n.User).Include(n => n.Pic_Comment).ToList();
+            PagingHelper<Pic_Comment_Comment> PCCPaging = new PagingHelper<Pic_Comment_Comment>(10, piccc);
+            PCCPaging.PageIndex = pageIndex;
+            return View(PCCPaging);
            
         }
         #region 评论回复

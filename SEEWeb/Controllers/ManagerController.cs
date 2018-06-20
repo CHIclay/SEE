@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using Model;
+using Common;
 using SEEWeb.Attributes;
 
 namespace SEEWeb.Controllers
@@ -16,10 +17,14 @@ namespace SEEWeb.Controllers
         private SEEEntities db = new SEEEntities();
         ManagerManager managermanager = new ManagerManager();
         // GET: Manager
-        public ActionResult Index()
+        public ActionResult Index(int pageIndex=1)
         {
-            var managers = db.Manager;
-            return View(managers.ToList());
+            var pt = managermanager.GetAll();
+            PagingHelper<Manager> ManagerPaging = new PagingHelper<Manager>(10, pt);
+            ManagerPaging.PageIndex = pageIndex;
+            return View(ManagerPaging);
+            //var managers = db.Manager;
+            //return View(managers.ToList());
         }
         #region 管理员登录
         public ActionResult Login()
@@ -48,6 +53,15 @@ namespace SEEWeb.Controllers
             {
                 return Content("<script>alert('用户名或密码错误！');window.open('" + Url.Content("~/Manager/Login") + "', '_self')</script>");
             }
+        }
+        #endregion
+
+        #region 管理员退出登录
+        public ActionResult LogOff()
+        {
+            Session["Man_Name"] = null;
+            Session["Man_ID"] = null;
+            return RedirectToAction("Index", "Index");
         }
         #endregion
 

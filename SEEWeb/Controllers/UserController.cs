@@ -9,6 +9,7 @@ using SEEWeb.Attributes;
 using System.Data.Entity;
 using SEEWeb.ViewModel;
 using System.Net;
+using Common;
  
 
 namespace SEEWeb.Controllers
@@ -64,6 +65,7 @@ namespace SEEWeb.Controllers
         }
         #endregion
 
+        
         #region 用户名检测
 
         [HttpPost]
@@ -181,10 +183,13 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 用户List
-        public ActionResult List()
+        public ActionResult List(int pageIndex=1)
         {
-            var users = db.User.ToList();
-            return View(users);
+            var um = usermanager.GetAll();
+            PagingHelper<User> UserPaging = new PagingHelper<User>(10, um);
+            UserPaging.PageIndex = pageIndex;
+            return View(UserPaging);
+             
         }
         #endregion
 
@@ -201,18 +206,15 @@ namespace SEEWeb.Controllers
         #region 用户中心
         public ActionResult UserCenter()
         {
-            
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-
-
-            if(User_ID!=null)
+            if(Session["User_ID"]!=null)
             {
-                  User user = db.User.Find(User_ID);
-                  return View(user);
+                int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                User user = db.User.Find(User_ID);
+                return View(user);
             }
             else
             {
-                return Content("<script>alert('你还没有注册哦！');window.open('" + Url.Action("Index", "Index") + "','_self');</script>"); 
+                return Content("<script>alert('你还没有登陆哦！');window.open('" + Url.Action("Login", "User") + "','_self');</script>"); 
             }
             
         }

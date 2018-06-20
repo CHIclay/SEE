@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
 using Model;
+using Common;
 
 namespace SEEWeb.Controllers
 {
@@ -13,10 +14,12 @@ namespace SEEWeb.Controllers
     {
         private SEEEntities db = new SEEEntities();
         // GET: News_Comment
-        public ActionResult Index()
+        public ActionResult Index(int pageIndex=1)
         {
-            var newscomment = db.News_Comment.Include(n => n.User).Include(n => n.News);
-            return View(newscomment.ToList());
+            var newscomment = db.News_Comment.Include(n => n.User).Include(n => n.News).ToList();
+            PagingHelper<News_Comment> NPPaging = new PagingHelper<News_Comment>(10, newscomment);
+            NPPaging.PageIndex = pageIndex;
+            return View(NPPaging);
         }
         #region 新闻评论详细
         public ActionResult Details(int?id)

@@ -9,8 +9,12 @@ using IDAL;
 
 namespace BLL
 {
-    public class NewsManager
+    public class NewsManager:BaseManager<News>
     {
+        public override IBase<News> GetDal()
+        {
+            return DataAccess.CreateNews();
+        }
         private INews inews = DataAccess.CreateNews();
         public void InsertNews(News news)
         {

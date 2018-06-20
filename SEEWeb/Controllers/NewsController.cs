@@ -9,6 +9,7 @@ using SEEWeb.Attributes;
 using System.Data.Entity;
 using PagedList;
 using System.Net;
+using Common;
 
 
 namespace SEEWeb.Controllers
@@ -57,9 +58,12 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 新闻List
-        public ActionResult List()
+        public ActionResult List(int pageIndex=1)
         {
-            return View(newsmanager.List());
+            var ns = newsmanager.GetAll();
+            PagingHelper<News> NewsPaging =new PagingHelper<News>(10,ns);
+            NewsPaging.PageIndex = pageIndex;
+            return View(NewsPaging);
         }
         #endregion
 

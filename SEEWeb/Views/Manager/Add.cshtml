@@ -1,28 +1,55 @@
 ﻿@model Model.Manager
     @{ 
         ViewBag.Title = "Add";
+        Layout = "~/Views/Shared/_LayoutManager.cshtml";
     }
-@using (Html.BeginForm("Add", "Manager", FormMethod.Post, new { enctype = "multipart/form-date" }))
-{
-    @Html.AntiForgeryToken()
-    <div>
-        @Html.LabelFor(model=>model.Man_Name)
-        <div>
-            @Html.EditorFor(model=>model.Man_Name)
-            @Html.ValidationMessageFor(model=>model.Man_Name)
-        </div>
-    </div>
-    <div>
-         @Html.LabelFor(model => model.Man_Pas)
-        <div>
-            @Html.EditorFor(model => model.Man_Pas)
-            @Html.ValidationMessageFor(model => model.Man_Pas)
-        </div>
-    </div>
 
-    <div>
-        <div>
-            <input type="submit" value="创建" />
+
+<body class="app sidebar-mini rtl">
+    <div class="app-title">
+        <div class="div">
+            <h1><i class="fa fa-dashboard"></i>管理员添加</h1>
+            <p>拒绝黑恶势力</p>
         </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Manager")">站内总汇</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Add","Manager")">管理员添加</a></li>
+        </ul>
     </div>
-}
+    <div class="tile mb-4">
+        <div>
+            <a href="@Url.Action("Index","Manager")">返回总站</a>
+        </div>
+        <div>
+            @using (Html.BeginForm("Add", "Manager", FormMethod.Post, new { enctype = "multipart/form-date" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    @Html.LabelFor(model => model.Man_Name, new { @class = "form-control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Man_Name, new { @class = "form-control-label" })
+                        @Html.ValidationMessageFor(model => model.Man_Name)
+                    </div>
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Man_Pas, new { @class = "form-control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Man_Pas, new { @class = "form-control-label" })
+                        @Html.ValidationMessageFor(model => model.Man_Pas)
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <input type="submit" value="创建"  class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    </div>
+</body>
+
+

@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using IDAL;
 using Model;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace DAL
 {
-   public class SqlServerUser:IUser
+   public class SqlServerUser:SqlServerBase<User>,IUser
     {
+        public override Expression<Func<User, bool>> GetByIdKey(int id)
+        {
+            return u => u.User_ID == id;
+        }
+
+        public override Expression<Func<User, string>> GetKey()
+        {
+            return u => u.User_ID.ToString();
+        }
         SEEEntities db = new SEEEntities();
         //用户注册？
         public void InsertUser(User user)

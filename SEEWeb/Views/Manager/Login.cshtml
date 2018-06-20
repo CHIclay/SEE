@@ -3,41 +3,73 @@
     ViewBag.Title = "Login";
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html>
 <head>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link href="~/Content/_share/Manager/css/main.css" rel="stylesheet" />
+    <!-- Font-icon css-->
+    <link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet" />
+    <title>SEE—管理员登录</title>
 </head>
 <body>
-    <div>
-        <div>
-            <a href="@Url.Action("Index","Index")" title="SEE">
-                <img src="~/images/logo.png" title="SEE" />
-            </a>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+            <h1>S E E</h1>
         </div>
-        <div>
-            @using (Html.BeginForm("Login", "Manager", FormMethod.Post))
-            {
-                @Html.ValidationSummary("");
+        <div class="login-box">
+            <div class="login-form">
+                <h3 class="login-head">
+             
+                    <a href="@Url.Action("Index","Index")" title="SEE">
+                        <img src="~/images/logo.png" title="SEE" />
+                    </a>
+                
+                </h3>
 
                 <div>
-                    <div>
-                        @Html.TextBoxFor(manager=>manager.Man_Name)
-                    </div>
-                    <div>
-                        @Html.PasswordFor(manager=>manager.Man_Pas)
-                    </div>
-                    <div>
-                        <input type="submit" value="登录" />
-                    </div>
+                    @using (Html.BeginForm("Login", "Manager", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary("");
+
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label">管理员名</label>
+                                @Html.TextBoxFor(manager => manager.Man_Name, new { @class = "form-control", placeholder = "请输入昵称" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">管理员密码</label>
+                                @Html.PasswordFor(manager => manager.Man_Pas, new { @class = "form-control", placeholder = "请输入昵称" })
+                            </div>
+ 
+
+                            <div class="form-group btn-container">
+                                <i class="fa fa-sign-in fa-lg fa-fw">
+                                </i>
+                                <input type="submit" value="登录" class="btn btn-primary btn-block" />
+                            </div>
+                        </div>
+
+                    }
                 </div>
-                
-            }
+            </div>
         </div>
-        <div>
-        
-        </div>
-    </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Content/_share/Manager/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/_share/Manager/js/popper.min.js"></script>
+    <script src="~/Content/_share/Manager/js/bootstrap.min.js"></script>
+    <script src="~/Content/_share/Manager/js/main.js"></script>
+
+    <script src="~/Content/_share/Manager/js/plugins/pace.min.js"></script>
+
 </body>
 </html>
 

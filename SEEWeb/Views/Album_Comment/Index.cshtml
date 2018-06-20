@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Model.Album_Comment>
+﻿@using Model
+@model Common.PagingHelper<Album_Comment>
 
 @{
     ViewBag.Title = "Index";
@@ -22,24 +23,24 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AC_ID)
+                    评论ID
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.User.User_Name)
+                    评论人姓名
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Alb_ID)
+                    相册ID
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AC_Mes)
+                    评论内容
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AC_Time)
+                    评论时间
                 </th>
                 <th></th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.GetPagingData())
             {
                 <tr>
                     <td>
@@ -63,6 +64,31 @@
                     </td>
                 </tr>
             }
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @if (Model.HasPrev)
+                    {
+                        <td><a href="@Url.Action("Index","Album_Comment",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
+                    }
+                    else
+                    {
+                        <td><em style="color:dimgray">上一页</em></td>
+                    }
+                    @if (Model.HasNext)
+                    {
+                        <td>
+                            <a href="@Url.Action("Index", "Album_Comment", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td><em style="color:dimgray">下一页</em></td>
+                    }
+                </tr>
+            </tfoot>
 
         </table>
     </div>

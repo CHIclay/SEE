@@ -5,12 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using IDAL;
- 
+using System.Linq.Expressions;
+
 
 namespace DAL
 {
-    public class SqlServerPic_Comment:IPic_Comment
+    public class SqlServerPic_Comment:SqlServerBase<Pic_Comment>,IPic_Comment
     {
+        public override Expression<Func<Pic_Comment, bool>> GetByIdKey(int id)
+        {
+            return u => u.PC_ID == id;
+        }
+        public override Expression<Func<Pic_Comment, string>> GetKey()
+        {
+            return u => u.PC_Mes;
+        }
         SEEEntities db = new SEEEntities();
         public IEnumerable<Pic_Comment> GetPC(int picid)
         {

@@ -7,7 +7,7 @@ using Model;
 
 namespace IDAL
 {
-    public interface IUser
+    public interface IUser:IBase<User>
     {
         void InsertUser(User user);
         List<User> SelectUser(string User_Name);

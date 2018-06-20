@@ -29,46 +29,64 @@
 </head>
 
 
-<body>
-    @using (Html.BeginForm("Add", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "")
-        <div>
-            @Html.LabelFor(model => model.News_Name)
+<body class="app sidebar-mini rtl">
+        <div class="app-title">
+            <div class="div">
+                <h1><i class="fa fa-dashboard"></i>新闻发布</h1>
+                <p>拒绝黑恶势力</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Add","News")">新闻添加</a></li>
+            </ul>
+        </div>
+        <div class="tile mb-4">
             <div>
-                @Html.EditorFor(model => model.News_Name)
-                @Html.ValidationMessageFor(model => model.News_Name)
+                @Html.ActionLink("返回新闻列表", "List")
+            </div>
+            <div>
+                @using (Html.BeginForm("Add", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "")
+                    <div>
+                        @Html.LabelFor(model => model.News_Name)
+                        <div>
+                            @Html.EditorFor(model => model.News_Name)
+                            @Html.ValidationMessageFor(model => model.News_Name)
+
+
+                        </div>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.News_Pic)
+                        <div>
+                            <input type="file" name="newsimage" />
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(model => model.News_Mes)
+                        <div>
+                            <textarea id="editor" name="News_Mes"></textarea>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div>
+                            <input type="submit" value="发布新闻" />
+                        </div>
+                    </div>
+
+                }
 
             </div>
         </div>
-        <div>
-            @Html.LabelFor(model => model.News_Pic)
-            <div>
-                <input type="file" name="newsimage" />
-            </div>
-        </div>
+    
+           
 
-        <div>
-            @Html.LabelFor(model => model.News_Mes)
-            <div>
-                 <textarea id="editor" name="News_Mes"></textarea>
-            </div>
-          
-        </div>
-        <div>
-            <div>
-                <input type="submit" value="发布新闻" />
-            </div>
-        </div>
-        <div>
-            @Html.ActionLink("返回新闻列表", "List")
-        </div>
-    }
- 
-   
-</body>
+    </body>
 
 </html>

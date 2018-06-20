@@ -8,7 +8,7 @@ using Model;
 
 namespace IDAL
 {
-    public interface IManager
+    public interface IManager:IBase<Manager>
     {
         void InsertManager(Manager manager);
         int Login(Manager manager);

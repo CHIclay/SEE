@@ -6,12 +6,22 @@ using System.Threading.Tasks;
 using IDAL;
 using Model;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 
 namespace DAL
 {
-    public class SqlServerManager:IManager
+    public class SqlServerManager:SqlServerBase<Manager>,IManager
     {
+        public override Expression<Func<Manager, bool>> GetByIdKey(int id)
+        {
+            return u => u.Man_ID == id;
+        }
+
+        public override Expression<Func<Manager, string>> GetKey()
+        {
+            return u => u.Man_ID.ToString();
+        }
         SEEEntities db = new SEEEntities();
         public void InsertManager(Manager manager)
         {

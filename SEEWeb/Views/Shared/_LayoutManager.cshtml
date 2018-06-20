@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -36,9 +37,9 @@
             <li class="dropdown">
                 <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> 管理员信息</a></li>
-                    <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> 切换角色</a></li>
-                    <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> 登出</a></li>
+                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-address-card" aria-hidden="true"></i> 管理员信息</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Login","Manager")"><i class="fa fa-reply-all" aria-hidden="true"></i>切换角色</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("LogOff","Manager")"><i class="fa fa-fighter-jet" aria-hidden="true"></i> 登出</a></li>
                 </ul>
             </li>
         </ul>
@@ -47,10 +48,9 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <div class="app-sidebar__user">
-            <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
             <div>
-                <p class="app-sidebar__user-name">John Doe</p>
-                <p class="app-sidebar__user-designation">Frontend Developer</p>
+                <p class="app-sidebar__user-name">欢迎你，管理员</p>
+                <p class="app-sidebar__user-designation">@Session["Man_Name"]</p>
             </div>
         </div>
         <ul class="app-menu">
@@ -62,14 +62,14 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">图片类别</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-object-group" aria-hidden="true"></i><span class="app-menu__label">图片类别</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="@Url.Action("Index","Picture_Type")"><i class="icon fa fa-circle-o"></i> 类别List</a></li>
                     <li><a class="treeview-item" href="@Url.Action("Create","Picture_Type")"><i class="icon fa fa-circle-o"></i>类别添加</a></li>
                 </ul>
             </li>
             <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">图片管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-film" aria-hidden="true"></i><span class="app-menu__label">图片管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item"  href="@Url.Action("List","Picture")"><i class="icon fa fa-circle-o"></i> 图片List</a></li>
                     <li><a class="treeview-item" href="@Url.Action("Index","Pic_Comment")"><i class="icon fa fa-circle-o"></i> 图片评论</a></li>
@@ -77,7 +77,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">新闻管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-book" aria-hidden="true"></i><span class="app-menu__label">新闻管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="@Url.Action("Add","News")"><i class="icon fa fa-circle-o"></i> 发布新闻</a></li>
                     <li><a class="treeview-item" href="@Url.Action("List","News")"><i class="icon fa fa-circle-o"></i> 新闻List</a></li>
@@ -85,7 +85,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">相册管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>          
+                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-camera-retro" aria-hidden="true"></i><span class="app-menu__label">相册管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>          
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="@Url.Action("List","Album")"><i class="icon fa fa-circle-o"></i>相册List</a></li>
                     <li><a class="treeview-item" href="@Url.Action("Index","Album_Comment")"><i class="icon fa fa-circle-o"></i> 相册评论</a></li>

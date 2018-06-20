@@ -10,8 +10,12 @@ using IDAL;
 
 namespace BLL
 {
-    public class ManagerManager
+    public class ManagerManager:BaseManager<Manager>
     {
+        public override IBase<Manager> GetDal()
+        {
+            return DataAccess.CreateManager();
+        }
         private IManager imanager = DataAccess.CreateManager();
         public void InsertManager(Manager manager)
         {

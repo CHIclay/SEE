@@ -9,8 +9,12 @@ using IDAL;
 
 namespace BLL
 {
-    public class Pic_CommentManager
+    public class Pic_CommentManager:BaseManager<Pic_Comment>
     {
+        public override IBase<Pic_Comment> GetDal()
+        {
+            return DataAccess.CreatePic_Comment();
+        }
         public IPic_Comment ipic_comment = DataAccess.CreatePic_Comment();
         public IEnumerable<Pic_Comment> GetPC(int picid)
         {

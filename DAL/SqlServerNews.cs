@@ -10,8 +10,17 @@ using System.Linq.Expressions;
 
 namespace DAL
 {
-    public class SqlServerNews:INews
+    public class SqlServerNews:SqlServerBase<News>,INews
     {
+        public override Expression<Func<News, bool>> GetByIdKey(int id)
+        {
+            return u => u.News_ID == id;
+        }
+
+        public override Expression<Func<News, string>> GetKey()
+        {
+            return u => u.News_ID.ToString();
+        }
         SEEEntities db = new SEEEntities();
         public void InsertNews(News news)
         {

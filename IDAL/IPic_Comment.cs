@@ -8,7 +8,7 @@ using Model;
 
 namespace IDAL
 {
-    public interface IPic_Comment
+    public interface IPic_Comment:IBase<Pic_Comment>
     {
         IEnumerable<Pic_Comment> GetPC(int picid);
         void InsertPC(Pic_Comment pcmes);

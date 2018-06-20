@@ -1,57 +1,97 @@
-﻿@model IEnumerable<Model.News_Comment>
+﻿@using Model
+@model Common.PagingHelper<News_Comment>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<h2>Index</h2>
+<body class="app sidebar-mini rtl">
 
-<p>
- 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NC_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.News_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NC_Mes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NC_Time)
-        </th>
-        <th></th>
-    </tr>
+    <div class="app-title">
+        <div class="div">
+            <h1><i class="fa fa-dashboard"></i>新闻评论管理</h1>
+            <p>拒绝黑恶势力</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","News_Comment")">新闻评论管理</a></li>
+        </ul>
+    </div>
+    <div class="tile mb-4">
+        <table class="table">
+            <tr>
+                <th>
+                    评论ID
+                </th>
+                <th>
+                    评论人ID
+                </th>
+                <th>
+                    评论新闻ID
+                </th>
+                <th>
+                    评论内容
+                </th>
+                <th>
+                    评论时间
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NC_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.News_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NC_Mes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NC_Time)
-        </td>
-        <td>
-            @Html.ActionLink("查看详细", "Details", new { id=item.NC_ID }) |
-            @Html.ActionLink("删除", "Delete", new { id=item.NC_ID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model.GetPagingData())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NC_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.News_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NC_Mes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NC_Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("查看详细", "Details", new { id = item.NC_ID }) |
+                        @Html.ActionLink("删除", "Delete", new { id = item.NC_ID })
+                    </td>
+                </tr>
+            }
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @if (Model.HasPrev)
+                    {
+                        <td><a href="@Url.Action("Index","News_Comment",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
+                    }
+                    else
+                    {
+                        <td><em style="color:dimgray">上一页</em></td>
+                    }
+                    @if (Model.HasNext)
+                    {
+                        <td>
+                            <a href="@Url.Action("Index", "News_Comment", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td><em style="color:dimgray">下一页</em></td>
+                    }
+                </tr>
+            </tfoot>
 
-</table>
+        </table>
+    </div>
+</body>
+
+       

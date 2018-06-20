@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class UserManager
+    public class UserManager:BaseManager<User>
     {
+        public override IBase<User> GetDal()
+        {
+            return DataAccess.CreateUser();
+        }
         private IUser iuser = DataAccess.CreateUser();
         public void InsertUser(User user)
         {
