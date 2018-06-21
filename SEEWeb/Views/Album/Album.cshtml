@@ -8,36 +8,46 @@
 <!DOCTYPE html>
 <style>
 </style>
-<div>
-    <div>
-
-    </div>
-    <div>
-        <h2>图片列表</h2>
-        <div>
-           
-                @foreach (var p in Model)
-                {
-                    
-                        <div>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Album  Of  SEE
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            @foreach (var p in Model)
+            {
+                <div class="col-sm-4 col-xs-6">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
                             <a href="@Url.Action("Details",new {id=p.Alb_ID})">
-                                <img width="100" height="100" src="@p.Alb_Pic" />
+                                <img src="@p.Alb_Pic" alt="port3" height="300" width="360" />
                             </a>
+                            <div class="portfolio-img-hover">
+                                <a href="@Url.Action("Details",new {id=p.Alb_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                            </div>
                         </div>
-                        <div>
-                            @p.User.User_Name
+                        <div class="portfolio-item-details">
+                            <div class="portfolio-item-name">
+                                @p.Alb_Name     <br />    <small> @p.User.User_Name</small>
+                            </div>
+
+                            <div class="port-heart">
+                                <i class="ion-ios-heart-outline"></i>  @p.Album_Point.Count()
+                            </div>
                         </div>
-                        <div>
-                            @p.Alb_Mes
-                        </div>
-                        <div>
-                            @p.Alb_Time
-                        </div>
-                  
-                }
-           
+
+                    </div>
+                </div>
+            }
+
+
+
+
         </div>
-        <div>
+    </div>
+    <div  class="container"  >
+        <div style="float:right">
             <div>
                 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
             </div>
@@ -45,5 +55,7 @@
                 @Html.PagedListPager(Model, page => Url.Action("Index", "Album", new { page }))
             </div>
         </div>
+     
     </div>
-</div>
+</section>
+     

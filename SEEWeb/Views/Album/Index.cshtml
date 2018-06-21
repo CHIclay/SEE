@@ -1,19 +1,22 @@
-﻿@model SEEWeb.ViewModel.AlbumViewModel
+﻿
+    @model List<Model.Album>
 @{
     ViewBag.Title = "Index";
-     
+
 }
 
-<h2>Index</h2>
-<div>
-    <div>
-        @Html.ActionLink("创建我的相册", "Add")
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active">&nbsp;相册</li>
+            <li style="float:right">@Html.ActionLink("创建我的相册", "Add")  </li>
+        </ol> 
+ 
+       
     </div>
-    <audio controls="controls">
-        <source src="~/images/%e5%a4%a7%e8%b0%b7%e5%b9%b8%20-%20%e6%97%a9%e4%b9%99%e5%a5%b3%e3%81%8f%e3%82%93%e3%81%a8%e6%ad%a9%e3%81%8f.mp3" type="audio/mpeg" />
-    </audio>
-    <a href="~/images/新建文本文档.txt">这将是你的命运</a>
-    <div>
-        @{ Html.RenderAction("Album", "Album");}
-    </div>
-</div>
+</section>
+
+    
+            @{ Html.RenderAction("Album", "Album");}
+ 

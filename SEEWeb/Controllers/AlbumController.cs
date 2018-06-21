@@ -22,7 +22,9 @@ namespace SEEWeb.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            return View();   
+            var album1 = (from p in db.Album select p).ToList().OrderByDescending(p => p.Album_Point.Count()).ToList();//显示点赞最多的八个相册
+            
+            return View(album1);   
         }
         #endregion
 
@@ -61,8 +63,7 @@ namespace SEEWeb.Controllers
         #region 相册主页实现分页
         public ActionResult Album(int ? page)
         {
-            var album = from a in db.Album.OrderByDescending(a => a.Alb_Time)
-                        select a;
+            var album = (from p in db.Album select p).ToList().OrderByDescending(p => p.Album_Point.Count()).ToList();//根据点赞数排列;
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(album.ToPagedList(pageNumber, pageSize));
@@ -145,8 +146,9 @@ namespace SEEWeb.Controllers
                 albpoint.AP_Time = DateTime.Now;
                 db.Album_Point.Add(albpoint);
                 db.SaveChanges();
-                 return Content("<script>;alert('成功!');history.go(-1)</script>");           
-              }
+                    //return Content("<script>alert('点赞成功！');window.open('" + Url.Action("Details", "Album") + "','_self');</script>");
+                return Content("<script>;alert('成功!');history.go(-1)</script>");
+                }
             }
             else
             {
