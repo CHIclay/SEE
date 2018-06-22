@@ -2,48 +2,83 @@
 @{
     ViewBag.Title = "UserCenter";
 }
+ 
+<link href="~/Content/_share/User/assets/css/service.css" rel="stylesheet" />
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active">&nbsp;用户中心</li>
+        </ol>
 
-<h2>UserCenter</h2>
 
-<div>
-    <div>
-        <a href="@Url.Action("Album","User")">我的相册</a>
-        <a href="@Url.Action("Picture","User")">我的图片</a>
-        <a href="@Url.Action("Save","User")">我的收藏</a>
-        <a href="@Url.Action("focusme","User")">我的粉丝</a>
-        <a href="@Url.Action("focus","User")">我关注的</a>
     </div>
-    <div>
-        <div>
-            <p>
-                <span>用户名</span>
-                @Model.User_Name
-            </p>
-            @*<p>
-            <span>用户密码</span>
-            @Model.User_Pwd
-        </p>*@
-            <p>
-                <span>用户头像</span>
-                <img src="@Model.User_Img" height="100" width="100" />
-            </p>
-            
-         
-            <p>
-                <span>用户性别</span>
-                @Model.User_Sex
-            </p>
-            <p>
-                <span>用户邮箱</span>
-                @Model.User_Ema
-            </p>
-            <P>
-                <span>用户号码</span>
-                @Model.User_Pho
-            </P>
-            <p>
-                @{ Html.RenderAction("Index", "User");}
-            </p>
+</section>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Details Of Mine
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            <div class="col-sm-1 col-xs-6">
+                &nbsp;
+            </div>
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="portfolio-item">
+                        <a href="@Url.Action("UserCenter","User")"><h2>  <span class="label label-primary">我的信息</span></h2></a>
+                        <br />
+
+                        <a href="@Url.Action("Album1","Album")"><h2>  <span class="label label-primary">我的相册</span></h2></a>
+                        <br />
+                        <a href="@Url.Action("Picture1","Picture")"><h2><span class="label label-primary">我的图片</span> </h2></a>
+                        <br />
+                        <a href="@Url.Action("Save","User")"><h2> <span class="label label-primary">我的收藏</span></h2></a>
+                        <br />
+                        <a href="@Url.Action("focusme","User")"><h2><span class="label label-primary">我的粉丝</span> </h2></a>
+                        <br />
+                        <a href="@Url.Action("focus","User")"><h2><span class="label label-primary">我关注的</span> </h2></a>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <div>
+
+
+                        <p>
+                            <span>用户头像:</span>
+                            <img src="@Model.User_Img" height="100" width="100" />
+                        </p>
+                        <br />
+                        <p>
+                            <span>用户名:</span>
+                            @Model.User_Name
+                        </p>
+                        <br />
+                        <p>
+                            <span>用户性别:</span>
+                            @Model.User_Sex
+                        </p>
+                        <br />
+                        <p>
+                            <span>用户邮箱:</span>
+                            @Model.User_Ema
+                        </p>
+                        <br />
+                        <P>
+                            <span>用户号码:</span>
+                            @Model.User_Pho
+                        </P>
+                        <br />
+                        <p>
+                            <h3><span class="label label-info"  > @Html.ActionLink("修改个人信息", "Edit", new { id = @Session["User_ID"], @clss = "label label-info" }) </span>  </h3>  
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</div>
+</section>
+

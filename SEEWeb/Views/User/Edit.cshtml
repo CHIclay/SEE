@@ -4,79 +4,124 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>用户_修改</h2>
+<link href="~/Content/_share/User/assets/css/service.css" rel="stylesheet" />
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active"><a href="@Url.Action("UserCenter","User")">&nbsp;用户中心</a></li>
+            <li class="active"><a href="#")">&nbsp;修改信息</a></li>
+        </ol>
 
-@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()//防止跨站攻击的一种措施
 
-    <div>
-        <h4>用户</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.User_ID)
-        <div>
-            @Html.LabelFor(model => model.User_Name)
-            <div>
-                @Html.EditorFor(model => model.User_Name)
-                @Html.ValidationMessageFor(model => model.User_Name);
+    </div>
+</section>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+             EDIT MY DETAILS
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            <div class="col-sm-1 col-xs-6">
+                &nbsp;
             </div>
-        </div>
-        <div>
-            @Html.LabelFor(model => model.User_Img)
-            <div>
-                <input type="file" name="image" />
-            </div>
-        </div>
-        <br />
-        <div>
-            @Html.LabelFor(model => model.User_Pwd)
-            <div>
-                @Html.EditorFor(model => model.User_Pwd)
-                @Html.ValidationMessageFor(model => model.User_Pwd)
-            </div>
-        </div>
-        <br />
-        <div>
-            @Html.LabelFor(model => model.User_ConPwd)
-            <div>
-                @Html.EditorFor(model => model.User_ConPwd)
-                @Html.ValidationMessageFor(model => model.User_ConPwd)
-            </div>
-        </div>
-        <br />
-        <div>
-            @Html.LabelFor(model => model.User_Sex)
-            <div>
-                @Html.EditorFor(model => model.User_Sex)
-                @Html.ValidationMessageFor(model => model.User_Sex)
-            </div>
-        </div>
-        <br />
-        <div>
-            @Html.LabelFor(model => model.User_Ema)
-            <dvi>
-                @Html.EditorFor(model => model.User_Ema)
-                @Html.ValidationMessageFor(model => model.User_Ema)
-            </dvi>
-        </div>
-        <br />
-        <div>
-            @Html.LabelFor(model => model.User_Pho)
-            <div>
-                @Html.EditorFor(model => model.User_Pho)
-                @Html.ValidationMessageFor(model => model.User_Pho)
-            </div>
-        </div>
-        <br />
-        <div>
-            <div>
-                <input type="submit" value="确定" />
-            </div>
+                <div class="col-sm-4 col-xs-6">
+
+                    <div class="portfolio-item">
+                        <a href="@Url.Action("UserCenter","User")"><h2>  <span class="label label-primary">我的信息</span></h2></a>
+                        <br />
+
+                        <a href="@Url.Action("Album","User")"><h2>  <span class="label label-primary">我的相册</span></h2></a>
+                        <br />
+                        <a href="@Url.Action("Picture1","Picture")"><h2><span class="label label-primary">我的图片</span> </h2></a>
+                        <br />
+                        <a href="@Url.Action("Save","User")"><h2> <span class="label label-primary">我的收藏</span></h2></a>
+                        <br />
+                        <a href="@Url.Action("focusme","User")"><h2><span class="label label-primary">我的粉丝</span> </h2></a>
+                        <br />
+                        <a href="@Url.Action("focus","User")"><h2><span class="label label-primary">我关注的</span> </h2></a>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()//防止跨站攻击的一种措施
+
+                        <div>
+                          
+                            <hr />
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.User_ID)
+                            <div>
+                                用户名： &nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_Name)
+                                    @Html.ValidationMessageFor(model => model.User_Name)
+                                </div>
+                            </div>
+                            <div>
+                               用户头像：&nbsp;
+                                <div>
+                                    <input type="file" name="image" />
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                用户密码：&nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_Pwd)
+                                    @Html.ValidationMessageFor(model => model.User_Pwd)
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                               确认密码:&nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_ConPwd)
+                                    @Html.ValidationMessageFor(model => model.User_ConPwd)
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                               用户性别：&nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_Sex)
+                                    @Html.ValidationMessageFor(model => model.User_Sex)
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                               用户邮箱：&nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_Ema)
+                                    @Html.ValidationMessageFor(model => model.User_Ema)
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                              用户号码：&nbsp;
+                                <div>
+                                    @Html.EditorFor(model => model.User_Pho)
+                                    @Html.ValidationMessageFor(model => model.User_Pho)
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div>
+                                    <input type="submit" value="确定" />
+                                </div>
+                            </div>
+                        </div>
+                     
+                    }
+
+
+
+                </div>
         </div>
     </div>
-    <div>
-        @Html.ActionLink("返回个人主页", "Index")
-    </div>
-}
+</section>
 

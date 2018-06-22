@@ -23,7 +23,7 @@
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.News_ID)
+                    新闻ID
                 </dt>
 
                 <dd>
@@ -31,22 +31,29 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Man_ID)
+                    上传管理员ID
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.Man_ID)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.News_Name)
+                    新闻名
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.News_Name)
                 </dd>
+                <dt>
+                    添加时间
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.News_Time)
+                </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.News_Pic)
+                    新闻封面
                 </dt>
 
                 <dd>
@@ -57,26 +64,19 @@
                         }
                         else
                         {
-                            <img width="75" height="75" src="@Url.Content(Model.News_Pic)" alt="images" />
+                            <img width="350"   src="@Url.Content(Model.News_Pic)" alt="images" />
                         }
                     </div>
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.News_Mes)
+                    新闻内容
                 </dt>
 
                 <dd>
                     @Html.Raw(@Model.News_Mes)
                 </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.News_Time)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.News_Time)
-                </dd>
 
             </dl>
         </div> 

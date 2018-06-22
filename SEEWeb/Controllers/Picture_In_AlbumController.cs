@@ -44,19 +44,25 @@ namespace SEEWeb.Controllers
         
         public ActionResult Add2(Picture_In_Album pia,int albid,int picid)
         {
-            //int albid = Convert.ToInt32(Request["albid"]);
-            //int picid= Convert.ToInt32(Request["picid"]);
-
-            if (ModelState.IsValid)
+           if(Session["User_ID"]!=null)
             {
+                if (ModelState.IsValid)
+                {
                 pia.Alb_ID = albid;
                 pia.Pic_ID = picid;
-            pia.PIA_Time = DateTime.Now;
-            db.Picture_In_Album.Add(pia);
-            db.SaveChanges();
-            return Content("<script>;alert('添加成功');history.go(-2)</script>");
+                pia.PIA_Time = DateTime.Now;
+                db.Picture_In_Album.Add(pia);
+                db.SaveChanges();
+                return Content("<script>;alert('添加成功');history.go(-2)</script>");
+                }
+                  return RedirectToAction("Details", "Picture");
             }
-            return RedirectToAction("Details", "Picture");
+            else
+            {
+                return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
+            }
+         
+           
         }
         #endregion
     }

@@ -1,0 +1,271 @@
+
+.view-ninth .mask-1, .view-ninth .mask-2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    height:393px;
+    width: 361px;
+    background: rgba(0, 163, 228, 0.68);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out 0.6s;
+    -moz-transition: all 0.3s ease-in-out 0.6s;
+    -o-transition: all 0.3s ease-in-out 0.6s;
+    transition: all 0.3s ease-in-out 0.6s;
+}
+.view-ninth .mask-1 {
+    left: auto;
+    right: 0;
+    -webkit-transform: rotate(56.5deg) translateX(-180px);
+    -moz-transform: rotate(56.5deg) translateX(-180px);
+    -o-transform: rotate(56.5deg) translateX(-180px);
+    -ms-transform: rotate(56.5deg) translateX(-180px);
+    transform: rotate(56.5deg) translateX(-180px);
+    -webkit-transform-origin: 100% 0%;
+    -moz-transform-origin: 100% 0%;
+    -o-transform-origin: 100% 0%;
+    -ms-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+}
+.view-ninth .mask-2 {
+    top: auto;
+    bottom:-6px;
+    -webkit-transform: rotate(56.5deg) translateX(180px);
+    -moz-transform: rotate(56.5deg) translateX(180px);
+    -o-transform: rotate(56.5deg) translateX(180px);
+    -ms-transform: rotate(56.5deg) translateX(180px);
+    transform: rotate(56.5deg) translateX(180px);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+}
+.view-ninth .content {
+    background: rgba(0, 0, 0, 0.9);
+    height: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    width: 361px;
+    overflow: hidden;
+    -webkit-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -moz-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -o-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -ms-transform: rotate(-33.5deg) translate(-112px, 166px);
+    transform: rotate(-33.5deg) translate(-112px, 166px);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    -webkit-transition: all 0.4s ease-in-out 0.3s;
+    -moz-transition: all 0.4s ease-in-out 0.3s;
+    -o-transition: all 0.4s ease-in-out 0.3s;
+    transition: all 0.4s ease-in-out 0.3s;
+}
+.view-ninth h2, .view-ninth h3{
+	font-family: 'Philosopher', sans-serif;
+    background: transparent;
+    margin-top: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.view-ninth a.info {
+    display: none;
+}
+.view-ninth:hover .content {
+   height: 130px;
+    width: 330px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+    opacity: 0.9;
+    top: 40px;
+    -webkit-transform: rotate(0deg) translate(0, 0);
+    -moz-transform: rotate(0deg) translate(0, 0);
+    -o-transform: rotate(0deg) translate(0, 0);
+    -ms-transform: rotate(0deg) translate(0, 0);
+    transform: rotate(0deg) translate(0, 0);
+}
+.view-ninth:hover .mask-1, .view-ninth:hover .mask-2 {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}
+.view-ninth:hover .mask-1 {
+    -webkit-transform: rotate(56.5deg) translateX(1px);
+    -moz-transform: rotate(56.5deg) translateX(1px);
+    -o-transform: rotate(56.5deg) translateX(1px);
+    -ms-transform: rotate(56.5deg) translateX(1px);
+    transform: rotate(56.5deg) translateX(1px);
+}
+.view-ninth:hover .mask-2 {
+    -webkit-transform: rotate(56.5deg) translateX(-1px);
+    -moz-transform: rotate(56.5deg) translateX(-1px);
+    -o-transform: rotate(56.5deg) translateX(-1px);
+    -ms-transform: rotate(56.5deg) translateX(-1px);
+    transform: rotate(56.5deg) translateX(-1px);
+}
+@media(max-width:1080px){
+  .view-ninth .mask-1, .view-ninth .mask-2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    height:300px;
+    width: 361px;
+        background: rgba(0, 163, 228, 0.68);
+	}
+	.view-ninth .mask-1 {
+  left: auto;
+      right: -54px;
+  }
+  .view-ninth .mask-1, .view-ninth .mask-2 {
+  height: 900px;
+  width: 900px;
+  }
+    .view-ninth .content  {
+    width:200px;
+     height: 234px;
+     height: 0;
+	   left: -35px;
+  }
+}
+
+@media(max-width:991px){
+.view-ninth .mask-1 {
+  left: auto;
+      right: -11px;
+  }
+ .view-ninth .content {
+    left: -9px;
+}
+}
+@media(max-width:800px){
+.view-ninth .mask-1 {
+      right: -12px;
+  }
+ 
+}
+
+@media(max-width:736px){
+.view-ninth .mask-2 {
+    top: auto;
+    bottom: 3px;
+}
+.view-ninth .mask-1 {
+      right: -12.5px;
+  }
+
+}
+
+
+
+@media (max-width: 667px){
+.view-ninth .mask-1 {
+    left: auto;
+    right: -48px;
+}
+   .view-ninth .content {
+    left: -25px;
+}
+
+}
+@media(max-width:640px){
+.view-ninth .mask-1 {
+    left: auto;
+    right: -60px;
+}
+	.view-ninth:hover .content {
+	    top: 27px;
+	}
+	
+}
+
+@media(max-width:600px){
+.view-ninth .mask-1 {
+  left: auto;
+      right: -79px;
+  }
+	
+}
+@media(max-width:568px){
+.view-ninth .mask-1 {
+  left: auto;
+      right: 16px;
+}
+ .view-ninth .mask-2 {
+    top: auto;
+    bottom: -7px;
+}
+}
+
+
+@media(max-width:536px){
+.view {
+    width: 74%;
+}
+.view-ninth .mask-1 {
+    right:15px;
+}
+.view-ninth .mask-2 {
+    bottom: -6px;
+}
+.view-ninth:hover .content {
+    height: 130px;
+    width: 322px;
+}
+}
+
+@media(max-width:480px){
+
+.view {
+    width: 84%;
+}
+}
+@media(max-width:414px){
+.view {
+    width: 99%;
+}
+.view-ninth:hover .content {
+    left: 10px;
+}
+
+}
+@media(max-width:384px){
+.view {
+    width: 100%;
+}
+.view-ninth .mask-1 {
+    right: 0px;
+}
+.view-ninth .mask-2 {
+    bottom: 0px;
+}
+.view-ninth:hover .content {
+    left: 0px;
+}
+
+
+}
+
+
+@media(max-width:375px){
+.view-ninth .mask-1 {
+    right: -10px;
+}
+.view-ninth:hover .content {
+    left: -6px;
+}
+
+}
+
+@media(max-width:320px){
+.view-ninth:hover .content {
+    height: 120px;
+    width: 252px;
+	top: 50px;
+	left:0px;
+}
+	
+.view-ninth .mask-2 {
+    top: auto;
+    left: -55px;
+}
+}

@@ -4,47 +4,64 @@
     ViewBag.Title = "Add";
 }
 
-<h2>Add</h2>
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active"><a href="@Url.Action("Index","Album")">&nbsp;相册</a></li>
+            <li class="active"><a href="#">相册创建</a></li>
+        </ol>
 
-@using (Html.BeginForm("Add", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="form-horizontal">
-    <h4>Album</h4>
-    <hr />
-    <div>
-        @Html.LabelFor(model => model.Alb_Name)
-        <div>
-            @Html.EditorFor(model => model.Alb_Name)
-            @Html.ValidationMessageFor(model => model.Alb_Name)
+
+    </div>
+</section>
+<section class="about" id="about" style="background: #f3f3f3;">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Create Your Album
+        </h2>
+        <div class="underline purple"></div>
+
+        @using (Html.BeginForm("Add", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <div class="col-sm-3 col-xs-12 form-group">
+                &nbsp;
+            </div>
+            <div class="col-sm-3 col-xs-12 form-group">
+                &nbsp;
+            </div>
+            <div class="col-sm-4 col-xs-12 form-group">
+                <lable>相册名称</lable>
+                <div>
+                    @Html.EditorFor(model => model.Alb_Name, new { @class = "form-control", placeholder = "请输入相册名称" })
+                    @Html.ValidationMessageFor(model => model.Alb_Name)
+                </div>
+                <label>相册简介</label>
+                <div>
+                    @Html.EditorFor(model => model.Alb_Mes, new { @class = " form-control", placeholder = "请输入相册简介" })
+                    @Html.ValidationMessageFor(model => model.Alb_Mes)
+                </div>
+                <label>相册封面</label>
+                <div>
+                    <input type="file" name="albumimage" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12 form-group">
+                &nbsp;
+            </div> <div class="col-sm-4 col-xs-12 form-group">
+                &nbsp;
+            </div>
+            <div class="col-sm-4 col-xs-12 form-group">
+                <input type="submit" value="创建相册" class="btn" />
+            </div>
         </div>
+        }
+
 
     </div>
+</section>
 
-
-
-
-    <div>
-        @Html.LabelFor(model => model.Alb_Mes)
-        <div>
-            @Html.EditorFor(model => model.Alb_Mes)
-            @Html.ValidationMessageFor(model => model.Alb_Mes)
-        </div>
-
-    </div>
-    <div>
-        @Html.LabelFor(model => model.Alb_Pic)
-        <div>
-            <input type="file" name="albumimage" />
-        </div>
-    </div>
-    <div>
-        <input type="submit" value="创建相册" />
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("返回首页", "Index")
-</div>
+  

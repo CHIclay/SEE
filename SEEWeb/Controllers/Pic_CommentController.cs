@@ -33,11 +33,13 @@ namespace SEEWeb.Controllers
         [ValidateInput(false)]
         public ActionResult Comments(Pic_Comment piccomment)
         {
-            string textarea = Request["textarea"];
-            int Pic_ID = Convert.ToInt32(Request["Pic_ID"]);
-
-            if (ModelState.IsValid)
+            if(Session["User_ID"]!=null)
             {
+                   string textarea = Request["textarea"];
+                  int Pic_ID = Convert.ToInt32(Request["picid"]);
+
+                  if (ModelState.IsValid)
+                  {
                 piccomment.Pic_ID = Pic_ID;
                 piccomment.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
                 piccomment.PC_Mes = textarea;
@@ -46,7 +48,13 @@ namespace SEEWeb.Controllers
                 db.SaveChanges();
                 return Content("<script>;alert('评论成功!');history.go(-1)</script>");
 
+                  }
             }
+            else
+            {
+                return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
+            }
+           
             return RedirectToAction("Details", "Picture");
         }
         #endregion

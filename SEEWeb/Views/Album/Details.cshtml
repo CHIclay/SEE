@@ -9,14 +9,26 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index","Index")">主页</a></li>
-            <li class="active"><a href="@Url.Action("Index","Album")">&nbsp;相册</a></li>
+            @if (Session["User_ID"] == null)
+            {
+                <li class="active"><a href="@Url.Action("Index","Album")">&nbsp;相册</a></li>
+                <li class="active">&nbsp;相册详细</li>
+
+            }
+            else
+            {
+                <li class="active"><a href="@Url.Action("Index","Album")">&nbsp;相册</a></li>
+                <li class="active">&nbsp;相册详细</li>
+                <li style="float:right;"><a href="@Url.Action("Album1","Album")">我的相册</a></li>
+            }
+
             <li style="float:right">@Html.ActionLink("创建我的相册", "Add")  </li>
         </ol>
 
 
     </div>
 </section>
-<section class="portfolio" id="portfolio">
+<section class="about" id="about" style="background: #f3f3f3;">
     <div class="container section-wrapper">
         <h2 class="section-title black">
             Details  Of  SEE  Album
@@ -24,101 +36,150 @@
         <div class="underline purple"></div>
         <div class="row">
             <div class="col-md-6 col-sm-6">
-                <img src="@Model.Album1.Alb_Pic" width="400" height="350" />
+                <img src="@Model.Album1.Alb_Pic" width="500" />
             </div>
-            <div class="col-md-6 col-sm-12" style="height：350px">
+            <div class="col-md-6 col-sm-12" style="height:350px">
                 <p class="about-detail">
-                    @Model.Album1.Alb_Name
                 </p>
                 <p class="about-detail">
-                    @Model.Album1.Alb_Mes
+                    上传人: <a href="@Url.Action("UserIndex","User",new {User_ID=Model.Album1.User.User_ID})">
+                        @Model.Album1.User.User_ID
+                    </a>
+                    <br />
+                    <br />
+                    <br />
                 </p>
                 <p class="about-detail">
-                   上传时间： @Model.Album1.Alb_Time
+                    相册:@Model.Album1.Alb_Name
+                    <br />
                 </p>
-               
-                <p>点赞数</p>
-                @Model.Album_Point.Count()
-                <p>收藏数</p>
-                @Model.Album_Save.Count()
-            </div>
-            <div>
-                <div>
+                <p class="about-detail">
+                    &nbsp;
+                </p>
+                <p class="about-detail">
+                    相册简介:@Model.Album1.Alb_Mes
+                    <br />
+                </p>
+                <p class="about-detail">
+                    &nbsp;
+                </p>
+                <p class="about-detail">
+                    上传时间:@Model.Album1.Alb_Time
+                    <br />
+                </p>
+                <p class="about-detail">
+                    &nbsp;
+                </p>
+                <p class="about-detail">
 
-                
-                    <div>
-                        包含的图片
-                        @{ Html.RenderAction("Index", "Picture_In_Album");}
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        @if (Session["User_Name"] != null)
-                        {
-                            <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
-                                <p>收藏</p>
-                            </a>
-                        }
-                        else
-                        {
-                            <p>nothing</p>
-                        }
-                    </div>
-                </div>
-                <div>
-
-                </div>
-                <div class="comment-primary">
-                    @using (Html.BeginForm("AC_Add", "Album", FormMethod.Post, new { id = "pinglun", @class = "postbox", enctype = "multipart/form-data" }))
+                    @if (Session["User_Name"] != null)
                     {
-
-                        <div class="textarea-wrapper">
-                            <textarea class="textarea" name="acmes"></textarea>
-                        </div>
-                        <input type="hidden" name="albid" value="@Model.Album1.Alb_ID" />
-                        if (Session["User_Name"] != null)
-                        {
-                            <a href="javascript:document.getElementById('pinglun').submit()" class="u-btn btn-postcmt">发表评论</a>
-
-                        }
-                        else
-                        {
-                            <a href="#" id="example2" class="u-btn btn-postcmt">发表评论</a>
-
-                        }
+                        <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
+                            <span class="btn-outline-info">点赞(@Model.Album_Point.Count()) </span>
+                        </a>
                     }
-                </div>
-
-                <div>
-                    <div>
-                        @if (Session["User_Name"] != null)
-                        {
-                            <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
-
-                                <p>点赞</p>
-                            </a>
-                        }
-                        else
-                        {
-                            <p>nothing</p>
-                        }
-                    </div>
-                </div>
-                <div>
-                    @*@{ Html.RenderAction("News_Comment", "News_Comment");}*@
-                    @foreach (Album_Comment p in Model.Album_Comment)
+                    else
                     {
-                        @p.User.User_Name
-                        @p.AC_Mes
-
-                        @p.AC_Time
-                        <br />
+                        <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
+                            <span class="btn-outline-primary">点赞(@Model.Album_Point.Count()) </span>
+                        </a>
                     }
-                </div>
+
+                </p>
+                <p class="about-detail">
+                    &nbsp;
+                </p>
+                <p class="about-detail">
+                    @if (Session["User_Name"] != null)
+                    {
+                        <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
+                            <span class="btn-outline-info">收藏(@Model.Album_Save.Count()  )</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
+                            <span class="btn-outline-info">收藏(@Model.Album_Save.Count()  )</span>
+                        </a>
+                    }
+                </p>
+
+
+
 
             </div>
+
         </div>
     </div>
 </section>
 
+<section class="team">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+             Pictures In This Album
+        </h2> <!-- /.section-title -->
+        <div class="underline purple"></div>
+        <div class="row">
+            @{ Html.RenderAction("Index", "Picture_In_Album");}
+        </div>
+    </div>
 
+
+</section>
+
+<section class="team">
+        <div class="row">
+            <div class="container section-wrapper">
+                @using (Html.BeginForm("AC_Add", "Album", FormMethod.Post, new {  enctype = "multipart/form-data" }))
+                {
+                    <div class="col-md-12 col-xs-12 form-group">
+                        <label class="sr-only">评论</label>
+                        <textarea class="textarea form-control" style="height:100px" name="acmes" placeholder="写下评论"></textarea>
+                    </div>
+                    <input type="hidden" name="albid" value="@Model.Album1.Alb_ID" />
+                    if (Session["User_ID"] != null)
+                    {
+                        <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
+
+
+                    }
+                    else
+                    {
+
+                        <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
+
+                    }
+                }
+            </div>
+        </div>
+
+ 
+    <div class="row">
+        <div class="container section-wrapper">
+            <div class="col-md-12 col-xs-12 form-group">
+                <div>
+                  
+                    @foreach (Album_Comment p in Model.Album_Comment)
+                    {
+                    <div style="float:left;margin-right:20px;">
+                        <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> <img src="@p.User.User_Img" height="50" width="50" /></a>
+                        </div>
+                    <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
+                        <span>    @p.AC_Time</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">@p.User.User_Name   </a>
+                    </div>
+                     
+
+                        <p > @p.AC_Mes</p>
+
+                    
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>

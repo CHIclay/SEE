@@ -84,8 +84,10 @@ namespace SEEWeb.Controllers
             return View(news);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(News news)
         {
+            string mes = Request["News_Mes"];
             HttpPostedFileBase file = Request.Files["newsimage"];
             if (ModelState.IsValid)
             {
@@ -101,7 +103,7 @@ namespace SEEWeb.Controllers
                         news.News_Pic = relativepath;
 
                     }
-
+                    news.News_Mes = mes;
                     news.Man_ID = Convert.ToInt32(Session["Man_ID"].ToString());
                     news.News_Time = DateTime.Now;
                     db.Entry(news).State = EntityState.Modified;
@@ -124,7 +126,7 @@ namespace SEEWeb.Controllers
         {
             var news = from m in db.News.OrderByDescending(p => p.News_Time)
                        select m;
-            int pageSize = 1;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(news.ToPagedList(pageNumber, pageSize));
         }
@@ -149,11 +151,13 @@ namespace SEEWeb.Controllers
         [HttpPost]
         public ActionResult NC_Add(News_Comment news_comment)
         {
-            string pcmes = Request["pcmes"];
-            int pic_ID = Convert.ToInt32(Request["picid"]);
-
-            if (ModelState.IsValid)
+            if(Session["User_ID"]!=null)
             {
+                string pcmes = Request["pcmes"];
+                int pic_ID = Convert.ToInt32(Request["picid"]);
+
+                  if (ModelState.IsValid)
+                 {
                 news_comment.News_ID = pic_ID;
                 news_comment.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
                 news_comment.NC_Mes = pcmes;
@@ -161,8 +165,13 @@ namespace SEEWeb.Controllers
                 db.News_Comment.Add(news_comment);
                 db.SaveChanges();
                 return Content("<script>;alert('评论成功');history.go(-1)</script>");
+                }
+               return RedirectToAction("Details", "News");
             }
-            return RedirectToAction("Details", "News");
+            else
+            {
+                return Content("<script>;alert('你还没有登录哦');history.go(-1)</script>");
+            }
         }
 
         #endregion

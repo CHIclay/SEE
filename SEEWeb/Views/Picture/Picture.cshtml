@@ -5,38 +5,63 @@
     Layout = null;
 }
 
-<h2>Picture</h2>
-
-<div>
-    <div>
-        <div id="Div1">
-            @foreach (var p in Model)
-            {
-                <a href="@Url.Action("Details", new {id=p.Pic_ID})">
-                    <div>
-                        <img src="@p.Pic_Pic" widht="200" height="200" />
-                    </div>
-                    <div>
-                        @p.Pic_Mes
-                    </div>
-                    <div>
-                        @p.Picture_Type.Name
-                    </div>
-                    <div>
-                        @p.Pic_Time
-                    </div>
-                    <div>
-                        @p.User.User_Name
-                    </div>
 
 
-                </a>
-            }
+
+ 
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+      
+        <div class="row">
+            <div id="Div1">
+                @foreach (var p in Model)
+                {
+             
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <div class="portfolio-img">
+
+                                <img src="@p.Pic_Pic" alt="port3" height="280" />
+
+                                <div class="portfolio-img-hover">
+                                    <a href="@Url.Action("Details", new {id=p.Pic_ID,@class="b-link-stripe b-animate-go  swipebox"})">     <img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>  
+                                </div>
+                            </div>
+                            <div class="portfolio-item-details">
+                                <div class="portfolio-item-name">
+                                @p.Picture_Type.Name<br /> <small>  <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name  </a></small>
+                                </div>
+
+                                <div class="port-heart">
+                                    <i class="ion-ios-heart-outline"></i>  @p.Pic_Point.Count()
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+               
+                }
+            </div>
+
         </div>
-        <div class="page-list">
+    </div>
+    <div class="container">
+        <div style="float:right">
             <div class="pagecout">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
 
             @Html.PagedListPager(Model, page => Url.Action("Index", "Picture", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         </div>
     </div>
-</div>
+    
+</section>
+
+
+
+
+           
+
+
+
+            
+

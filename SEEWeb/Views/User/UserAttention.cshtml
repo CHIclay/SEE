@@ -8,7 +8,21 @@
 <div>
     @foreach (Attention p in Model.Attention2)
     {
-        <img src="@p.User.User_Img" width="50" height="50" />
+        <div class="blog-grids">
+            <div class="blog-grid-left">
+                <img src="@p.User.User_Img" width="50" height="50" />
+            </div>
+            <div class="blog-grid-right">
+
+                <h5><a href="singlepage.html">@p.User.User_Name</a> </h5>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
     }
 </div>
 
+@*<link href="~/Content/_share/userindex/css/bootstrap1.css" rel="stylesheet" />
+<script src="~/Content/_share/userindex/js/bootstrap.min1.js"></script>
+<script src="~/Content/_share/userindex/js/jquery-1.11.1.min1.js"></script>
+<link href="~/Content/_share/userindex/css/style1.css" rel="stylesheet" />*@

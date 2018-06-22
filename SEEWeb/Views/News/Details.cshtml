@@ -12,59 +12,97 @@
     <meta name="viewport" content="width=device-width" />
     <title>Info_Details</title>
 </head>
+
 <body>
-    <div>
-        <div>
-            <h4>图片</h4>
-            <hr />
-            <div>
 
-                <img src="@Model.News1.News_Pic" width="150" height="200" />
-                @Model.News1.News_Name
-                @Html.Raw(@Model.News1.News_Mes)
-           
-                @Model.News1.News_Time
+    <section class="section-background">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                <li class="active"><a href="@Url.Action("Index","News")">&nbsp;新闻</a></li>
+                <li class="active"><a href="#">新闻详细</a></li>
+            </ol>
 
 
-
-            </div>
         </div>
-        <hr />
-        <div>
-            <div class="comment-primary">
-                @using (Html.BeginForm("NC_Add", "News", FormMethod.Post, new { id = "pinglun", @class = "postbox", enctype = "multipart/form-data" }))
+    </section>
+    <section class="portfolio" id="portfolio">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                Details News OF SEE
+            </h2>
+            <div class="underline purple"></div>
+            <div class="row">
+                <span style="font-size:26px;">
+
+                    @Model.News1.News_Name
+
+                </span>
+
+                <span style="float:right">@Model.News1.News_Time</span>
+                <hr />
+                <div style="margin-left:300px"><img src="@Model.News1.News_Pic" height="388" /></div>
+
+
+                <hr />
+                @Html.Raw(@Model.News1.News_Mes)
+                <hr />
+               
+
+                    </div>
+                </div>
+</section>      
+    
+    <section class="team">
+        <div class="row">
+            <div class="container section-wrapper">
+                @using (Html.BeginForm("NC_Add", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
 
-                    <div class="textarea-wrapper">
-                        <textarea class="textarea" name="pcmes"></textarea>
+                    <div class="col-md-12 col-xs-12 form-group">
+                        <label class="sr-only">评论</label>
+                        <textarea class="textarea form-control" style="height:100px" name="pcmes" placeholder="写下评论"></textarea>
                     </div>
+                   
                     <input type="hidden" name="picid" value="@Model.News1.News_ID" />
                     if (Session["User_Name"] != null)
                     {
-                        <a href="javascript:document.getElementById('pinglun').submit()" class="u-btn btn-postcmt">发表评论</a>
+                        <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
+
 
                     }
                     else
                     {
-                        <a href="#" id="example2" class="u-btn btn-postcmt">发表评论</a>
+                        <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
 
                     }
                 }
             </div>
         </div>
-        <div>
-            @*@{ Html.RenderAction("News_Comment", "News_Comment");}*@
-            @foreach (News_Comment p in Model.News_Comment)
-            {
-                @p.User.User_Name
-                @p.NC_Mes
 
-                @p.NC_Time
-                <br />
-            }
+        <div class="row">
+            <div class="container section-wrapper">
+                <div class="col-md-12 col-xs-12 form-group">
+                    @foreach (News_Comment p in Model.News_Comment)
+                    {
+                    <div style="float:left;margin-right:20px;">
+                        <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> <img src="@p.User.User_Img" height="50" width="50" /></a>
+                    </div>
+                    <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
+                        <span>    @p.NC_Time</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name</a>
+                    </div>
+
+
+                        <p> @p.NC_Mes</p>
+
+
+                        <br />
+                    }
+                </div>
+            </div>
         </div>
-
-    </div>
+    </section>
 </body>
 </html>
 

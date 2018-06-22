@@ -9,7 +9,17 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index","Index")">主页</a></li>
-            <li class="active">&nbsp;相册</li>
+            @if (Session["User_ID"] == null)
+            {
+                <li class="active">&nbsp;相册</li>
+            }
+            else
+            {
+                <li class="active">&nbsp;相册</li>
+                <li style="float:right;"><a href="@Url.Action("Album1","Album")">我的相册</a></li>
+            }
+
+
             <li style="float:right">@Html.ActionLink("创建我的相册", "Add")  </li>
         </ol> 
  

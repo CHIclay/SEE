@@ -4,24 +4,37 @@
     ViewBag.Title = "Add";
 }
 
-<h2>Add</h2>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Album  Of  Your's
+        </h2>
+        <div class="underline purple"></div>
 
-<div>
-    <div>
-        <div>
-           
-                @*@Model.Picture.Pic_ID*@
-            @*<input type="hidden" name="picid" value="@Model.Picture.Pic_ID" />*@
-            @foreach (var p in Model.Album2)
-            {
-                <a href="@Url.Action("Add2","Picture_In_Album" ,new {albid=p.Alb_ID,picid=Model.Picture.Pic_ID } )">
-                    @p.Alb_Name
-                    @*<input type="hidden" name="albid" value="@p.Alb_ID" />*@
-                </a>
-
-
-            }
+        <div class="row">
+            <div class="col-sm-4 col-xs-6">
+                &nbsp;
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                @foreach (var p in Model.Album2)
+                {
+                    <a href="@Url.Action("Add2","Picture_In_Album" ,new {albid=p.Alb_ID,picid=Model.Picture.Pic_ID } )" >
+                        <button class="btn-block">
+                            @p.Alb_Name
+                        </button>
+                     
+                    </a>
+                    <br /> 
+                }
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                &nbsp;
+            </div>
 
         </div>
-    </div>
-</div>
+        </div>
+</section>
+
+
+           
+

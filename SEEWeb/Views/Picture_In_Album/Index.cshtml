@@ -1,10 +1,37 @@
 ﻿@model List<Model.Picture_In_Album>
 
-@{ 
+@{
     Layout = null;
+
 }
 @foreach (var p in Model)
 {
-    <img src="@p.Picture.Pic_Pic" width="200" height="200" />
-    
+    <div class="col-sm-3 col-xs-6">
+        <div class="team-item">
+
+            <a href="@Url.Action("Details","Picture",new {id=p.Picture.Pic_ID})">
+                <img src="@p.Picture.Pic_Pic" alt="team-image" class="team-img" style="height:180px">
+            </a>
+                <h4 class="team-item-name">
+                    所有者：
+                </h4>
+                <p class="team-item-id">
+                    <a href="@Url.Action("UserIndex","User",new {User_ID=p.Picture.User.User_ID})">
+                        @p.Picture.User.User_Name
+                    </a>
+                </p>
+        </div> <!-- /.team-item -->
+    </div>
+
+
 }
+
+<link href="~/Content/_share/User/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/ionicons.min.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/owl.carousel.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/owl.theme.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/main.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/section.css" rel="stylesheet" />
+<link href="~/Content/_share/User/assets/css/portfolio.css" rel="stylesheet" />
+<link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet" />
+<link href="~/Content/_share/Manager/svg-with-js/css/fa-svg-with-js.css" rel="stylesheet" />

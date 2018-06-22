@@ -3,75 +3,114 @@
 @{
     ViewBag.Title = "UserIndex";
 }
+@*<link href="~/Content/_share/userindex/css/bootstrap1.css" rel="stylesheet" />
+    <script src="~/Content/_share/userindex/js/bootstrap.min1.js"></script>
+    <script src="~/Content/_share/userindex/js/jquery-1.11.1.min1.js"></script>
+*@
+<link href="~/Content/_share/userindex/css/style1.css" rel="stylesheet" />
+<!DOCTYPE HTML>
+<html>
+<head>
 
-<h2>UserIndex</h2>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+</head>
+<body>
+    <div class="technology">
+        <div class="container">
+            <div class="col-md-9 technology-left">
+                <div class="blog">
+                    <span><img src="@Model.User1.User_Img" height="50" width="50" /></span>
+                    <br />
 
-<div>
-    <div>
-        
-        <div>
-            @Model.User1.User_Name<p>的主页</p>
-            <img src="@Model.User1.User_Img" height="50" width="50"/>
-            <div>
-                @if (Session["User_Name"] != null)
-                {
-                    if (ViewBag.attentionde!= null)
-                    {
-                        <a href="@Url.Action("attention","User",new { to_User_ID=Model.User1.User_ID}) ">
-                            <b>已关注</b>   @*<p>取消关注</p>*@
-                        </a>
-                    }
-                    if(ViewBag.attentionde==null)
-                    {
-                        <a href="@Url.Action("attention","User",new { To_User_ID=Model.User1.User_ID}) ">
-                            关注
-                        </a>
-                    }
+                    <span>  <h2 class="w3" style="color:#97b7b7">@Model.User1.User_Name  的主页 </h2></span>
 
-                }
-                else
-                {
-                    <a></a>
-                }
+
+                    <span style="float:right;">
+                        @if (Session["User_Name"] != null)
+                        {
+                            if (ViewBag.attentionde != null)
+                            {
+                                <a href="@Url.Action("attention","User",new { to_User_ID=Model.User1.User_ID}) ">
+                                    <b>已关注</b>
+                                </a>
+                            }
+                            if (ViewBag.attentionde == null)
+                            {
+                                <a href="@Url.Action("attention","User",new { To_User_ID=Model.User1.User_ID}) ">
+                                    关注
+                                </a>
+                            }
+
+                        }
+                        else
+                        {
+                            <a></a>
+                        }
+
+                    </span>
+                    <hr />
+                    <h3>他/她的图片</h3>
+
+                    <div class="blog-grids1">
+
+
+                        @foreach (Picture p in Model.Picture1)
+                        {
+                            <div class="col-md-6 blog-grid">
+                                <div class="blog-grid-left1">
+                                    <img src="@p.Pic_Pic" height="280" />
+                                </div>
+
+                                <div class="blog-grid-right1">
+
+                                    <h4 style="color:#97b7b7">@p.Pic_Time</h4>
+                                    <p>
+                                        @p.Pic_Mes
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                                <div class="more m1">
+
+                                    <a class="btn effect6" href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">查看详细</a>
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="clearfix"> </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <!-- technology-right -->
+            <div class="col-md-3 technology-right">
+
+
+                <div class="blo-top1">
+
+                    <div class="tech-btm">
+
+                        <h4 style="color:#97b7b7">他/她关注的 </h4>
+                        @{ Html.RenderAction("UserAttention1", "User");}
+
+                        <h4 style="color:#97b7b7" >关注他/她的</h4>
+                        @{ Html.RenderAction("UserAttention", "User");}
+
+                    </div>
+
+
+
+                </div>
+
 
             </div>
-        </div>
-        他/她发布的图片
-        <div>
-            @foreach(Picture p in Model.Picture1)
-            {
-                <img src="@p.Pic_Pic" height="100" width="100" />
-            }
-        </div>
-        他/她的相册
-        <div>
-            @foreach(Album p in Model.Album1)
-            {
-                @p.Alb_Name
-                <img src="@p.Alb_Pic" height="100" width="100" />
-            }
-        </div>
-        他/她收藏的相册
-        <div>
-            @foreach(Album_Save p in Model.Album_Save1)
-            {
-                @p.Album.Alb_Name
-                <img src="@p.Album.Alb_Pic" height="100" width="100" />
-            }
-        </div>
-        
-        他/她关注的
-        <div>
-            @*@foreach(Attention p in Model.Attention1)
-            {
-                <img src="@p.User1.User_Img"width="50" height="50" />
-            }*@
-            @{ Html.RenderAction("UserAttention1", "User");}
-        </div>
-        关注他/她的
-        <div>
-            @{ Html.RenderAction("UserAttention", "User");}
+
         </div>
     </div>
-</div>
-
+</body>
+</html>

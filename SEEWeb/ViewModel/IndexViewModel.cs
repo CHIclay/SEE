@@ -14,6 +14,14 @@ namespace SEEWeb.ViewModel
 
         public IEnumerable<News> News1 { get; set; }
 
+        public IEnumerable<News> News2 { get; set; }
+
+        public IEnumerable<News> News3 { get; set; }
+
+        public IEnumerable<News> News4 { get; set; }
+
+        public IEnumerable<News> News5 { get; set; }
+
         public IEnumerable<Album> Album { get; set; }
 
         public IEnumerable<User> User { get; set; }

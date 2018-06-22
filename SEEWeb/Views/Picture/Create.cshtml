@@ -3,43 +3,81 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+ 
 
-<div>
-    <div>
+
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片主页</a></li>
+            <li class="active"><a href="#">图片上传</a></li>
+        </ol>
+
+
+    </div>
+</section>
+<section class="about" id="about" style="background: #f3f3f3;">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Update Your Picture
+        </h2>
+        <div class="underline purple"></div>
+
         @using (Html.BeginForm("AfterCreate", "Picture", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "")
-           
-            <div>
-                @Html.LabelFor(model => model.Pic_Pic)
-                <div>
-                    <input type="file" name="image" />
+            <div class="form-horizontal">
+                <div class="col-sm-3 col-xs-12 form-group">
+                    &nbsp;
                 </div>
-            </div>
-            <div>
-                @Html.DropDownListFor(model=>model.Type_ID,ViewBag.picturetype as SelectList,"请选择类型")<br />
-                @Html.ValidationMessageFor(model=>model.Type_ID,"")
-            </div>
-            <div>
-                @Html.LabelFor(model => model.Pic_Mes)
-                <div>
+                <div class="col-sm-3 col-xs-12 form-group">
+                    &nbsp;
+                </div>
+                <div class="col-sm-4 col-xs-12 form-group">
+                    <lable>图片文件：</lable>
+                        <div>
+                            <input type="file" name="image" />
+                        </div>
+                    <br /><br />
+                    <label>图片类型</label>
+                    <div>
+                        @Html.DropDownListFor(model => model.Type_ID, ViewBag.picturetype as SelectList, "请选择类型")<br />
+                        @Html.ValidationMessageFor(model => model.Type_ID, "")
+                    </div>
+                    <br /><br />
+                    <div>
+                        <div>
+                            @Html.LabelFor(model => model.Pic_Mes)
+                            <div>
 
-                    @Html.EditorFor(model => model.Pic_Mes)
-                    @Html.ValidationMessageFor(model => model.Pic_Mes)
+                                @Html.EditorFor(model => model.Pic_Mes)
+                                @Html.ValidationMessageFor(model => model.Pic_Mes)
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
-            </div>
-            <div>
-                <div>
-                    <input type="submit" value="发表图片" />
+                <div class="col-sm-4 col-xs-12 form-group">
+                    &nbsp;
+                </div> <div class="col-sm-4 col-xs-12 form-group">
+                    &nbsp;
                 </div>
-            </div>
-            <div>
-                @Html.ActionLink("返回主页", "Index")
+                
+                       <div class="col-sm-4 col-xs-12 form-group">
+
+                           <br />
+               
+                               <input type="submit" value="发表图片" class="btn" />
+
+                      
+
+                       </div>
             </div>
         }
 
+
     </div>
-</div>
+</section>
+

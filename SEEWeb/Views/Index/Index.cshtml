@@ -1,61 +1,302 @@
-﻿ @using Model
+﻿@using Model
 @model SEEWeb.ViewModel.IndexViewModel
 @{
     ViewBag.Title = "Index";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-@*@section head{
-    }*@
-<div>
-    <div>
-        <h2>Index</h2>
+ 
 
-        <a href="@Url.Action("Login","User")">登录</a>
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lte9 lte8" lang="en-US">	<![endif]-->
+<!--[if IE 9]><html class="ie ie9 lte9" lang="en-US"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="noIE" lang="en-US">
+<!--<![endif]-->
+<head>
+    <!-- meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>S  E  E</title>
+    <link href="~/Content/_share/User/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/main.css" rel="stylesheet" />
+ 
 
-        <a href="@Url.Action("Login","Manager")">管理员登录</a>
-    </div>
-    <div>
-        <div>
-            最赞图片
-            @foreach (Picture p in Model.Picture2)
-            {
+    <link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/_share/Manager/svg-with-js/css/fa-svg-with-js.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/portfolio.css" rel="stylesheet" />
+    <link href="~/Content/_share/User/assets/css/one-page.css" rel="stylesheet" />
+</head>
 
-                <img src="@p.Pic_Pic" width="100" height="100" />
-                @p.Pic_Point.Count()
-                @p.User.User_Name
-            }
+<body>
+
+    <!-- Home -->
+    <section class="header" id="header">
+
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index","Index")">S E E</a>
+                </div> <!-- /.navbar-header -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                        <li><a href="@Url.Action("Index","News")">新闻</a></li>
+                        <li><a href="@Url.Action("Index","Picture")">图片</a></li>
+                        <li><a href="@Url.Action("Index","Album")">相册</a></li>
+                        <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
+                        @if (Session["User_ID"] != null)
+                        {
+                            <li>
+                                <img src="@Session["User_Img"]" height="35" width="35" />
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("LogOff","User")">登出</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Login","User")">登录</a></li>
+                        }
+                    </ul> <!-- /.nav -->
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+        <div class="container">
+            <div class="header-table">
+                <div class="header-wrapper">
+                    <h1 class="header-title">
+                        为未来的每一天 留下不同的光影
+                    </h1>
+                    <p class="header-subtitle">
+                        <br>
+                        From Now On
+                    </p>
+                </div> <!-- /.header-wrapper -->
+            </div>
+        </div> <!-- /.container -->
+    </section> <!-- /#header -->
+    <!-- Our Services -->
+    <!-- Twitter Feed -->
+    <section class="portfolio" id="portfolio">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                New  Picture  Of  SEE
+            </h2>
+            <div class="underline purple"></div>
+            <div class="row">
+                @foreach (var p in Model.Picture1)
+                {
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <div class="portfolio-img">
+
+                                <img src="@p.Pic_Pic" alt="port3" height="280" />
+
+                                <div class="portfolio-img-hover">
+                                    <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-details">
+                                <div class="portfolio-item-name">
+                                    <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">@p.Pic_Mes </a>    <br />    <small> <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name </a></small>
+                                </div>
+
+                                <div class="port-heart">
+                                    <i class="ion-ios-heart-outline"></i>  @p.Pic_Point.Count()
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
         </div>
-        <div>
-            最新图片
-            @foreach (Picture p in Model.Picture1)
-            {
-                <img src="@p.Pic_Pic" width="100" height="100" />
-                @p.User.User_Name
-            }
+    </section> <!-- /.portfolio -->
+    <section class="twitter-feed purple">
+        <div class="container section-wrapper">
+            <div class="section-title">
+                新  闻  速  递
+            </div> <!-- /.section-title -->
+            <div class="underline white"></div>
+            <div class="owl-carousel twitter-owl">
+                <div class="item">
+                    <p class="day">甲级新闻</p>
+                    <p class="feed">
+                        @foreach (var p in Model.News1)
+                        {
+                            @p.News_Name
+                            <div class="options">
+                                <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
+                                <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
+                            </div>
+                        }
+                    </p>
+                </div> <!-- /.item -->
+                <div class="item">
+                    <p class="day">乙级新闻</p>
+                    <p class="feed">
+                        @foreach (var p in Model.News2)
+                        {
+                            @p.News_Name
+                            <div class="options">
+                                <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
+                                <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
+                            </div>
+                        }
+                    </p>
+                </div> <!-- /.item -->
+                <div class="item">
+                    <p class="day">丙级新闻</p>
+                    <p class="feed">
+                        @foreach (var p in Model.News3)
+                        {
+                            @p.News_Name
+                            <div class="options">
+                                <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
+                                <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
+                            </div>
+                        }
+                    </p>
+                </div> <!-- /.item -->
+                <div class="item">
+                    <p class="day">丁级新闻</p>
+                    <p class="feed">
+                        @foreach (var p in Model.News4)
+                        {
+                            @p.News_Name
+                            <div class="options">
+                                <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
+                                <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
+                            </div>
+                        }
+                    </p>
+                </div> <!-- /.item -->
+                <div class="item">
+                    <p class="day">戊级新闻</p>
+                    <p class="feed">
+                        @foreach (var p in Model.News5)
+                        {
+                            @p.News_Name
+                            <div class="options">
+                                <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
+                                <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
+                            </div>
+                        }
+                    </p>
+                </div> <!-- /.item -->
+            </div> <!-- /.owl-carousel -->
+        </div> <!-- /.container -->
+    </section> <!-- /.twitter-feed -->
+    <!-- Portfolio -->
+
+
+    <section class="porfolio"></section>
+
+
+    <section class="portfolio" id="portfolio">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                New  Album  Of  SEE
+            </h2>
+            <div class="underline purple"></div>
+            <div class="row">
+                @foreach (var p in Model.Album)
+                {
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <div class="portfolio-img">
+
+                                <img src="@p.Alb_Pic" alt="port3" height="280" />
+
+                                <div class="portfolio-img-hover">
+                                    <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-details">
+                                <div class="portfolio-item-name">
+                                    <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"> @p.Alb_Name    </a> <br />    <small> <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">  @p.User.User_Name </a></small>
+                                </div>
+
+                                <div class="port-heart">
+                                    <i class="ion-ios-heart-outline"></i>  @p.Album_Point.Count()
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
         </div>
-        <div>
-            热评新闻
-            @foreach(News p in Model.News1)
-            {
-                <img src="@p.News_Pic" width="100" height="100" />
-                @p.News_Name
-               <p>评论数：</p> @p.News_Comment.Count();
-            }
-        </div>
-        <div>
-            最in相册
-            @foreach(Album p in Model.Album)
-            {
-                <img src="@p.Alb_Pic" width="100" height="100" />
-                @p.Alb_Name
-                <p>点赞数</p> @p.Album_Point.Count();
-            }
-        </div>
-     </div>
+    </section> <!-- /.portfolio -->
+    <!-- Note -->
+    <!-- Fan Facts -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="copy">
+                        <p>Copyright &copy;   S         E        E</p>
+                        SEE开发小组版权所有
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="social-icon">
 
-</div>
+                        <a href="#">
+
+                        </a>
+                        <a href="https://github.com/CHIclay">
+                            <i class="ion-social-github fa-3x"></i>
+                        </a>
+
+                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+
+                        <a href="@Url.Action("Login","Manager")">
+                            <i class="ion-android-contact fa-3x"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <div class="copy">
+                        <p>2018年江西师范大学下学年</p> 工作室作品
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </footer>
+
+    <script src="~/Content/_share/User/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/_share/User/assets/js/contact.js"></script>
+    <script src="~/Content/_share/User/assets/js/script.js"></script>
 
 
 
-@*@section Foot{
-}*@
+</body>
+
+</html>

@@ -6,28 +6,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<div>
-    <div>
-        <a href="@Url.Action("Create","Picture")">发表图片</a>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <link href="~/Content/_share/User/assets/css/contact.css" rel="stylesheet" />
+
+    <script src="~/Content/_share/Picture/js/bootstrap.js"></script>
+    <link href="~/Content/_share/Picture/css/style.css" rel="stylesheet" />
+
+    <script src="~/Content/_share/Picture/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+</head>
+<body>
+
+    <section class="section-background">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                @if (Session["User_ID"] == null)
+                {
+                    <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片</a></li>
+
+
+                }
+                else
+                {
+                    <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片</a></li>
+
+                    <li style="float:right;"><a href="@Url.Action("Picture1","Picture")">我的图片</a></li>
+
+                    <li style="float:right">@Html.ActionLink("上传图片", "Create", "Picture")  </li>
+                }
+
+
+            </ol>
+
+
+        </div>
+    </section>
+    <div class="portfolio" id="port">
+        <div class="service-head text-center">
+            <h4>Picture</h4>
+            <h3>Pretty<span>Nice</span></h3>
+            <span class="border"></span>
+        </div>
+        <div class="portfolio-grids">
+
+            <div class="sap_tabs">
+                <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                    <ul class="resp-tabs-list">
+                        <li class="resp-tab-item">
+                            @Ajax.ActionLink("全部", "Index", "Picture", null)
+                        </li>
+
+                        @foreach (Picture_Type p in Model.Type1)
+                        {
+                            <li class="resp-tab-item">
+                                @Ajax.ActionLink(p.Name, "Index", "Picture", new { typeInfoFrom = p.Name },new AjaxOptions()
+                             {
+                               UpdateTargetId="Div1",
+                               InsertionMode=InsertionMode.Replace,
+                               HttpMethod="Get"
+                             }
+                          )
+                            </li>
+                        }
+                    </ul>
+                    @{ Html.RenderAction("Picture", "Picture");}
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-   <div>
-       <div>
-           @Ajax.ActionLink("全部","Index","Picture",null)
-           @foreach(Picture_Type p in Model.Type1)
-           {
-               @Ajax.ActionLink(p.Name, "Index", "Picture", new { typeInfoFrom = p.Name},new AjaxOptions()
-          {
-              UpdateTargetId="Div1",
-              InsertionMode=InsertionMode.Replace,
-              HttpMethod="Get"
-          }
-              )
-           }
-       </div>
-       @{ Html.RenderAction("Picture", "Picture");}
-   </div>
-    </div>
-</div>
+
+
+
+
+</body>
+</html>
+
+
 

@@ -3,69 +3,91 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*百度富文本框*@
+    <!-- 配置文件 -->
+    <script src="~/utf8-net/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script src="~/utf8-net/ueditor.all.js"></script>
+    <link href="~/utf8-net/themes/iframe.css" rel="stylesheet" />
+    <script src="~/utf8-net/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        //实例化编辑器
+        var editor = new baidu.editor.ui.Editor({
+            autoHeightEnabled: true,//高度自动增长
+            minFrameHeight: 500//最小高度
+        });
+        editor.render('editor');
+    </script>
 
-<body class="app sidebar-mini rtl">
+    <body class="app sidebar-mini rtl">
 
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>新闻评论管理</h1>
-            <p>拒绝黑恶势力</p>
+        <div class="app-title">
+            <div class="div">
+                <h1><i class="fa fa-dashboard"></i>新闻评论管理</h1>
+                <p>拒绝黑恶势力</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Edit","News")">新闻修改</a></li>
+            </ul>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Edit","News")">新闻修改</a></li>
-        </ul>
-    </div>
-    <div class="tile mb-4">
-        <div>
-            @Html.ActionLink("返回新闻列表", "List")
-        </div>
-        <div>
-            @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "")
-                @Html.HiddenFor(model => model.News_ID)
-                <div>
-                    @Html.LabelFor(model => model.News_Name)
+        <div class="tile mb-4">
+            <div>
+                @Html.ActionLink("返回新闻列表", "List")
+            </div>
+            <div>
+                @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "")
+                    @Html.HiddenFor(model => model.News_ID)
                     <div>
-                        @Html.EditorFor(model => model.News_Name)
-                        @Html.ValidationMessageFor(model => model.News_Name)
+                        @Html.LabelFor(model => model.News_Name)
+                        <div>
+                            @Html.EditorFor(model => model.News_Name)
+                            @Html.ValidationMessageFor(model => model.News_Name)
+                        </div>
                     </div>
-                </div>
-                <div>
-                    @Html.LabelFor(model => model.News_Pic)
+                    <div>
+                        @Html.LabelFor(model => model.News_Pic)
+                        <div>
+                            <div>
+                                @if (string.IsNullOrEmpty(Model.News_Pic))
+                                {
+                                    @:none
+                                }
+                                else
+                                {
+                                    <img width="75" height="75" src="@Url.Content(Model.News_Pic)" alt="images" />
+                                }
+                            </div>
+                            <input type="file" name="newsimage" />
+                        </div>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.News_Mes)
+                        <div>
+                            <textarea id="editor" name="News_Mes"></textarea>
+                        </div>
+                    </div>
                     <div>
                         <div>
-                            @if (string.IsNullOrEmpty(Model.News_Pic))
-                            {
-                                @:none
-                            }
-                            else
-                            {
-                                <img width="75" height="75" src="@Url.Content(Model.News_Pic)" alt="images" />
-                            }
+                            <input type="submit" value="修改新闻" />
                         </div>
-                        <input type="file" name="newsimage" />
                     </div>
-                </div>
-                <div>
-                    @Html.LabelFor(model => model.News_Mes)
-                    <div>
-                        @Html.EditorFor(model => model.News_Mes)
-                        @Html.ValidationMessageFor(model => model.News_Mes)
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <input type="submit" value="发布新闻" />
-                    </div>
-                </div>
 
-            }
+                }
 
+            </div>
         </div>
-    </div>
-</body>
+    </body>
+
+</head>
+
+</html>
+
       

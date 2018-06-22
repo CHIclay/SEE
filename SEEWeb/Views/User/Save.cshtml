@@ -2,18 +2,70 @@
 @{
     ViewBag.Title = "Save";
 }
-<div>
-    <div>
-         @foreach(var p in Model)
-         {
-             <img src="@p.Album.Alb_Pic" width="100" height="100" />
-             @p.Album.Alb_Name
-             @p.Album.Alb_Mes
 
-             <a href="@Url.Action("Delete","Album_Save" ,new { id = @p.Album.Alb_ID})">取消收藏</a>
-             
-         }
+<link href="~/Content/_share/User/assets/css/service.css" rel="stylesheet" />
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            <li class="active">&nbsp;用户中心</li>
+        </ol>
+
+
     </div>
-</div>
+</section>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Details Of Mine
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            <div class="col-sm-1 col-xs-6">
+                &nbsp;
+            </div>
+            <div class="col-sm-4 col-xs-6">
 
- 
+                <div class="portfolio-item">
+                    <a href="@Url.Action("UserCenter","User")"><h2>  <span class="label label-primary">我的信息</span></h2></a>
+                    <br />
+
+                    <a href="@Url.Action("Album1","Album")"><h2>  <span class="label label-primary">我的相册</span></h2></a>
+                    <br />
+                    <a href="@Url.Action("Picture1","Picture")"><h2><span class="label label-primary">我的图片</span> </h2></a>
+                    <br />
+                    <a href="@Url.Action("Save","User")"><h2> <span class="label label-primary">我的收藏</span></h2></a>
+                    <br />
+                    <a href="@Url.Action("focusme","User")"><h2><span class="label label-primary">我的粉丝</span> </h2></a>
+                    <br />
+                    <a href="@Url.Action("focus","User")"><h2><span class="label label-primary">我关注的</span> </h2></a>
+
+
+                </div>
+            </div>
+            <div class="col-sm-7 col-xs-6">
+
+                @foreach (var p in Model)
+                {
+                <div class="col-sm-4 col-xs-6">
+                    <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})">
+                        <img src="@p.Album.Alb_Pic" height="140" />
+                        <br />
+                        <small>@p.Album.Alb_Name </small>
+                    </a>
+                        <br />
+
+                        <br />
+                        <a href="@Url.Action("Delete","Album_Save" ,new { id = @p.Album.Alb_ID})"><h>  <span class="label label-warning" style="float:right"> 取消收藏</span></h></a>
+                        <br />
+
+                </div>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+                

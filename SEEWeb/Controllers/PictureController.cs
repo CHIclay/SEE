@@ -167,7 +167,7 @@ namespace SEEWeb.Controllers
                 pictures = pictures.Where(x => x.Picture_Type.Name == typeInfoFrom);
             }
 
-            int pageSize =1;
+            int pageSize =12;
             int pageNumber = (page ?? 1);
             return View(pictures.ToPagedList(pageNumber, pageSize));
         }
@@ -214,28 +214,34 @@ namespace SEEWeb.Controllers
         #region 图片点赞
         public ActionResult Point(Pic_Point picpoint,int Pic_ID)
         {
-            var picture = db.Picture.Find(Pic_ID);
-            int picid = Pic_ID;
-            int User_ID= Convert.ToInt32(Session["User_ID"].ToString()); 
-
-            var chk_member = db.Pic_Point.Where(o => o.User_ID == User_ID).Where(o => o.Pic_ID == picid).FirstOrDefault();
-            if(chk_member==null)
+            if(Session["User_ID"]!=null)
             {
-                 if (ModelState.IsValid)
-              {
-                picpoint.Pic_ID = picid;
-                picpoint.User_ID = User_ID;
-                picpoint.PP_Time = DateTime.Now;
-                db.Pic_Point.Add(picpoint);
-                db.SaveChanges();
-                return Content("<script>;alert('成功!');history.go(-1)</script>");
-              }
+                var picture = db.Picture.Find(Pic_ID);
+                int picid = Pic_ID;
+                int User_ID= Convert.ToInt32(Session["User_ID"].ToString()); 
+
+                var chk_member = db.Pic_Point.Where(o => o.User_ID == User_ID).Where(o => o.Pic_ID == picid).FirstOrDefault();
+                if(chk_member==null)
+                {
+                  if (ModelState.IsValid)
+                  {
+                    picpoint.Pic_ID = picid;
+                    picpoint.User_ID = User_ID;
+                    picpoint.PP_Time = DateTime.Now;
+                    db.Pic_Point.Add(picpoint);
+                    db.SaveChanges();
+                    return Content("<script>;alert('成功!');history.go(-1)</script>");
+                  }
+                }
+                else
+                {
+                    return Content("<script>;alert('你已经点过赞了哦!');history.go(-1)</script>");
+                }
             }
             else
             {
-                return Content("<script>;alert('你已经点过赞了哦!');history.go(-1)</script>");
+                return Content("<script>;alert('你还没登陆哦!');history.go(-1)</script>");
             }
-            
             return Redirect("Details");
         }
         #endregion

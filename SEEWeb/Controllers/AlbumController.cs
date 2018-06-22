@@ -63,7 +63,7 @@ namespace SEEWeb.Controllers
         #region 相册主页实现分页
         public ActionResult Album(int ? page)
         {
-            var album = (from p in db.Album select p).ToList().OrderByDescending(p => p.Album_Point.Count()).ToList();//根据点赞数排列;
+            var album = (from p in db.Album select p).ToList().OrderByDescending(a=>a.Alb_Time).ToList();//根据点赞数排列;
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(album.ToPagedList(pageNumber, pageSize));
@@ -133,27 +133,37 @@ namespace SEEWeb.Controllers
         #region 相册点赞
         public ActionResult Point(Album_Point albpoint,int Alb_ID)
         {
-            var album = db.Album.Find(Alb_ID);
-            int albid = Alb_ID;
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            var chk_member = db.Album_Point.Where(p => p.User_ID == User_ID).Where(p => p.Alb_ID == albid).FirstOrDefault();
-            if(chk_member==null)
+            if(Session["User_ID"]!=null)
             {
-               if(ModelState.IsValid)
-              {
-                albpoint.Alb_ID = albid;
-                albpoint.User_ID = User_ID;
-                albpoint.AP_Time = DateTime.Now;
-                db.Album_Point.Add(albpoint);
-                db.SaveChanges();
-                    //return Content("<script>alert('点赞成功！');window.open('" + Url.Action("Details", "Album") + "','_self');</script>");
-                return Content("<script>;alert('成功!');history.go(-1)</script>");
-                }
+                    var album = db.Album.Find(Alb_ID);
+                    int albid = Alb_ID;
+                    int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                    var chk_member = db.Album_Point.Where(p => p.User_ID == User_ID).Where(p => p.Alb_ID == albid).FirstOrDefault();
+                     if(chk_member==null)
+                     {
+                        if(ModelState.IsValid)
+                        {
+                          albpoint.Alb_ID = albid;
+                          albpoint.User_ID = User_ID;
+                          albpoint.AP_Time = DateTime.Now;
+                          db.Album_Point.Add(albpoint);
+                          db.SaveChanges();
+                                //return Content("<script>alert('点赞成功！');window.open('" + Url.Action("Details", "Album") + "','_self');</script>");
+                          return Content("<script>;alert('成功!');history.go(-1)</script>");
+                        }
+                     }
+                     else
+                     {
+                          return  Content("<script>;alert('你已经点过赞了哦！');history.go(-1)</script>");
+                     }
             }
             else
             {
-                return Content("<script>;alert('你已经点过赞了哦！');history.go(-1)</script>");
+                return Content("<script>;alert('你还没有登录哦！');history.go(-1)</script>");
             }
+          
+           
+         
 
             return Redirect("Details");
         }
@@ -162,27 +172,35 @@ namespace SEEWeb.Controllers
         #region 相册收藏
         public ActionResult Save(Album_Save albsave,int Alb_ID)
         {
-            var album = db.Album.Find(Alb_ID);
-            int albid = Alb_ID;
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            //var chk_member = db.Attention.Where(o => o.User_ID == User_ID).Where(o => o.To_User_ID == To_User_ID).FirstOrDefault();
-            var chk_member = db.Album_Save.Where(p => p.User_ID == User_ID).Where(o => o.Alb_ID == albid).FirstOrDefault();
-            if(chk_member==null)
+            if(Session["User_ID"]!=null)
             {
-                 if (ModelState.IsValid)
+               var album = db.Album.Find(Alb_ID);
+               int albid = Alb_ID;
+               int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+               //var chk_member = db.Attention.Where(o => o.User_ID == User_ID).Where(o => o.To_User_ID == To_User_ID).FirstOrDefault();
+               var chk_member = db.Album_Save.Where(p => p.User_ID == User_ID).Where(o => o.Alb_ID == albid).FirstOrDefault();
+               if(chk_member==null)
                {
-                albsave.Alb_ID = albid;
-                albsave.User_ID = User_ID;
-                albsave.AS_Time = DateTime.Now;
-                db.Album_Save.Add(albsave);
-                db.SaveChanges();
-                return Content("<script>;alert('成功!');history.go(-1)</script>");
-               } 
-            }
+                    if (ModelState.IsValid)
+                  {
+                   albsave.Alb_ID = albid;
+                   albsave.User_ID = User_ID;
+                   albsave.AS_Time = DateTime.Now;
+                   db.Album_Save.Add(albsave);
+                   db.SaveChanges();
+                   return Content("<script>;alert('成功!');history.go(-1)</script>");
+                  } 
+               }
+               else
+               {
+                   return Content("<script>;alert('你已经收藏过了哦!');history.go(-1)</script>");
+               }
+               }
             else
             {
-                return Content("<script>;alert('你已经收藏过了哦!');history.go(-1)</script>");
+                return Content("<script>;alert('你还没有登录哦！');history.go(-1)</script>");
             }
+          
            
             return Redirect("Details");
         }

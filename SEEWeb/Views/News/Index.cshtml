@@ -1,12 +1,18 @@
 ﻿@model SEEWeb.ViewModel.NewsViewModel
 @{
     ViewBag.Title = "Index";
-   
+
 }
 
-<h2>Index</h2>
-<div>
-    <div>
-        @{ Html.RenderAction("News", "News");}
-    </div>
-</div>
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">Home</a></li>
+            <li class="active">&nbsp;新闻</li>
+        </ol>
+    </div> <!-- /.container -->
+</section> <!-- /.section-background -->
+
+@{ Html.RenderAction("News", "News");}
+
+<link href="~/Content/_share/User/assets/css/about.css" rel="stylesheet" />

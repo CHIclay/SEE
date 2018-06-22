@@ -1,0 +1,50 @@
+.container {
+    width: 800px;
+    margin: 80px auto;
+}
+
+.hub-slider {
+    position: relative;
+}
+
+.hub-slider ul {
+    list-style: none;
+}
+
+.hub-slider ul li {
+    width: 800px;
+    height: 445px;
+    background: #add8e6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-size: cover;
+}
+.hub-slider ul li:nth-child(1){
+    background-image: url(../img/1.jpg);
+}
+.hub-slider ul li:nth-child(2){
+    background-image: url(../img/2.jpg);
+}
+.hub-slider ul li:nth-child(3){
+    background-image: url(../img/3.jpg);
+}
+.hub-slider ul li:nth-child(4){
+    background-image: url(../img/4.jpg);
+}
+
+.hub-slider-controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.hub-slider-arrow {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #d2527f;
+    color: #fff;
+    font-weight: bold;
+}

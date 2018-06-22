@@ -361,7 +361,7 @@ namespace SEEWeb.Controllers
             Session["User_Name"] = null;
             Session["User_ID"] = null;
             Session["User_Img"] = null;
-            return Content("<script>;alert('登出成功！');history.go(-1)</script>");
+            return Content("<script>alert('登出成功！');window.open('" + Url.Action("Index", "Index") + "','_self');</script>");
         }
         #endregion
 
