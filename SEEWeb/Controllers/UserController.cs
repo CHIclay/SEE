@@ -28,6 +28,7 @@ namespace SEEWeb.Controllers
         #region 用户注册
         public ActionResult Register()
         {
+            ViewBag.usersex = new SelectList(new string[] { "男"," 女" });
             return View();
         }
         [HttpPost]
@@ -60,6 +61,7 @@ namespace SEEWeb.Controllers
             //{
             //    return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Action("Register", "User") + "','_self');</script>");
             //}
+            ViewBag.usersex = new string[] { "男", " 女" };
             return View(user);
 
 
@@ -147,6 +149,7 @@ namespace SEEWeb.Controllers
         public ActionResult Edit(int id)
         {
             User user = usermanager.GetUserByID(id);
+            ViewBag.usersex = new SelectList(new string[] { "男", " 女" });
             return View(user);
         }
         [HttpPost]
@@ -172,7 +175,7 @@ namespace SEEWeb.Controllers
                     user.User_Time = DateTime.Now;
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
-                    return Content("<script>alert('修改成功！');window.open('" + Url.Action("Index", "User") + "','_self');</script>");
+                    return Content("<script>alert('修改成功！');window.open('" + Url.Action("UserCenter", "User") + "','_self');</script>");
 
                 }
                 catch (Exception ex)
@@ -180,6 +183,7 @@ namespace SEEWeb.Controllers
                     return Content(ex.Message);
                 }
             }
+            ViewBag.usersex = new SelectList(new string[] { "男", " 女" });
             return View(user);
         }
         #endregion

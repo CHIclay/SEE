@@ -85,8 +85,16 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 删除管理员
-        public ActionResult Delete(int ? id)
+        public ActionResult Delete(int id)
         {
+           
+            //News news = (from u in db.News where u.Man_ID == id select u).FirstOrDefault();
+            //int news_id = news.News_ID;
+            //News news1 = db.News.Find(news_id);
+            //db.News.Remove(news1);
+            //db.SaveChanges();
+
+
             Manager manager = db.Manager.Find(id);
             db.Manager.Remove(manager);
             db.SaveChanges();

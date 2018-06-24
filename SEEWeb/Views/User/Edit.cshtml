@@ -88,7 +88,7 @@
                             <div>
                                用户性别：&nbsp;
                                 <div>
-                                    @Html.EditorFor(model => model.User_Sex)
+                                    @Html.DropDownListFor(model => model.User_Sex, ViewBag.usersex as SelectList, "请选择", new { @class = "form-first-name form-control" })
                                     @Html.ValidationMessageFor(model => model.User_Sex)
                                 </div>
                             </div>

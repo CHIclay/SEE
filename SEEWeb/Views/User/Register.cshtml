@@ -104,7 +104,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">用户性别</label>
-                                    @Html.TextBoxFor(model => model.User_Sex, new { name = "form-first-name", placeholder = "请确认性别", @class = "form-first-name form-control", id = "form-first-name" })
+                                    @Html.DropDownListFor(model => model.User_Sex, ViewBag.usersex as SelectList, "请选择",new { @class= "form-first-name form-control" });
+ 
                                     @Html.ValidationMessageFor(model => model.User_Sex)
                                 </div>
                                 <div class="form-group">

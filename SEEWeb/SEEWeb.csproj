@@ -864,6 +864,7 @@
     <Compile Include="ViewModel\NewsViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
     <Compile Include="ViewModel\Picture_In_AlbumViewModel.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
