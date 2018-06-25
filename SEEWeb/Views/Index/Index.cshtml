@@ -59,6 +59,15 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+                        <li style="margin-right:200px;margin-top:7px;color:black">
+                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form" }))
+                            {
+                                <span> <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:25px">  </span>
+                                <span> <input type="submit" value=" " class="btn btn-block" style="float:right;height:5px;" /> </span>
+
+                            }
+                        </li>
+                        
                         <li><a href="@Url.Action("Index", "Index")">主页</a></li>
                         <li><a href="@Url.Action("Index","News")">新闻</a></li>
                         <li><a href="@Url.Action("Index","Picture")">图片</a></li>

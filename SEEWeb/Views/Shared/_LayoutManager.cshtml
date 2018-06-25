@@ -24,9 +24,9 @@
 </head>
 <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    <header class="app-header">
-        <a class="app-header__logo" href="@Url.Action("Index","Index")">S E E</a>
-        <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <header class="app-header" style="background-color:#999072">
+        <a class="app-header__logo"  style="background-color:#999072" href="@Url.Action("Index","Index")">S E E</a>
+        <a class="app-sidebar__toggle" href="#"  style="background-color:#999072" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     
         <ul class="app-nav">
             @*<li class="app-search">
@@ -54,9 +54,9 @@
             </div>
         </div>
         <ul class="app-menu">
-            <li><a class="app-menu__item active" href="@Url.Action("Index","Manager")"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">站内总汇</span></a></li>
+            <li><a  class="app-menu__item active" href="@Url.Action("Index","Manager")"><i class="fas fa-building"></i><span class="app-menu__label">站内总汇</span></a></li>
             <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">用户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-address-book"></i><span class="app-menu__label">用户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="@Url.Action("List","User")"><i class="icon fa fa-circle-o"></i> 用户List</a></li>
                 </ul>

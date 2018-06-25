@@ -861,6 +861,7 @@
     <Compile Include="utf8-net\net\App_Code\UploadHandler.cs" />
     <Compile Include="ViewModel\AlbumViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
+    <Compile Include="ViewModel\ManagerDetailsViewModel.cs" />
     <Compile Include="ViewModel\NewsViewModel.cs" />
     <Compile Include="ViewModel\PictureViewModel.cs" />
     <Compile Include="ViewModel\Picture_In_AlbumViewModel.cs" />
@@ -928,6 +929,8 @@
     <Content Include="utf8-net\third-party\video-js\font\vjs.ttf" />
     <Content Include="utf8-net\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
+    <Content Include="Views\Index\search.cshtml" />
+    <Content Include="Views\Manager\ManagerDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

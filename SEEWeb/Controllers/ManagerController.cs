@@ -9,6 +9,7 @@ using BLL;
 using Model;
 using Common;
 using SEEWeb.Attributes;
+using SEEWeb.ViewModel;
 
 namespace SEEWeb.Controllers
 {
@@ -128,6 +129,27 @@ namespace SEEWeb.Controllers
                 }
             }
             return View(manager);
+        }
+        #endregion
+
+        #region 管理员查看站内信息
+        public ActionResult ManagerDetails()
+        {
+            var picture1 = (from p in db.Picture select p).ToList();
+            var pic_point1 = (from p in db.Pic_Point select p).ToList();
+            var album1=(from p in db.Album select p).ToList();
+            var album_point1 = (from p in db.Album_Point select p);
+            var news1 = (from p in db.News select p).ToList();
+            var index = new SEEWeb.ViewModel.ManagerDetailsViewModel()
+            {
+                Picture1 = picture1,
+                Pic_Point1 = pic_point1,
+                Album1 = album1,
+                Album_Point1 = album_point1,
+                News1 = news1,
+            };
+            return View(index);
+
         }
         #endregion
 

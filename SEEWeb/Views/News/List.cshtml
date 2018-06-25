@@ -41,6 +41,9 @@
                 <th>
                    上传时间
                 </th>
+                <th>
+                    评论数
+                </th>
                 <th></th>
             </tr>
 
@@ -70,6 +73,9 @@
                    
                     <td>
                         @Html.DisplayFor(modelItem => item.News_Time)
+                    </td>
+                    <td>
+                        @item.News_Comment.Count()
                     </td>
                     <td>
                         @Html.ActionLink("修改", "Edit", new { id = item.News_ID }) |

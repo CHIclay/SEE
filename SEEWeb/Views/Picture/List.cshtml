@@ -30,6 +30,9 @@
                             <th>图片描述</th>
                             <th>图片分类</th>
                             <th>上传时间</th>
+                            <th>获赞数</th>
+                            <th>评论数</th>
+                     
                             <th></th>
                         </tr>
                     </thead>
@@ -64,6 +67,13 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Pic_Time)
+                                </td>
+                                <td>
+                                    @item.Pic_Point.Count()
+                                     
+                                </td>
+                                <td>
+                                    @item.Pic_Comment.Count()
                                 </td>
                                 <td>
                                     @Html.ActionLink("删除", "Delete", new { id = item.Pic_ID })

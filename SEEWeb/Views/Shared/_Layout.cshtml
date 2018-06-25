@@ -47,10 +47,19 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="@Url.Action("Index","Index")">S    E    E</a>
+                  
                 </div> <!-- /.navbar-header -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+                        <li style="margin-right:200px;margin-top:7px;color:black">
+                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form" }))
+                            {
+                            <span> <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:25px">  </span>
+                            <span> <input type="submit" value="S e a r c h" class="btn btn-block" style="float:right;height:25px;" /> </span> 
+                            }
+
+                        </li>
                         <li><a href="@Url.Action("Index","Index")">主页</a></li>
                         <li><a href="@Url.Action("Index","News")">新闻</a></li>
                         <li><a href="@Url.Action("Index","Picture")">图片</a></li>
@@ -58,13 +67,13 @@
                         <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
                         @if (Session["User_ID"] != null)
                         {
-                        <li>
-                            <img src="@Session["User_Img"]" height="35" width="35" />
-                        </li>
-                       
-                        <li>
-                            <a href="@Url.Action("LogOff","User")">登出</a>
-                        </li>
+                            <li>
+                                <img src="@Session["User_Img"]" height="35" width="35" />
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("LogOff","User")">登出</a>
+                            </li>
 
                         }
                         else

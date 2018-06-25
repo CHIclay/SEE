@@ -301,25 +301,7 @@ namespace SEEWeb.Controllers
         }
         #endregion
 
-        #region 用户相册
-        public ActionResult Album( )
-        {
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            User user = db.User.Find(User_ID);
-            var album = (from p in db.Album select p).Where(p => p.User_ID == User_ID).ToList();
-            return View(album);
-        }
-        #endregion
-
-        #region 用户图片
-        public ActionResult Picture()
-        {
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            var picture = (from p in db.Picture select p).OrderByDescending(p => p.Pic_Time).Where(p => p.User_ID == User_ID).ToList();
-            return View(picture);
-        }
-        #endregion
-
+        
         #region 用户收藏相册
         public ActionResult Save()
         {

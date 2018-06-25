@@ -32,6 +32,9 @@
                             <th>相册描述</th>
 
                             <th>上传时间</th>
+                            <th>点赞数</th>
+                            <th>收藏数</th>
+                            <th>评论数</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -64,6 +67,15 @@
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Alb_Time)
+                                </td>
+                                <td>
+                                    @item.Album_Point.Count()
+                                </td>
+                                <td>
+                                    @item.Album_Save.Count()
+                                </td>
+                                <td>
+                                    @item.Album_Comment.Count()
                                 </td>
                                 <td>
                                     @Html.ActionLink("删除", "Delete", new { id = item.Alb_ID })

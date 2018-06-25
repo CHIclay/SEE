@@ -52,7 +52,7 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "")
                     <div>
-                        @Html.LabelFor(model => model.News_Name)
+                       <label>新闻名</label>
                         <div>
                             @Html.EditorFor(model => model.News_Name)
                             @Html.ValidationMessageFor(model => model.News_Name)
@@ -61,14 +61,14 @@
                         </div>
                     </div>
                     <div>
-                        @Html.LabelFor(model => model.News_Pic)
+                       <label>新闻图片</label>
                         <div>
                             <input type="file" name="newsimage" />
                         </div>
                     </div>
 
                     <div>
-                        @Html.LabelFor(model => model.News_Mes)
+                       <label>新闻内容</label>
                         <div>
                             <textarea id="editor" name="News_Mes"></textarea>
                         </div>

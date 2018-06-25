@@ -71,7 +71,8 @@ namespace SEEWeb.Controllers
 
         public ActionResult Album1(int ? page)
         {
-            var album = from a in db.Album.OrderByDescending(a => a.Alb_Time)
+            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+            var album = from a in db.Album.OrderByDescending(a => a.Alb_Time).Where(p => p.User_ID == User_ID).ToList()
                         select a;
             int pageSize = 9;
             int pageNumber = (page ?? 1);

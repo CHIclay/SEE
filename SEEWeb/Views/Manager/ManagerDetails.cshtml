@@ -1,0 +1,67 @@
+﻿@using Model
+@model SEEWeb.ViewModel.ManagerDetailsViewModel
+@{
+    ViewBag.Title = "ManagerDetails";
+    Layout = null;
+}
+
+
+@{ 
+    int pointcount=Model.Pic_Point1.Count() + Model.Album_Point1.Count();
+}
+ 
+
+
+<div class="row">
+
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+                <h4>图片</h4>
+                <p>
+                    <b>@Model.Picture1.Count() </b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-star fa-3x"></i>
+            <div class="info">
+                <h4>喜欢</h4>
+                <p>
+                    <b>@pointcount </b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-list fa-3x"></i>
+            <div class="info">
+                <h4>相册</h4>
+                <p>
+                    <b>@Model.Album1.Count() </b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon">
+            <i class="icon fa fa-newspaper fa-3x"></i>
+            <div class="info">
+                <h4>新闻</h4>
+                <p>
+                    <b>@Model.News1.Count() </b>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link href="~/Content/_share/Manager/css/main.css" rel="stylesheet" />

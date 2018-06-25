@@ -49,10 +49,10 @@
                     <br /><br />
                     <div>
                         <div>
-                            @Html.LabelFor(model => model.Pic_Mes)
+                           <label>图片名称</label>
                             <div>
 
-                                @Html.EditorFor(model => model.Pic_Mes)
+                                @Html.EditorFor(model => model.Pic_Mes,new { @class="form-control"})
                                 @Html.ValidationMessageFor(model => model.Pic_Mes)
                             </div>
                         </div>

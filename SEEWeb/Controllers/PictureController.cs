@@ -174,7 +174,8 @@ namespace SEEWeb.Controllers
 
         public ActionResult Picture1(int ?page)
         {
-            var picture = from a in db.Picture.OrderByDescending(a => a.Pic_Time)
+            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+            var picture = from a in db.Picture.OrderByDescending(a => a.Pic_Time).Where(p => p.User_ID == User_ID).ToList()
                           select a;
             int pageSize = 12;
             int pageNumber = (page ?? 1);
