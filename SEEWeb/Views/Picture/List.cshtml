@@ -18,97 +18,98 @@
     </div>
     <div class="tile mb-4">
         <div>
-        
-          
-                <table class="table">
-                    <thead>
+
+
+           
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>图片ID</th>
+                        <th>用户ID</th>
+                        <th>用户姓名</th>
+                        <th>图片</th>
+                        <th>图片描述</th>
+                        <th>图片分类</th>
+                        <th>上传时间</th>
+                        <th>获赞数</th>
+                        <th>评论数</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.GetPagingData())
+                    {
                         <tr>
-                            <th>图片ID</th>
-                            <th>用户ID</th>
-                            <th>用户姓名</th>
-                            <th>图片</th>
-                            <th>图片描述</th>
-                            <th>图片分类</th>
-                            <th>上传时间</th>
-                            <th>获赞数</th>
-                            <th>评论数</th>
-                     
-                            <th></th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pic_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.User_Name)
+                            </td>
+                            <td>
+                                @if (string.IsNullOrEmpty(item.Pic_Pic))
+                                {
+                                    @:none
+                                }
+                                else
+                                {
+                                    <img width="75" height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pic_Mes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Picture_Type.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pic_Time)
+                            </td>
+                            <td>
+                                @item.Pic_Point.Count()
+
+                            </td>
+                            <td>
+                                @item.Pic_Comment.Count()
+                            </td>
+                            <td>
+                                @Html.ActionLink("删除", "Delete", new { id = item.Pic_ID })
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.GetPagingData())
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        @if (Model.HasPrev)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pic_ID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem=>item.User_ID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.User_Name)
-                                </td>
-                                <td>
-                                    @if (string.IsNullOrEmpty(item.Pic_Pic))
-                                    {
-                                        @:none
-                                    }
-                                    else
-                                    {
-                                        <img width="75" height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pic_Mes)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Picture_Type.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pic_Time)
-                                </td>
-                                <td>
-                                    @item.Pic_Point.Count()
-                                     
-                                </td>
-                                <td>
-                                    @item.Pic_Comment.Count()
-                                </td>
-                                <td>
-                                    @Html.ActionLink("删除", "Delete", new { id = item.Pic_ID })
-                                </td>
-                            </tr>
+                            <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
                         }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            @if (Model.HasPrev)
-                            {
-                                <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                            }
-                            else
-                            {
-                                <td><em style="color:Gray">上一页</em></td>
-                            }
-                            @if (Model.HasNext)
-                            {
-                                <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex + 1 })">下一页</a></td>
-                            }
-                            else
-                            {
-                                <td><em style="color:Gray">下一页</em></td>
-                            }
-                        </tr>
-                    </tfoot>
-                </table>
-            
+                        else
+                        {
+                            <td><em style="color:Gray">上一页</em></td>
+                        }
+                        @if (Model.HasNext)
+                        {
+                            <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex + 1 })">下一页</a></td>
+                        }
+                        else
+                        {
+                            <td><em style="color:Gray">下一页</em></td>
+                        }
+                    </tr>
+                </tfoot>
+            </table>
+
         </div>
 
     </div>

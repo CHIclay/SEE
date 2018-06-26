@@ -57,18 +57,6 @@ namespace SEEWeb.Controllers
         public ActionResult List(int pageIndex=1)
         {
             var picture = pm.GetAll();
-            //var picturetype = ptm.GetAll();
-            //var picturemodel = from a in picture
-            //                   join b in picturetype on a.Type_ID equals b.Type_ID
-            //                   select new PictureViewModel
-            //                   {
-            //                       Pic_ID = a.Pic_ID,
-            //                       User_ID = a.User_ID,
-            //                       Pic_Pic = a.Pic_Pic,
-            //                       Type_ID = b.Type_ID,
-            //                       Pic_Mes = a.Pic_Mes,
-            //                       Pic_Time = a.Pic_Time
-            //                   };
             PagingHelper<Picture> PicturePaging = new PagingHelper<Picture>(5,picture); //初始化分页器以及显示数量
             PicturePaging.PageIndex = pageIndex; // 指定当前页
             return View(PicturePaging);//返回分页器实例到视图
