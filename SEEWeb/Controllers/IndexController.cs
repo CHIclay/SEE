@@ -45,12 +45,16 @@ namespace SEEWeb.Controllers
         [HttpPost]
         public ActionResult search(string keywords)
         {
+
             ViewBag.KeyWords = keywords;
+             
             SearchViewModel svm = new SearchViewModel();
             svm.picture = (from p in db.Picture.OrderByDescending(p => p.Pic_Time) select p).Where(p => (p.Pic_Mes.Contains(keywords)) || (p.User.User_Name.Contains(keywords)) || (p.Picture_Type.Name.Contains(keywords)));
             svm.album = (from p in db.Album.OrderByDescending(p => p.Alb_Time) select p).Where(p => (p.Alb_Mes.Contains(keywords)) || (p.Alb_Name.Contains(keywords)) || (p.User.User_Name.Contains(keywords)));
             svm.news = (from p in db.News.OrderByDescending(p => p.News_Time) select p).Where(p => (p.News_Mes.Contains(keywords)) || (p.News_Name.Contains(keywords)));
             return View(svm);
+            
+
         }
     }
 }
