@@ -123,7 +123,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SEE.edmx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="UserInfo.cs">
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
     <Compile Include="UserMetaData.cs" />

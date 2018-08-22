@@ -12,10 +12,10 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public UserInfo()
         {
             this.Album = new HashSet<Album>();
             this.Album_Comment = new HashSet<Album_Comment>();
@@ -30,7 +30,7 @@ namespace Model
             this.Picture = new HashSet<Picture>();
         }
     
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public string User_Img { get; set; }
         public string User_Name { get; set; }
         public string User_Pwd { get; set; }

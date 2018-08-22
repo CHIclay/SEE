@@ -49,7 +49,7 @@ namespace SEEWeb.Controllers
                     album.Alb_Pic= relativepath;
 
                 }
-                album.User_ID= Convert.ToInt32(Session["User_ID"].ToString());
+                album.UID= Convert.ToInt32(Session["UID"].ToString());
                 
                 album.Alb_Time = DateTime.Now;
                 albumm.Add(album);
@@ -71,8 +71,8 @@ namespace SEEWeb.Controllers
 
         public ActionResult Album1(int ? page)
         {
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            var album = from a in db.Album.OrderByDescending(a => a.Alb_Time).Where(p => p.User_ID == User_ID).ToList()
+            int UID = Convert.ToInt32(Session["UID"].ToString());
+            var album = from a in db.Album.OrderByDescending(a => a.Alb_Time).Where(p => p.UID == UID).ToList()
                         select a;
             int pageSize = 9;
             int pageNumber = (page ?? 1);
@@ -82,8 +82,10 @@ namespace SEEWeb.Controllers
 
         #region 相册详细
         public ActionResult Details(int id)
-        { 
+        {
             Album albums = db.Album.Find(id);
+            int point = albums.Album_Point.Count();
+            ViewBag.pc = point;
             Album_Point ap = db.Album_Point.Find(id);
             var picture_in_album = from p in db.Picture_In_Album.Where(p => p.Alb_ID == id)
                           select p;
@@ -120,7 +122,7 @@ namespace SEEWeb.Controllers
             {
                 
                 album_comment.Alb_ID = alb_id;
-                album_comment.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                album_comment.UID = Convert.ToInt32(Session["UID"].ToString());
                 album_comment.AC_Mes = acmes;
                 album_comment.AC_Time = System.DateTime.Now;
                 db.Album_Comment.Add(album_comment);
@@ -134,18 +136,18 @@ namespace SEEWeb.Controllers
         #region 相册点赞
         public ActionResult Point(Album_Point albpoint,int Alb_ID)
         {
-            if(Session["User_ID"]!=null)
+            if(Session["UID"]!=null)
             {
                     var album = db.Album.Find(Alb_ID);
                     int albid = Alb_ID;
-                    int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-                    var chk_member = db.Album_Point.Where(p => p.User_ID == User_ID).Where(p => p.Alb_ID == albid).FirstOrDefault();
+                    int UID = Convert.ToInt32(Session["UID"].ToString());
+                    var chk_member = db.Album_Point.Where(p => p.UID == UID).Where(p => p.Alb_ID == albid).FirstOrDefault();
                      if(chk_member==null)
                      {
                         if(ModelState.IsValid)
                         {
                           albpoint.Alb_ID = albid;
-                          albpoint.User_ID = User_ID;
+                          albpoint.UID = UID;
                           albpoint.AP_Time = DateTime.Now;
                           db.Album_Point.Add(albpoint);
                           db.SaveChanges();
@@ -173,19 +175,18 @@ namespace SEEWeb.Controllers
         #region 相册收藏
         public ActionResult Save(Album_Save albsave,int Alb_ID)
         {
-            if(Session["User_ID"]!=null)
+            if(Session["UID"]!=null)
             {
                var album = db.Album.Find(Alb_ID);
                int albid = Alb_ID;
-               int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-               //var chk_member = db.Attention.Where(o => o.User_ID == User_ID).Where(o => o.To_User_ID == To_User_ID).FirstOrDefault();
-               var chk_member = db.Album_Save.Where(p => p.User_ID == User_ID).Where(o => o.Alb_ID == albid).FirstOrDefault();
+               int UID = Convert.ToInt32(Session["UID"].ToString());
+               var chk_member = db.Album_Save.Where(p => p.UID == UID).Where(o => o.Alb_ID == albid).FirstOrDefault();
                if(chk_member==null)
                {
                     if (ModelState.IsValid)
                   {
                    albsave.Alb_ID = albid;
-                   albsave.User_ID = User_ID;
+                   albsave.UID = UID;
                    albsave.AS_Time = DateTime.Now;
                    db.Album_Save.Add(albsave);
                    db.SaveChanges();

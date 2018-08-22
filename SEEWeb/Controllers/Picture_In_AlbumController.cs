@@ -25,9 +25,9 @@ namespace SEEWeb.Controllers
         #region 添加图片进相册
         public ActionResult Add(int Pic_ID)
         {
-            int userid = Convert.ToInt32(Session["User_id"].ToString());
+            int userid = Convert.ToInt32(Session["UID"].ToString());
             
-            var album = from p in db.Album.Where(p => p.User_ID == userid)
+            var album = from p in db.Album.Where(p => p.UID == userid)
                         select p;
             var picture = db.Picture.Find(Pic_ID);
             
@@ -44,7 +44,7 @@ namespace SEEWeb.Controllers
         
         public ActionResult Add2(Picture_In_Album pia,int albid,int picid)
         {
-           if(Session["User_ID"]!=null)
+           if(Session["UID"]!=null)
             {
                 if (ModelState.IsValid)
                 {

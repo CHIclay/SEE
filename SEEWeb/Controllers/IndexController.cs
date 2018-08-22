@@ -24,7 +24,7 @@ namespace SEEWeb.Controllers
             var news4 = (from p in db.News select p).ToList().OrderByDescending(p => p.News_Time).ToList().Skip(3).Take(1);//显示最新的第四条新闻
             var news5 = (from p in db.News select p).ToList().OrderByDescending(p => p.News_Time).ToList().Skip(4).Take(1);//显示最新的第五条新闻
             var album1 = (from p in db.Album select p).ToList().OrderByDescending(p => p.Album_Point.Count()).ToList().Take(6);//显示点赞最多的八个相册
-            var user1 = (from p in db.User select p).ToList();
+            var user1 = (from p in db.UserInfo select p).ToList();
             var news_comment1 = (from p in db.News_Comment select p).ToList();
             var index = new SEEWeb.ViewModel.IndexViewModel()
             {
@@ -36,7 +36,7 @@ namespace SEEWeb.Controllers
                 News4=news4,
                 News5=news5,
                 Album = album1,
-                User=user1,
+                UserInfo=user1,
                 News_Comment=news_comment1,
             };
             return View(index);
@@ -49,8 +49,8 @@ namespace SEEWeb.Controllers
             ViewBag.KeyWords = keywords;
              
             SearchViewModel svm = new SearchViewModel();
-            svm.picture = (from p in db.Picture.OrderByDescending(p => p.Pic_Time) select p).Where(p => (p.Pic_Mes.Contains(keywords)) || (p.User.User_Name.Contains(keywords)) || (p.Picture_Type.Name.Contains(keywords)));
-            svm.album = (from p in db.Album.OrderByDescending(p => p.Alb_Time) select p).Where(p => (p.Alb_Mes.Contains(keywords)) || (p.Alb_Name.Contains(keywords)) || (p.User.User_Name.Contains(keywords)));
+            svm.picture = (from p in db.Picture.OrderByDescending(p => p.Pic_Time) select p).Where(p => (p.Pic_Mes.Contains(keywords)) || (p.UserInfo.User_Name.Contains(keywords)) || (p.Picture_Type.Name.Contains(keywords)));
+            svm.album = (from p in db.Album.OrderByDescending(p => p.Alb_Time) select p).Where(p => (p.Alb_Mes.Contains(keywords)) || (p.Alb_Name.Contains(keywords)) || (p.UserInfo.User_Name.Contains(keywords)));
             svm.news = (from p in db.News.OrderByDescending(p => p.News_Time) select p).Where(p => (p.News_Mes.Contains(keywords)) || (p.News_Name.Contains(keywords)));
             return View(svm);
             

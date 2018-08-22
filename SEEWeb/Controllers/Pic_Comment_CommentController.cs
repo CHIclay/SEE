@@ -15,7 +15,7 @@ namespace SEEWeb.Controllers
         // GET: Pic_Comment_Comment
         public ActionResult Index(int pageIndex=1)
         {
-            var piccc = db.Pic_Comment_Comment.Include(n => n.User).Include(n => n.Pic_Comment).ToList();
+            var piccc = db.Pic_Comment_Comment.Include(n => n.UserInfo).Include(n => n.Pic_Comment).ToList();
             PagingHelper<Pic_Comment_Comment> PCCPaging = new PagingHelper<Pic_Comment_Comment>(10, piccc);
             PCCPaging.PageIndex = pageIndex;
             return View(PCCPaging);
@@ -37,9 +37,9 @@ namespace SEEWeb.Controllers
             else
             {
                 int Pic_ID = Convert.ToInt32(Session["Pic_ID"]);
-                int userid = Convert.ToInt32(Session["User_ID"]);
+                int userid = Convert.ToInt32(Session["UID"]);
                 piccc.PC_ID = PC_ID;
-                piccc.User_ID = userid;
+                piccc.UID = userid;
                 piccc.PCC_Mes = replytext;
                 piccc.PCC_Time = DateTime.Now;
                 db.Pic_Comment_Comment.Add(piccc);

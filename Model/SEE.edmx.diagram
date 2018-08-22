@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="65ea364d63f6418bb842b19b39486d40" Name="Diagram1">
+      <Diagram DiagramId="e185115958514e708fd9fae413007324" Name="Diagram1">
         <EntityTypeShape EntityType="SEEModel.Album" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SEEModel.Album_Comment" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEEModel.Album_Point" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
@@ -19,31 +19,31 @@
         <EntityTypeShape EntityType="SEEModel.Picture" Width="1.5" PointX="8" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="SEEModel.Picture_In_Album" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEEModel.Picture_Type" Width="1.5" PointX="5.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEEModel.User" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEEModel.UserInfo" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
         <AssociationConnector Association="SEEModel.FK_Album_Album" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Album_Comment_Album" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Album_Point_Album" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Album_Save_Album" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Album_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Picture_In_Album_Album" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Album_Comment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Album_Point_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Album_Save_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Attention_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Attention_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Comment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Point_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Album_Save_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Attention_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Attention_UserInfo1" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_News_Manager" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_News_Comment_News" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_News_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_News_Comment_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Pic_Comment_Comment_Pic_Comment" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Pic_Comment_Picture" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Pic_Comment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Pic_Comment_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Comment_Comment_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Pic_Point_Picture" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Pic_Point_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Pic_Point_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Picture_In_Album_Picture" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Picture_Picture" ManuallyRouted="false" />
         <AssociationConnector Association="SEEModel.FK_Picture_Picture_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="SEEModel.FK_Picture_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEEModel.FK_Picture_UserInfo" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

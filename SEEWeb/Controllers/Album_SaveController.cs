@@ -18,8 +18,8 @@ namespace SEEWeb.Controllers
         #region 删除相册收藏
         public ActionResult Delete(int id)
         { 
-            int User_ID= Convert.ToInt32(Session["User_ID"].ToString());
-            var chk_member = db.Album_Save.Where(o => o.User_ID == User_ID).Where(o => o.Alb_ID == id).FirstOrDefault();
+            int UID= Convert.ToInt32(Session["UID"].ToString());
+            var chk_member = db.Album_Save.Where(o => o.UID == UID).Where(o => o.Alb_ID == id).FirstOrDefault();
             Album_Save album_save = db.Album_Save.Remove(chk_member);
             db.SaveChanges();
             return Content("<script>;alert('删除收藏成功！');history.go(-1)</script>");

@@ -15,12 +15,12 @@ namespace Model
     public partial class News_Comment
     {
         public int NC_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public int News_ID { get; set; }
         public string NC_Mes { get; set; }
         public Nullable<System.DateTime> NC_Time { get; set; }
     
         public virtual News News { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

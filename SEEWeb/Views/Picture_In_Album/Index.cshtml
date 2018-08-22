@@ -16,8 +16,8 @@
                     所有者：
                 </h4>
                 <p class="team-item-id">
-                    <a href="@Url.Action("UserIndex","User",new {User_ID=p.Picture.User.User_ID})">
-                        @p.Picture.User.User_Name
+                    <a href="@Url.Action("UserIndex","User",new {UID=p.Picture.UserInfo.UID})">
+                        @p.Picture.UserInfo.User_Name
                     </a>
                 </p>
         </div> <!-- /.team-item -->

@@ -21,7 +21,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="@Url.Action("Index","Index")">主页</a></li>
-                @if (Session["User_ID"] == null)
+                @if (Session["UID"] == null)
                 {
                     <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片主页</a></li>
                     <li class="active">&nbsp;图片详细</li>
@@ -53,8 +53,8 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <p class="about-detail">
-                            上传人: <a href="@Url.Action("UserIndex","User",new {User_ID=Model.Picture1.User.User_ID})">
-                                @Model.Picture1.User.User_Name
+                            上传人: <a href="@Url.Action("UserIndex","User",new {UID=Model.Picture1.UserInfo.UID})">
+                                @Model.Picture1.UserInfo.User_Name
                             </a>
                             <br />
                             <br />
@@ -109,7 +109,7 @@
                         <textarea class="textarea form-control" style="height:100px" name="textarea" placeholder="写下评论"></textarea>
                     </div>
                     <input type="hidden" name="picid" value="@Model.Picture1.Pic_ID" />
-                    if (Session["User_ID"] != null)
+                    if (Session["UID"] != null)
                     {
                         <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
 
@@ -136,11 +136,11 @@
                             tempid = "dev" + p.PC_ID;
 
                         <div style="float:left;margin-right:20px;">
-                            <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"><img src="@p.User.User_Img" height="70" width="70" /></a>
+                            <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"><img src="@p.UserInfo.User_Img" height="70" width="70" /></a>
                         </div>
                             <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
                                 <span>    @p.PC_Time</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("UserIndex","User", new {User_ID=p.User_ID})">@p.User.User_Name</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("UserIndex","User", new {UID=p.UID})">@p.UserInfo.User_Name</a>
                             </div>
 
 
@@ -157,7 +157,7 @@
 
                                         </div>
                                         <div class="Rly02-B" style="float:right">
-                                            @if (Session["User_ID"] != null)
+                                            @if (Session["UID"] != null)
                                             {
                                                 <input type="submit" value="提交" class="btn btn-xs btn-default" />
                                             }
@@ -178,11 +178,11 @@
                                     <div style="height:auto">
 
                                         <div style="float:left;margin-right:20px;margin-left:50px;">
-                                            <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> <img src="@B.User.User_Img" height="70" width="70" /></a>
+                                            <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@B.UserInfo.User_Img" height="70" width="70" /></a>
                                         </div>
                                         <div style=" background:#c7e0ed ;color: #666;padding: 2px 4px; margin-left:80px;">
                                             <span>    @B.PCC_Time</span>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;   <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">@B.User.User_Name </a> 回复  <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">@B.Pic_Comment.User.User_Name</a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;   <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.UserInfo.User_Name </a> 回复  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.Pic_Comment.UserInfo.User_Name</a>
                                         </div>
                                         @B.PCC_Mes
                                         <br />

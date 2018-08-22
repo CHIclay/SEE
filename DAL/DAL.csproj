@@ -63,7 +63,7 @@
     <Compile Include="SqlServerNews.cs" />
     <Compile Include="SqlServerNews_Comment.cs" />
     <Compile Include="SqlServerPic_Comment.cs" />
-    <Compile Include="SqlServerUser.cs" />
+    <Compile Include="SqlServerUserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">

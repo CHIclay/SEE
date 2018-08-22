@@ -66,7 +66,7 @@ namespace SEEWeb.Controllers
         #region 添加图片
         public ActionResult Create()
         {
-            ViewBag.picturetype = new SelectList(ptm.GetAll(), "Type_ID", "Name");
+            ViewBag.picturetype = new SelectList(ptm.GetAll(), "TID", "Name");
             return View();
         }
         //[HttpPost]
@@ -87,12 +87,12 @@ namespace SEEWeb.Controllers
 
                 }
                 picture.Pic_Time = DateTime.Now;
-                picture.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                picture.UID = Convert.ToInt32(Session["UID"].ToString());
                 Picture addpicture = new Picture
                 {
-                    User_ID = picture.User_ID,
+                    UID = picture.UID,
                     Pic_Pic = picture.Pic_Pic,
-                    Type_ID = picture.Type_ID,
+                    TID = picture.TID,
                     Pic_Mes = picture.Pic_Mes,
                     Pic_Time = picture.Pic_Time
                 };
@@ -162,8 +162,8 @@ namespace SEEWeb.Controllers
 
         public ActionResult Picture1(int ?page)
         {
-            int User_ID = Convert.ToInt32(Session["User_ID"].ToString());
-            var picture = from a in db.Picture.OrderByDescending(a => a.Pic_Time).Where(p => p.User_ID == User_ID).ToList()
+            int UID = Convert.ToInt32(Session["UID"].ToString());
+            var picture = from a in db.Picture.OrderByDescending(a => a.Pic_Time).Where(p => p.UID == UID).ToList()
                           select a;
             int pageSize = 12;
             int pageNumber = (page ?? 1);
@@ -203,19 +203,19 @@ namespace SEEWeb.Controllers
         #region 图片点赞
         public ActionResult Point(Pic_Point picpoint,int Pic_ID)
         {
-            if(Session["User_ID"]!=null)
+            if(Session["UID"]!=null)
             {
                 var picture = db.Picture.Find(Pic_ID);
                 int picid = Pic_ID;
-                int User_ID= Convert.ToInt32(Session["User_ID"].ToString()); 
+                int UID= Convert.ToInt32(Session["UID"].ToString()); 
 
-                var chk_member = db.Pic_Point.Where(o => o.User_ID == User_ID).Where(o => o.Pic_ID == picid).FirstOrDefault();
+                var chk_member = db.Pic_Point.Where(o => o.UID == UID).Where(o => o.Pic_ID == picid).FirstOrDefault();
                 if(chk_member==null)
                 {
                   if (ModelState.IsValid)
                   {
                     picpoint.Pic_ID = picid;
-                    picpoint.User_ID = User_ID;
+                    picpoint.UID = UID;
                     picpoint.PP_Time = DateTime.Now;
                     db.Pic_Point.Add(picpoint);
                     db.SaveChanges();

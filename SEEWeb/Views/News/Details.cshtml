@@ -86,11 +86,11 @@
                     @foreach (News_Comment p in Model.News_Comment)
                     {
                     <div style="float:left;margin-right:20px;">
-                        <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> <img src="@p.User.User_Img" height="50" width="50" /></a>
+                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@p.UserInfo.User_Img" height="50" width="50" /></a>
                     </div>
                     <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
                         <span>    @p.NC_Time</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name</a>
                     </div>
 
 

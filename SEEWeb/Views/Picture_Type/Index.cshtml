@@ -35,13 +35,13 @@
                         @foreach (var item in Model.GetPagingData())
                         {
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Type_ID)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TID)</td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("修改", "Edit", new { id = item.Type_ID })|
-                                    @Html.ActionLink("删除", "Delete", new { id = item.Type_ID })
+                                    @Html.ActionLink("修改", "Edit", new { id = item.TID })|
+                                    @Html.ActionLink("删除", "Delete", new { id = item.TID })
                                 </td>
                             </tr>
                         }

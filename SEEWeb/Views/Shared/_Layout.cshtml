@@ -65,7 +65,7 @@
                         <li><a href="@Url.Action("Index","Picture")">图片</a></li>
                         <li><a href="@Url.Action("Index","Album")">相册</a></li>
                         <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
-                        @if (Session["User_ID"] != null)
+                        @if (Session["UID"] != null)
                         {
                             <li>
                                 <img src="@Session["User_Img"]" height="35" width="35" />

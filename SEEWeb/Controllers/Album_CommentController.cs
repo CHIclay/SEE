@@ -17,7 +17,7 @@ namespace SEEWeb.Controllers
         // GET: Album_Comment
         public ActionResult Index(int pageIndex=1)
         {
-            var ac = db.Album_Comment.Include(n => n.User).Include(n => n.Album).ToList();
+            var ac = db.Album_Comment.Include(n => n.UserInfo).Include(n => n.Album).ToList();
             PagingHelper<Album_Comment> ABPaging = new PagingHelper<Album_Comment>(10, ac);
             ABPaging.PageIndex = pageIndex;
             return View(ABPaging);

@@ -52,10 +52,10 @@
                 @foreach (var p in Model)
                 {
                     <div class="col-sm-6 col-xs-6">
-                        <a href="@Url.Action("UserIndex","User",new {User_ID=p.User1.User_ID})">
+                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo1.UID})">
 
-                            <img src="@p.User1.User_Img" width="100" height="100" />  
-                            <br />@p.User1.User_Name
+                            <img src="@p.UserInfo1.User_Img" width="100" height="100" />  
+                            <br />@p.UserInfo1.User_Name
                         </a>
                         <br />
                         <br />

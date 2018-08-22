@@ -51,9 +51,9 @@
                     {
 
                     <div class="col-sm-6 col-xs-6">
-                        <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">
-                            <img src="@p.User.User_Img" width="100" height="100" />
-                            @p.User.User_Name
+                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">
+                            <img src="@p.UserInfo.User_Img" width="100" height="100" />
+                            @p.UserInfo.User_Name
                         </a>
                             <br /><hr />
                     </div>

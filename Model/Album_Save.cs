@@ -15,11 +15,11 @@ namespace Model
     public partial class Album_Save
     {
         public int AS_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public int Alb_ID { get; set; }
         public Nullable<System.DateTime> AS_Time { get; set; }
     
         public virtual Album Album { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -10,72 +10,70 @@ using System.Linq.Expressions;
 
 namespace DAL
 {
-   public class SqlServerUser:SqlServerBase<User>,IUser
+   public class SqlServerUserInfo:SqlServerBase<UserInfo>,IUserInfo
     {
-        public override Expression<Func<User, bool>> GetByIdKey(int id)
+        public override Expression<Func<UserInfo, bool>> GetByIdKey(int id)
         {
-            return u => u.User_ID == id;
+            return u => u.UID == id;
         }
 
-        public override Expression<Func<User, string>> GetKey()
+        public override Expression<Func<UserInfo, string>> GetKey()
         {
-            return u => u.User_ID.ToString();
+            return u => u.UID.ToString();
         }
         SEEEntities db = new SEEEntities();
         //用户注册？
-        public void InsertUser(User user)
+        public void InsertUser(UserInfo user)
         {
-            db.User.Add(user);
+            db.UserInfo.Add(user);
             db.SaveChanges();
         }
         
-        public List<User> SelectUser(string User_Name)
+        public List<UserInfo> SelectUser(string User_Name)
         {
-            var users = (from u in db.User
+            var users = (from u in db.UserInfo
                         where u.User_Name == User_Name
                         select u).ToList();
             return users;
         }
         //用户登录
-        public int Login(User user)
+        public int Login(UserInfo user)
         {
-            var users= from u in db.User
+            var users= from u in db.UserInfo
                        where u.User_Name == user.User_Name && u.User_Pwd == user.User_Pwd
                        select u;
             int result = users.Count();
             return result;
         }
-        //AJSX登录方法？
-        public int AjaxLogin(string User_Name,string User_Pwd)
-        {
-            var users = from u in db.User
-                        where u.User_Name == User_Name && u.User_Pwd == User_Pwd
-                        select u;
-            return users.Count();
-        }
         //通过ID获取用户
-        public User GetUserByID(int User_ID)
+        public UserInfo GetUserByID(int UID)
         {
-            User users = (from u in db.User
-                          where u.User_ID == User_ID
+            UserInfo users = (from u in db.UserInfo
+                          where u.UID == UID
                           select u).FirstOrDefault();
             return users;
         }
         //通过用户名获取用户
-        public User GetUserByName(string User_Name)
+        public UserInfo GetUserByName(string User_Name)
         {
-            User users=(from u in db.User
+            UserInfo users=(from u in db.UserInfo
                         where u.User_Name==User_Name
                         select u).FirstOrDefault();
             return users;
         }
         //更新用户数据
-        public void UpdateUserInfo(User user)
+        public void UpdateUserInfo(UserInfo user)
         {
             db.Configuration.ValidateOnSaveEnabled = false;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
+        }
+        //获取全部用户信息
+        public List<UserInfo> List()
+        {
+            var users = (from p in db.UserInfo select p).ToList().OrderByDescending(a => a.User_Time).ToList();
+            return users;
         }
 
     }

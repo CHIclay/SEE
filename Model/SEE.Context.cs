@@ -39,6 +39,6 @@ namespace Model
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<Picture_In_Album> Picture_In_Album { get; set; }
         public virtual DbSet<Picture_Type> Picture_Type { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
     }
 }

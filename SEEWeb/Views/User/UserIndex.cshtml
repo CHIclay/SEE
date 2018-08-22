@@ -1,4 +1,4 @@
-﻿@model SEEWeb.ViewModel.UserViewModel
+﻿@model SEEWeb.ViewModel.UserInfoViewModel
 @using Model
 @{
     ViewBag.Title = "UserIndex";
@@ -32,13 +32,13 @@
                         {
                             if (ViewBag.attentionde != null)
                             {
-                                <a href="@Url.Action("attention","User",new { to_User_ID=Model.User1.User_ID}) ">
+                                <a href="@Url.Action("attention","User",new { ToUID=Model.User1.UID}) ">
                                     <b>已关注</b>
                                 </a>
                             }
                             if (ViewBag.attentionde == null)
                             {
-                                <a href="@Url.Action("attention","User",new { To_User_ID=Model.User1.User_ID}) ">
+                                <a href="@Url.Action("attention","User",new { ToUID=Model.User1.UID}) ">
                                     关注
                                 </a>
                             }

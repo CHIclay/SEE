@@ -24,7 +24,7 @@ namespace Model
         }
     
         public int Alb_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public string Alb_Name { get; set; }
         public string Alb_Pic { get; set; }
         public string Alb_Mes { get; set; }
@@ -38,7 +38,7 @@ namespace Model
         public virtual ICollection<Album_Point> Album_Point { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album_Save> Album_Save { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture_In_Album> Picture_In_Album { get; set; }
     }

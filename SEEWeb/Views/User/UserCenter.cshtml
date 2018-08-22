@@ -1,4 +1,4 @@
-﻿@model Model.User
+﻿@model Model.UserInfo
 @{
     ViewBag.Title = "UserCenter";
 }
@@ -73,7 +73,7 @@
                         </P>
                         <br />
                         <p>
-                            <h3><span class="label label-info"  > @Html.ActionLink("修改个人信息", "Edit", new { id = @Session["User_ID"], @clss = "label label-info" }) </span>  </h3>  
+                            <h3><span class="label label-info"  > @Html.ActionLink("修改个人信息", "Edit", new { id = @Session["UID"], @clss = "label label-info" }) </span>  </h3>  
                         </p>
                     </div>
                 </div>

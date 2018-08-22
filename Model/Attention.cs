@@ -15,11 +15,11 @@ namespace Model
     public partial class Attention
     {
         public int Att_ID { get; set; }
-        public int User_ID { get; set; }
-        public int To_User_ID { get; set; }
+        public int UID { get; set; }
+        public int ToUID { get; set; }
         public Nullable<System.DateTime> Att_Time { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
+        public virtual UserInfo UserInfo1 { get; set; }
     }
 }

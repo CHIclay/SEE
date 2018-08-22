@@ -28,11 +28,11 @@
                     @Html.AntiForgeryToken()
                     <div>
                         @Html.ValidationSummary(true, "")
-                        @Html.HiddenFor(model => model.Type_ID)
+                        @Html.HiddenFor(model => model.TID)
                         <div>
                             @Html.Label("类型ID")
                             <div>
-                                @Html.DisplayFor(model => model.Type_ID)
+                                @Html.DisplayFor(model => model.TID)
                             </div>
                         </div>
                         <div>

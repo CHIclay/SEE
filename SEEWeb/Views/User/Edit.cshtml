@@ -1,4 +1,4 @@
-﻿@model Model.User
+﻿@model Model.UserInfo
 
 @{
     ViewBag.Title = "Edit";
@@ -54,7 +54,7 @@
                           
                             <hr />
                             @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.User_ID)
+                            @Html.HiddenFor(model => model.UID)
                             <div>
                                 用户名： &nbsp;
                                 <div>

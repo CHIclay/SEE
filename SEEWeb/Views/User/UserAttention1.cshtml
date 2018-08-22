@@ -1,5 +1,5 @@
 ﻿@using Model
-@model SEEWeb.ViewModel.UserViewModel
+@model SEEWeb.ViewModel.UserInfoViewModel
 @{
     ViewBag.Title = "UserAttention1";
     Layout = null;
@@ -10,11 +10,11 @@
     {
         <div class="blog-grids">
             <div class="blog-grid-left">
-                <a href="@Url.Action("UserIndex","User",new {User_ID=p.User1.User_ID})"> <img src="@p.User1.User_Img" width="50" height="50" /></a>
+                <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo1.UID})"> <img src="@p.UserInfo1.User_Img" width="50" height="50" /></a>
 </div>
             <div class="blog-grid-right">
 
-                <h5><a href="@Url.Action("UserIndex","User",new {User_ID=p.User1.User_ID})">@p.User1.User_Name</a> </h5>
+                <h5><a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo1.UID})">@p.UserInfo1.User_Name</a> </h5>
             </div>
             <div class="clearfix"> </div>
         </div>

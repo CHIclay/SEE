@@ -27,7 +27,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="@Url.Action("Index","Index")">主页</a></li>
-                @if (Session["User_ID"] == null)
+                @if (Session["UID"] == null)
                 {
                     <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片</a></li>
 

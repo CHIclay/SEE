@@ -10,7 +10,7 @@ namespace Model
     internal class Picture_TypeMetaData
     {
         [Key]
-        public int Type_ID { get; set; }
+        public int TID { get; set; }
         [Required(ErrorMessage ="类型名称不能为空")]
         public string Name { get; set; }
     }

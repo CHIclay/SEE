@@ -151,7 +151,7 @@ namespace SEEWeb.Controllers
         [HttpPost]
         public ActionResult NC_Add(News_Comment news_comment)
         {
-            if(Session["User_ID"]!=null)
+            if(Session["UID"]!=null)
             {
                 string pcmes = Request["pcmes"];
                 int pic_ID = Convert.ToInt32(Request["picid"]);
@@ -159,7 +159,7 @@ namespace SEEWeb.Controllers
                   if (ModelState.IsValid)
                  {
                 news_comment.News_ID = pic_ID;
-                news_comment.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                news_comment.UID = Convert.ToInt32(Session["UID"].ToString());
                 news_comment.NC_Mes = pcmes;
                 news_comment.NC_Time = System.DateTime.Now;
                 db.News_Comment.Add(news_comment);

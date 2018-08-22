@@ -10,7 +10,7 @@
             <PropertyRef Name="Alb_ID" />
           </Key>
           <Property Name="Alb_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Alb_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Alb_Pic" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Alb_Mes" Type="nvarchar(max)" Nullable="false" />
@@ -21,7 +21,7 @@
             <PropertyRef Name="AC_ID" />
           </Key>
           <Property Name="AC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Alb_ID" Type="int" Nullable="false" />
           <Property Name="AC_Mes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AC_Time" Type="datetime" />
@@ -31,7 +31,7 @@
             <PropertyRef Name="AP_ID" />
           </Key>
           <Property Name="AP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Alb_ID" Type="int" Nullable="false" />
           <Property Name="AP_Time" Type="datetime" />
         </EntityType>
@@ -40,7 +40,7 @@
             <PropertyRef Name="AS_ID" />
           </Key>
           <Property Name="AS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Alb_ID" Type="int" Nullable="false" />
           <Property Name="AS_Time" Type="datetime" />
         </EntityType>
@@ -49,8 +49,8 @@
             <PropertyRef Name="Att_ID" />
           </Key>
           <Property Name="Att_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
-          <Property Name="To_User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="ToUID" Type="int" Nullable="false" />
           <Property Name="Att_Time" Type="datetime" />
         </EntityType>
         <EntityType Name="Manager">
@@ -78,7 +78,7 @@
             <PropertyRef Name="NC_ID" />
           </Key>
           <Property Name="NC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="News_ID" Type="int" Nullable="false" />
           <Property Name="NC_Mes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NC_Time" Type="datetime" />
@@ -88,7 +88,7 @@
             <PropertyRef Name="PC_ID" />
           </Key>
           <Property Name="PC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Pic_ID" Type="int" Nullable="false" />
           <Property Name="PC_Mes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PC_Time" Type="datetime" />
@@ -98,7 +98,7 @@
             <PropertyRef Name="PCC_ID" />
           </Key>
           <Property Name="PCC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="PC_ID" Type="int" Nullable="false" />
           <Property Name="PCC_Mes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PCC_Time" Type="datetime" />
@@ -108,7 +108,7 @@
             <PropertyRef Name="PP_ID" />
           </Key>
           <Property Name="PP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Pic_ID" Type="int" Nullable="false" />
           <Property Name="PP_Time" Type="datetime" />
         </EntityType>
@@ -117,9 +117,9 @@
             <PropertyRef Name="Pic_ID" />
           </Key>
           <Property Name="Pic_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="Pic_Pic" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Type_ID" Type="int" Nullable="false" />
+          <Property Name="TID" Type="int" />
           <Property Name="Pic_Mes" Type="nvarchar(max)" />
           <Property Name="Pic_Time" Type="datetime" />
         </EntityType>
@@ -134,16 +134,16 @@
         </EntityType>
         <EntityType Name="Picture_Type">
           <Key>
-            <PropertyRef Name="Type_ID" />
+            <PropertyRef Name="TID" />
           </Key>
-          <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="UserInfo">
           <Key>
-            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="UID" />
           </Key>
-          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User_Img" Type="nvarchar" MaxLength="50" />
           <Property Name="User_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="User_Pwd" Type="char" MaxLength="20" Nullable="false" />
@@ -177,15 +177,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Comment" Type="Self.Album_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -201,15 +201,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Point_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Point_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Point" Type="Self.Album_Point" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Point">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -225,51 +225,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Save_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Save_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Save" Type="Self.Album_Save" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Save">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Attention_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Attention_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Attention">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Attention_User1">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Attention_UserInfo1">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Attention">
-              <PropertyRef Name="To_User_ID" />
+              <PropertyRef Name="ToUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -285,15 +285,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_News_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_News_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="News_Comment" Type="Self.News_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="News_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -321,15 +321,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Comment_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Comment_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Comment_Comment" Type="Self.Pic_Comment_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Comment_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,15 +345,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Comment" Type="Self.Pic_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -369,15 +369,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Point_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Point_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Point" Type="Self.Pic_Point" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Point">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -418,26 +418,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Picture_Picture_Type">
-          <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="1" />
+          <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="0..1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Picture_Type">
-              <PropertyRef Name="Type_ID" />
+              <PropertyRef Name="TID" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="Type_ID" />
+              <PropertyRef Name="TID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Picture_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Picture_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -456,7 +456,7 @@
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album1" EntitySet="Album" />
@@ -465,44 +465,44 @@
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Comment" EntitySet="Album_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Comment_User" Association="Self.FK_Album_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Comment_UserInfo" Association="Self.FK_Album_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Comment" EntitySet="Album_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Album_Point_Album" Association="Self.FK_Album_Point_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Point" EntitySet="Album_Point" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Point_User" Association="Self.FK_Album_Point_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Point_UserInfo" Association="Self.FK_Album_Point_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Point" EntitySet="Album_Point" />
           </AssociationSet>
           <AssociationSet Name="FK_Album_Save_Album" Association="Self.FK_Album_Save_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Save" EntitySet="Album_Save" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Save_User" Association="Self.FK_Album_Save_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Save_UserInfo" Association="Self.FK_Album_Save_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Save" EntitySet="Album_Save" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_User" Association="Self.FK_Album_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_UserInfo" Association="Self.FK_Album_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
-          <AssociationSet Name="FK_Attention_User" Association="Self.FK_Attention_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Attention_UserInfo" Association="Self.FK_Attention_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Attention" EntitySet="Attention" />
           </AssociationSet>
-          <AssociationSet Name="FK_Attention_User1" Association="Self.FK_Attention_User1">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Attention_UserInfo1" Association="Self.FK_Attention_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Attention" EntitySet="Attention" />
           </AssociationSet>
           <AssociationSet Name="FK_News_Comment_News" Association="Self.FK_News_Comment_News">
             <End Role="News" EntitySet="News" />
             <End Role="News_Comment" EntitySet="News_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_News_Comment_User" Association="Self.FK_News_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_News_Comment_UserInfo" Association="Self.FK_News_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="News_Comment" EntitySet="News_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_News_Manager" Association="Self.FK_News_Manager">
@@ -513,24 +513,24 @@
             <End Role="Pic_Comment" EntitySet="Pic_Comment" />
             <End Role="Pic_Comment_Comment" EntitySet="Pic_Comment_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Comment_Comment_User" Association="Self.FK_Pic_Comment_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Comment_Comment_UserInfo" Association="Self.FK_Pic_Comment_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Comment_Comment" EntitySet="Pic_Comment_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Pic_Comment_Picture" Association="Self.FK_Pic_Comment_Picture">
             <End Role="Picture" EntitySet="Picture" />
             <End Role="Pic_Comment" EntitySet="Pic_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Comment_User" Association="Self.FK_Pic_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Comment_UserInfo" Association="Self.FK_Pic_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Comment" EntitySet="Pic_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Pic_Point_Picture" Association="Self.FK_Pic_Point_Picture">
             <End Role="Picture" EntitySet="Picture" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Point_User" Association="Self.FK_Pic_Point_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Point_UserInfo" Association="Self.FK_Pic_Point_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
           <AssociationSet Name="FK_Picture_In_Album_Album" Association="Self.FK_Picture_In_Album_Album">
@@ -549,8 +549,8 @@
             <End Role="Picture_Type" EntitySet="Picture_Type" />
             <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
-          <AssociationSet Name="FK_Picture_User" Association="Self.FK_Picture_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Picture_UserInfo" Association="Self.FK_Picture_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
         </EntityContainer>
@@ -564,7 +564,7 @@
             <PropertyRef Name="Alb_ID" />
           </Key>
           <Property Name="Alb_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Alb_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Alb_Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Alb_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -574,7 +574,7 @@
           <NavigationProperty Name="Album_Comment" Relationship="Self.FK_Album_Comment_Album" FromRole="Album" ToRole="Album_Comment" />
           <NavigationProperty Name="Album_Point" Relationship="Self.FK_Album_Point_Album" FromRole="Album" ToRole="Album_Point" />
           <NavigationProperty Name="Album_Save" Relationship="Self.FK_Album_Save_Album" FromRole="Album" ToRole="Album_Save" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Album_User" FromRole="Album" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Album_UserInfo" FromRole="Album" ToRole="UserInfo" />
           <NavigationProperty Name="Picture_In_Album" Relationship="Self.FK_Picture_In_Album_Album" FromRole="Album" ToRole="Picture_In_Album" />
         </EntityType>
         <EntityType Name="Album_Comment">
@@ -582,45 +582,45 @@
             <PropertyRef Name="AC_ID" />
           </Key>
           <Property Name="AC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Alb_ID" Type="Int32" Nullable="false" />
           <Property Name="AC_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AC_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Album_Comment_Album" FromRole="Album_Comment" ToRole="Album" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Album_Comment_User" FromRole="Album_Comment" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Album_Comment_UserInfo" FromRole="Album_Comment" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Album_Point">
           <Key>
             <PropertyRef Name="AP_ID" />
           </Key>
           <Property Name="AP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Alb_ID" Type="Int32" Nullable="false" />
           <Property Name="AP_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Album_Point_Album" FromRole="Album_Point" ToRole="Album" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Album_Point_User" FromRole="Album_Point" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Album_Point_UserInfo" FromRole="Album_Point" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Album_Save">
           <Key>
             <PropertyRef Name="AS_ID" />
           </Key>
           <Property Name="AS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Alb_ID" Type="Int32" Nullable="false" />
           <Property Name="AS_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Album_Save_Album" FromRole="Album_Save" ToRole="Album" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Album_Save_User" FromRole="Album_Save" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Album_Save_UserInfo" FromRole="Album_Save" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Attention">
           <Key>
             <PropertyRef Name="Att_ID" />
           </Key>
           <Property Name="Att_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
-          <Property Name="To_User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="ToUID" Type="Int32" Nullable="false" />
           <Property Name="Att_Time" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Attention_User" FromRole="Attention" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Attention_User1" FromRole="Attention" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Attention_UserInfo" FromRole="Attention" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo1" Relationship="Self.FK_Attention_UserInfo1" FromRole="Attention" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -650,57 +650,57 @@
             <PropertyRef Name="NC_ID" />
           </Key>
           <Property Name="NC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="News_ID" Type="Int32" Nullable="false" />
           <Property Name="NC_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NC_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="News" Relationship="Self.FK_News_Comment_News" FromRole="News_Comment" ToRole="News" />
-          <NavigationProperty Name="User" Relationship="Self.FK_News_Comment_User" FromRole="News_Comment" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_News_Comment_UserInfo" FromRole="News_Comment" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Pic_Comment">
           <Key>
             <PropertyRef Name="PC_ID" />
           </Key>
           <Property Name="PC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Pic_ID" Type="Int32" Nullable="false" />
           <Property Name="PC_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PC_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pic_Comment_Comment" Relationship="Self.FK_Pic_Comment_Comment_Pic_Comment" FromRole="Pic_Comment" ToRole="Pic_Comment_Comment" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Pic_Comment_Picture" FromRole="Pic_Comment" ToRole="Picture" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Pic_Comment_User" FromRole="Pic_Comment" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Pic_Comment_UserInfo" FromRole="Pic_Comment" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Pic_Comment_Comment">
           <Key>
             <PropertyRef Name="PCC_ID" />
           </Key>
           <Property Name="PCC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="PC_ID" Type="Int32" Nullable="false" />
           <Property Name="PCC_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PCC_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_Comment_Pic_Comment" FromRole="Pic_Comment_Comment" ToRole="Pic_Comment" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Pic_Comment_Comment_User" FromRole="Pic_Comment_Comment" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Pic_Comment_Comment_UserInfo" FromRole="Pic_Comment_Comment" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Pic_Point">
           <Key>
             <PropertyRef Name="PP_ID" />
           </Key>
           <Property Name="PP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Pic_ID" Type="Int32" Nullable="false" />
           <Property Name="PP_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Pic_Point_Picture" FromRole="Pic_Point" ToRole="Picture" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Pic_Point_User" FromRole="Pic_Point" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Pic_Point_UserInfo" FromRole="Pic_Point" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Pic_ID" />
           </Key>
           <Property Name="Pic_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="Pic_Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="TID" Type="Int32" />
           <Property Name="Pic_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Pic_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_Picture" FromRole="Picture" ToRole="Pic_Comment" />
@@ -709,7 +709,7 @@
           <NavigationProperty Name="Picture1" Relationship="Self.FK_Picture_Picture" FromRole="Picture" ToRole="Picture1" />
           <NavigationProperty Name="Picture2" Relationship="Self.FK_Picture_Picture" FromRole="Picture1" ToRole="Picture" />
           <NavigationProperty Name="Picture_Type" Relationship="Self.FK_Picture_Picture_Type" FromRole="Picture" ToRole="Picture_Type" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Picture_User" FromRole="Picture" ToRole="User" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Picture_UserInfo" FromRole="Picture" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Picture_In_Album">
           <Key>
@@ -724,17 +724,17 @@
         </EntityType>
         <EntityType Name="Picture_Type">
           <Key>
-            <PropertyRef Name="Type_ID" />
+            <PropertyRef Name="TID" />
           </Key>
-          <Property Name="Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_Picture_Type" FromRole="Picture_Type" ToRole="Picture" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="UserInfo">
           <Key>
-            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="UID" />
           </Key>
-          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="User_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="User_Pwd" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
@@ -743,17 +743,17 @@
           <Property Name="User_Ema" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Pho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Album" Relationship="Self.FK_Album_User" FromRole="User" ToRole="Album" />
-          <NavigationProperty Name="Album_Comment" Relationship="Self.FK_Album_Comment_User" FromRole="User" ToRole="Album_Comment" />
-          <NavigationProperty Name="Album_Point" Relationship="Self.FK_Album_Point_User" FromRole="User" ToRole="Album_Point" />
-          <NavigationProperty Name="Album_Save" Relationship="Self.FK_Album_Save_User" FromRole="User" ToRole="Album_Save" />
-          <NavigationProperty Name="Attention" Relationship="Self.FK_Attention_User" FromRole="User" ToRole="Attention" />
-          <NavigationProperty Name="Attention1" Relationship="Self.FK_Attention_User1" FromRole="User" ToRole="Attention" />
-          <NavigationProperty Name="News_Comment" Relationship="Self.FK_News_Comment_User" FromRole="User" ToRole="News_Comment" />
-          <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_User" FromRole="User" ToRole="Pic_Comment" />
-          <NavigationProperty Name="Pic_Comment_Comment" Relationship="Self.FK_Pic_Comment_Comment_User" FromRole="User" ToRole="Pic_Comment_Comment" />
-          <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_User" FromRole="User" ToRole="Pic_Point" />
-          <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_User" FromRole="User" ToRole="Picture" />
+          <NavigationProperty Name="Album" Relationship="Self.FK_Album_UserInfo" FromRole="UserInfo" ToRole="Album" />
+          <NavigationProperty Name="Album_Comment" Relationship="Self.FK_Album_Comment_UserInfo" FromRole="UserInfo" ToRole="Album_Comment" />
+          <NavigationProperty Name="Album_Point" Relationship="Self.FK_Album_Point_UserInfo" FromRole="UserInfo" ToRole="Album_Point" />
+          <NavigationProperty Name="Album_Save" Relationship="Self.FK_Album_Save_UserInfo" FromRole="UserInfo" ToRole="Album_Save" />
+          <NavigationProperty Name="Attention" Relationship="Self.FK_Attention_UserInfo" FromRole="UserInfo" ToRole="Attention" />
+          <NavigationProperty Name="Attention1" Relationship="Self.FK_Attention_UserInfo1" FromRole="UserInfo" ToRole="Attention" />
+          <NavigationProperty Name="News_Comment" Relationship="Self.FK_News_Comment_UserInfo" FromRole="UserInfo" ToRole="News_Comment" />
+          <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_UserInfo" FromRole="UserInfo" ToRole="Pic_Comment" />
+          <NavigationProperty Name="Pic_Comment_Comment" Relationship="Self.FK_Pic_Comment_Comment_UserInfo" FromRole="UserInfo" ToRole="Pic_Comment_Comment" />
+          <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_UserInfo" FromRole="UserInfo" ToRole="Pic_Point" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_UserInfo" FromRole="UserInfo" ToRole="Picture" />
         </EntityType>
         <Association Name="FK_Album_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
@@ -803,15 +803,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -827,63 +827,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Comment" Type="Self.Album_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Point_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Point_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Point" Type="Self.Album_Point" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Point">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Album_Save_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Album_Save_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Album_Save" Type="Self.Album_Save" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Album_Save">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Attention_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Attention_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Attention">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Attention_User1">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Attention_UserInfo1">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Attention">
-              <PropertyRef Name="To_User_ID" />
+              <PropertyRef Name="ToUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -911,15 +911,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_News_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_News_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="News_Comment" Type="Self.News_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="News_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -947,27 +947,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Comment" Type="Self.Pic_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Comment_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Comment_Comment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Comment_Comment" Type="Self.Pic_Comment_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Comment_Comment">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -983,15 +983,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pic_Point_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Pic_Point_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Pic_Point" Type="Self.Pic_Point" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Pic_Point">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1020,26 +1020,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Picture_Picture_Type">
-          <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="1" />
+          <End Role="Picture_Type" Type="Self.Picture_Type" Multiplicity="0..1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Picture_Type">
-              <PropertyRef Name="Type_ID" />
+              <PropertyRef Name="TID" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="Type_ID" />
+              <PropertyRef Name="TID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Picture_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Picture_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1058,7 +1058,7 @@
           <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" />
-          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
           <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album1" EntitySet="Album" />
@@ -1075,32 +1075,32 @@
             <End Role="Album" EntitySet="Album" />
             <End Role="Album_Save" EntitySet="Album_Save" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_User" Association="Self.FK_Album_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_UserInfo" Association="Self.FK_Album_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album" EntitySet="Album" />
           </AssociationSet>
           <AssociationSet Name="FK_Picture_In_Album_Album" Association="Self.FK_Picture_In_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Comment_User" Association="Self.FK_Album_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Comment_UserInfo" Association="Self.FK_Album_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Comment" EntitySet="Album_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Point_User" Association="Self.FK_Album_Point_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Point_UserInfo" Association="Self.FK_Album_Point_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Point" EntitySet="Album_Point" />
           </AssociationSet>
-          <AssociationSet Name="FK_Album_Save_User" Association="Self.FK_Album_Save_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Album_Save_UserInfo" Association="Self.FK_Album_Save_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Album_Save" EntitySet="Album_Save" />
           </AssociationSet>
-          <AssociationSet Name="FK_Attention_User" Association="Self.FK_Attention_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Attention_UserInfo" Association="Self.FK_Attention_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Attention" EntitySet="Attention" />
           </AssociationSet>
-          <AssociationSet Name="FK_Attention_User1" Association="Self.FK_Attention_User1">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Attention_UserInfo1" Association="Self.FK_Attention_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Attention" EntitySet="Attention" />
           </AssociationSet>
           <AssociationSet Name="FK_News_Manager" Association="Self.FK_News_Manager">
@@ -1111,8 +1111,8 @@
             <End Role="News" EntitySet="News" />
             <End Role="News_Comment" EntitySet="News_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_News_Comment_User" Association="Self.FK_News_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_News_Comment_UserInfo" Association="Self.FK_News_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="News_Comment" EntitySet="News_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Pic_Comment_Comment_Pic_Comment" Association="Self.FK_Pic_Comment_Comment_Pic_Comment">
@@ -1123,20 +1123,20 @@
             <End Role="Picture" EntitySet="Picture" />
             <End Role="Pic_Comment" EntitySet="Pic_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Comment_User" Association="Self.FK_Pic_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Comment_UserInfo" Association="Self.FK_Pic_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Comment" EntitySet="Pic_Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Comment_Comment_User" Association="Self.FK_Pic_Comment_Comment_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Comment_Comment_UserInfo" Association="Self.FK_Pic_Comment_Comment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Comment_Comment" EntitySet="Pic_Comment_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Pic_Point_Picture" Association="Self.FK_Pic_Point_Picture">
             <End Role="Picture" EntitySet="Picture" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pic_Point_User" Association="Self.FK_Pic_Point_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Pic_Point_UserInfo" Association="Self.FK_Pic_Point_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
           <AssociationSet Name="FK_Picture_In_Album_Picture" Association="Self.FK_Picture_In_Album_Picture">
@@ -1151,8 +1151,8 @@
             <End Role="Picture_Type" EntitySet="Picture_Type" />
             <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
-          <AssociationSet Name="FK_Picture_User" Association="Self.FK_Picture_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Picture_UserInfo" Association="Self.FK_Picture_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
         </EntityContainer>
@@ -1166,7 +1166,7 @@
             <EntityTypeMapping TypeName="SEEModel.Album">
               <MappingFragment StoreEntitySet="Album">
                 <ScalarProperty Name="Alb_ID" ColumnName="Alb_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Alb_Name" ColumnName="Alb_Name" />
                 <ScalarProperty Name="Alb_Pic" ColumnName="Alb_Pic" />
                 <ScalarProperty Name="Alb_Mes" ColumnName="Alb_Mes" />
@@ -1178,7 +1178,7 @@
             <EntityTypeMapping TypeName="SEEModel.Album_Comment">
               <MappingFragment StoreEntitySet="Album_Comment">
                 <ScalarProperty Name="AC_ID" ColumnName="AC_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Alb_ID" ColumnName="Alb_ID" />
                 <ScalarProperty Name="AC_Mes" ColumnName="AC_Mes" />
                 <ScalarProperty Name="AC_Time" ColumnName="AC_Time" />
@@ -1189,7 +1189,7 @@
             <EntityTypeMapping TypeName="SEEModel.Album_Point">
               <MappingFragment StoreEntitySet="Album_Point">
                 <ScalarProperty Name="AP_ID" ColumnName="AP_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Alb_ID" ColumnName="Alb_ID" />
                 <ScalarProperty Name="AP_Time" ColumnName="AP_Time" />
               </MappingFragment>
@@ -1199,7 +1199,7 @@
             <EntityTypeMapping TypeName="SEEModel.Album_Save">
               <MappingFragment StoreEntitySet="Album_Save">
                 <ScalarProperty Name="AS_ID" ColumnName="AS_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Alb_ID" ColumnName="Alb_ID" />
                 <ScalarProperty Name="AS_Time" ColumnName="AS_Time" />
               </MappingFragment>
@@ -1209,8 +1209,8 @@
             <EntityTypeMapping TypeName="SEEModel.Attention">
               <MappingFragment StoreEntitySet="Attention">
                 <ScalarProperty Name="Att_ID" ColumnName="Att_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="To_User_ID" ColumnName="To_User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ToUID" ColumnName="ToUID" />
                 <ScalarProperty Name="Att_Time" ColumnName="Att_Time" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1241,7 +1241,7 @@
             <EntityTypeMapping TypeName="SEEModel.News_Comment">
               <MappingFragment StoreEntitySet="News_Comment">
                 <ScalarProperty Name="NC_ID" ColumnName="NC_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="News_ID" ColumnName="News_ID" />
                 <ScalarProperty Name="NC_Mes" ColumnName="NC_Mes" />
                 <ScalarProperty Name="NC_Time" ColumnName="NC_Time" />
@@ -1252,7 +1252,7 @@
             <EntityTypeMapping TypeName="SEEModel.Pic_Comment">
               <MappingFragment StoreEntitySet="Pic_Comment">
                 <ScalarProperty Name="PC_ID" ColumnName="PC_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Pic_ID" ColumnName="Pic_ID" />
                 <ScalarProperty Name="PC_Mes" ColumnName="PC_Mes" />
                 <ScalarProperty Name="PC_Time" ColumnName="PC_Time" />
@@ -1263,7 +1263,7 @@
             <EntityTypeMapping TypeName="SEEModel.Pic_Comment_Comment">
               <MappingFragment StoreEntitySet="Pic_Comment_Comment">
                 <ScalarProperty Name="PCC_ID" ColumnName="PCC_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="PC_ID" ColumnName="PC_ID" />
                 <ScalarProperty Name="PCC_Mes" ColumnName="PCC_Mes" />
                 <ScalarProperty Name="PCC_Time" ColumnName="PCC_Time" />
@@ -1274,7 +1274,7 @@
             <EntityTypeMapping TypeName="SEEModel.Pic_Point">
               <MappingFragment StoreEntitySet="Pic_Point">
                 <ScalarProperty Name="PP_ID" ColumnName="PP_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Pic_ID" ColumnName="Pic_ID" />
                 <ScalarProperty Name="PP_Time" ColumnName="PP_Time" />
               </MappingFragment>
@@ -1284,9 +1284,9 @@
             <EntityTypeMapping TypeName="SEEModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
                 <ScalarProperty Name="Pic_ID" ColumnName="Pic_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Pic_Pic" ColumnName="Pic_Pic" />
-                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="Pic_Mes" ColumnName="Pic_Mes" />
                 <ScalarProperty Name="Pic_Time" ColumnName="Pic_Time" />
               </MappingFragment>
@@ -1305,15 +1305,15 @@
           <EntitySetMapping Name="Picture_Type">
             <EntityTypeMapping TypeName="SEEModel.Picture_Type">
               <MappingFragment StoreEntitySet="Picture_Type">
-                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="SEEModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="SEEModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="User_Img" ColumnName="User_Img" />
                 <ScalarProperty Name="User_Name" ColumnName="User_Name" />
                 <ScalarProperty Name="User_Pwd" ColumnName="User_Pwd" />

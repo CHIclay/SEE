@@ -21,7 +21,7 @@ namespace Model
         }
     
         public int PC_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public int Pic_ID { get; set; }
         public string PC_Mes { get; set; }
         public Nullable<System.DateTime> PC_Time { get; set; }
@@ -29,6 +29,6 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pic_Comment_Comment> Pic_Comment_Comment { get; set; }
         public virtual Picture Picture { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

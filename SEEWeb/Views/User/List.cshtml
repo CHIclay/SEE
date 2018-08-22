@@ -1,5 +1,5 @@
-﻿@using Model
-@model Common.PagingHelper<User>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.UserInfo>
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
@@ -9,131 +9,106 @@
 <head>
 
 </head>
-<body class="app sidebar-mini rtl" >
+<body class="app sidebar-mini rtl">
 
-        <div class="app-title">
-            <div class="div">
-                <h1><i class="fa fa-dashboard"></i>用户管理</h1>
-                <p>在规则之内，管理员对于用户而言，便是上帝</p>
-            </div>
-            <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="@Url.Action("List","User")">用户List</a></li>
-            </ul>
+    <div class="app-title">
+        <div class="div">
+            <h1><i class="fa fa-dashboard"></i>用户管理</h1>
+            <p>在规则之内，管理员对于用户而言，便是上帝</p>
         </div>
-        <div class="tile mb-4">
-            <table class="table">
-                <tbody id="list"></tbody>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("List","User")">用户List</a></li>
+        </ul>
+    </div>
+    <div class="tile mb-4">
+        <table class="table">
+            <tbody id="list"></tbody>
+            <tr>
+                <th>
+                    用户ID
+                </th>
+                <th>
+                    用户头像
+                </th>
+                <th>
+                    用户名
+                </th>
+                <th>
+                    用户密码
+                </th>
+                <th>
+                    用户密码确认
+                </th>
+                <th>
+                    用户性别
+                </th>
+                <th>
+                    用户邮箱
+                </th>
+                <th>
+                    用户电话
+                </th>
+                <th>
+                    注册时间
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        用户ID
-                    </th>
-                    <th>
-                        用户头像
-                    </th>
-                    <th>
-                        用户名
-                    </th>
-                    <th>
-                        用户密码
-                    </th>
-                    <th>
-                        用户密码确认
-                    </th>
-                    <th>
-                        用户性别
-                    </th>
-                    <th>
-                        用户邮箱
-                    </th>
-                    <th>
-                        用户电话
-                    </th>
-                    <th>
-                        注册时间
-                    </th>
-                    <th></th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UID)
+                    </td>
+                    <td>
+                        <div>
+                            @if (string.IsNullOrEmpty(item.User_Img))
+                            {
+                                @:none
+                            }
+                            else
+                            {
+                                <img width="75" height="75" src="@Url.Content(item.User_Img)" alt="images" />
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Pwd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_ConPwd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Ema)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Pho)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("删除", "Delete", new { id = item.UID })
+                    </td>
                 </tr>
-
-                @foreach (var item in Model.GetPagingData())
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_ID)
-                        </td>
-                        <td>
-                            <div>
-                                @if (string.IsNullOrEmpty(item.User_Img))
-                                {
-                                    @:none
-                                }
-                                else
-                                {
-                                    <img width="75" height="75" src="@Url.Content(item.User_Img)" alt="images" />
-                                }
-                            </div>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Pwd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_ConPwd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Sex)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Ema)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Pho)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User_Time)
-                        </td>
-                        <td>
-
-
-                            @Html.ActionLink("删除", "Delete", new { id = item.User_ID })
-                        </td>
-                    </tr>
-                }
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        @if (Model.HasPrev)
-                        {
-                            <td><a href="@Url.Action("List","User",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                        }
-                        else
-                        {
-                            <td><em style="color:dimgray">上一页</em></td>
-                        }
-                        @if (Model.HasNext)
-                        {
-                            <td>
-                                <a href="@Url.Action("List", "User", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
-                            </td>
-                        }
-                        else
-                        {
-                            <td><em style="color:dimgray">下一页</em></td>
-                        }
-                    </tr>
-                </tfoot>
-
-            </table>
+            }
+        </table>
+    </div>
+    <div style="float:right;">
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         </div>
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("List", "User", new { page }))
+        </div>
+    </div>
 
 
 

@@ -16,7 +16,7 @@ namespace SEEWeb.Controllers
         // GET: News_Comment
         public ActionResult Index(int pageIndex=1)
         {
-            var newscomment = db.News_Comment.Include(n => n.User).Include(n => n.News).ToList();
+            var newscomment = db.News_Comment.Include(n => n.UserInfo).Include(n => n.News).ToList();
             PagingHelper<News_Comment> NPPaging = new PagingHelper<News_Comment>(10, newscomment);
             NPPaging.PageIndex = pageIndex;
             return View(NPPaging);

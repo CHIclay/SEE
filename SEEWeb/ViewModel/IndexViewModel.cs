@@ -24,7 +24,7 @@ namespace SEEWeb.ViewModel
 
         public IEnumerable<Album> Album { get; set; }
 
-        public IEnumerable<User> User { get; set; }
+        public IEnumerable<UserInfo> UserInfo { get; set; }
 
         public IEnumerable<News_Comment> News_Comment { get; set; }
 

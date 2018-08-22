@@ -20,7 +20,7 @@ namespace Model
             this.Picture = new HashSet<Picture>();
         }
     
-        public int Type_ID { get; set; }
+        public int TID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

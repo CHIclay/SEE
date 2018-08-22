@@ -55,7 +55,7 @@
     <Compile Include="IPicture.cs" />
     <Compile Include="IPic_Comment.cs" />
     <Compile Include="IPicture_Type.cs" />
-    <Compile Include="IUser.cs" />
+    <Compile Include="IUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

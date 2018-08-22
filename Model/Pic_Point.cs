@@ -15,11 +15,11 @@ namespace Model
     public partial class Pic_Point
     {
         public int PP_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public int Pic_ID { get; set; }
         public Nullable<System.DateTime> PP_Time { get; set; }
     
         public virtual Picture Picture { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

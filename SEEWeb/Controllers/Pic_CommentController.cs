@@ -19,7 +19,7 @@ namespace SEEWeb.Controllers
         // GET: Pic_Comment
         public ActionResult Index(int pageIndex=1)
         {
-            var pc = db.Pic_Comment.Include(n => n.User).Include(n => n.Picture).ToList();
+            var pc = db.Pic_Comment.Include(n => n.UserInfo).Include(n => n.Picture).ToList();
             PagingHelper<Pic_Comment> Pic_CommentPaging = new PagingHelper<Pic_Comment>(10, pc);
             Pic_CommentPaging.PageIndex = pageIndex;
             return View(Pic_CommentPaging);
@@ -33,21 +33,20 @@ namespace SEEWeb.Controllers
         [ValidateInput(false)]
         public ActionResult Comments(Pic_Comment piccomment)
         {
-            if(Session["User_ID"]!=null)
+            if(Session["UID"]!=null)
             {
                    string textarea = Request["textarea"];
                   int Pic_ID = Convert.ToInt32(Request["picid"]);
 
                   if (ModelState.IsValid)
                   {
-                piccomment.Pic_ID = Pic_ID;
-                piccomment.User_ID = Convert.ToInt32(Session["User_ID"].ToString());
+                       piccomment.Pic_ID = Pic_ID;
+                      piccomment.UID = Convert.ToInt32(Session["UID"].ToString());
                 piccomment.PC_Mes = textarea;
                 piccomment.PC_Time = DateTime.Now;
                 db.Pic_Comment.Add(piccomment);
                 db.SaveChanges();
                 return Content("<script>;alert('评论成功!');history.go(-1)</script>");
-
                   }
             }
             else

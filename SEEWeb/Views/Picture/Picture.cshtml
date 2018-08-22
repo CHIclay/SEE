@@ -29,7 +29,7 @@
                             </div>
                             <div class="portfolio-item-details">
                                 <div class="portfolio-item-name">
-                                @p.Picture_Type.Name<br /> <small>  <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name  </a></small>
+                                @p.Picture_Type.Name<br /> <small>  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name  </a></small>
                                 </div>
 
                                 <div class="port-heart">

@@ -15,12 +15,12 @@ namespace Model
     public partial class Pic_Comment_Comment
     {
         public int PCC_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public int PC_ID { get; set; }
         public string PCC_Mes { get; set; }
         public Nullable<System.DateTime> PCC_Time { get; set; }
     
         public virtual Pic_Comment Pic_Comment { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -6,9 +6,9 @@ using Model;
 
 namespace SEEWeb.ViewModel
 {
-    public class UserViewModel
+    public class UserInfoViewModel
     {
-        public User User1 { get; set; }
+        public UserInfo User1 { get; set; }
 
         public IEnumerable<Album> Album1 { get; set; }
 

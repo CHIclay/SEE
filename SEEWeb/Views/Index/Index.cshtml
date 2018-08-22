@@ -73,7 +73,7 @@
                         <li><a href="@Url.Action("Index","Picture")">图片</a></li>
                         <li><a href="@Url.Action("Index","Album")">相册</a></li>
                         <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
-                        @if (Session["User_ID"] != null)
+                        @if (Session["UID"] != null)
                         {
                             <li>
                                 <img src="@Session["User_Img"]" height="35" width="35" />
@@ -129,7 +129,7 @@
                             </div>
                             <div class="portfolio-item-details">
                                 <div class="portfolio-item-name">
-                                    <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">@p.Pic_Mes </a>    <br />    <small> <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})"> @p.User.User_Name </a></small>
+                                    <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">@p.Pic_Mes </a>    <br />    <small> <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name </a></small>
                                 </div>
 
                                 <div class="port-heart">
@@ -249,7 +249,7 @@
                             </div>
                             <div class="portfolio-item-details">
                                 <div class="portfolio-item-name">
-                                    <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"> @p.Alb_Name    </a> <br />    <small> <a href="@Url.Action("UserIndex","User",new {User_ID=p.User.User_ID})">  @p.User.User_Name </a></small>
+                                    <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"> @p.Alb_Name    </a> <br />    <small> <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">  @p.UserInfo.User_Name </a></small>
                                 </div>
 
                                 <div class="port-heart">

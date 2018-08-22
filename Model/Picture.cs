@@ -23,9 +23,9 @@ namespace Model
         }
     
         public int Pic_ID { get; set; }
-        public int User_ID { get; set; }
+        public int UID { get; set; }
         public string Pic_Pic { get; set; }
-        public int Type_ID { get; set; }
+        public Nullable<int> TID { get; set; }
         public string Pic_Mes { get; set; }
         public Nullable<System.DateTime> Pic_Time { get; set; }
     
@@ -38,6 +38,6 @@ namespace Model
         public virtual Picture Picture1 { get; set; }
         public virtual Picture Picture2 { get; set; }
         public virtual Picture_Type Picture_Type { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }
