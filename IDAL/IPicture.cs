@@ -9,6 +9,7 @@ namespace IDAL
 {
     public interface IPicture:IBase<Picture>
     {
-
+        //获取全部图片
+        List<Picture> List();
     }
 }

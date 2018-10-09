@@ -1,9 +1,12 @@
-﻿@using Model
-@model Common.PagingHelper<Picture>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Picture>
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
 <body class="app sidebar-mini rtl">
 
     <div class="app-title">
@@ -18,9 +21,6 @@
     </div>
     <div class="tile mb-4">
         <div>
-
-
-           
             <table class="table">
                 <thead>
                     <tr>
@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.GetPagingData())
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td>
@@ -82,36 +82,17 @@
                         </tr>
                     }
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        @if (Model.HasPrev)
-                        {
-                            <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                        }
-                        else
-                        {
-                            <td><em style="color:Gray">上一页</em></td>
-                        }
-                        @if (Model.HasNext)
-                        {
-                            <td><a href="@Url.Action("List", "Picture", new { pageIndex = Model.PageIndex + 1 })">下一页</a></td>
-                        }
-                        else
-                        {
-                            <td><em style="color:Gray">下一页</em></td>
-                        }
-                    </tr>
-                </tfoot>
             </table>
-
         </div>
 
     </div>
+    <div>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </div>
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("List", "Picture", new { page }))
+        </div>
+    </div>
 </body>
-     
+

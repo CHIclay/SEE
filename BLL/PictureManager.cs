@@ -15,5 +15,11 @@ namespace BLL
         {
             return DataAccess.CreatePicture();
         }
+        private IPicture ipicture = DataAccess.CreatePicture();
+        //获取全部图片信息
+        public List<Picture> List()
+        {
+            return ipicture.List();
+        }
     }
 }

@@ -54,12 +54,12 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 后台管理
-        public ActionResult List(int pageIndex=1)
+        public ActionResult List(int ? page)
         {
-            var picture = pm.GetAll();
-            PagingHelper<Picture> PicturePaging = new PagingHelper<Picture>(5,picture); //初始化分页器以及显示数量
-            PicturePaging.PageIndex = pageIndex; // 指定当前页
-            return View(PicturePaging);//返回分页器实例到视图
+            var users = pm.List();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 

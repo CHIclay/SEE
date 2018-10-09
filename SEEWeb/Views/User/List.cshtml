@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="app sidebar-mini rtl">
 
@@ -101,17 +101,14 @@
             }
         </table>
     </div>
-    <div style="float:right;">
+    <div>
         <div>
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         </div>
-        <div>
+        <div style="">
             @Html.PagedListPager(Model, page => Url.Action("List", "User", new { page }))
         </div>
     </div>
-
-
-
 </body>
 </html>
 

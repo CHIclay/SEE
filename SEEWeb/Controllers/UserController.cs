@@ -9,7 +9,6 @@ using SEEWeb.Attributes;
 using System.Data.Entity;
 using SEEWeb.ViewModel;
 using System.Net;
-using Common;
 using PagedList;
 
 namespace SEEWeb.Controllers
@@ -67,16 +66,17 @@ namespace SEEWeb.Controllers
         #region 用户名检测
 
         [HttpPost]
-        public string CheckUser(string User_Name)
+        public ActionResult CheckUser(string User_Name)
         {
             var result = usermanager.SelectUser(User_Name);
+            ViewBag.Count = result.Count();
             if (result.Count() > 0)
             {
-                return "用户名已存在，请重新输入!!";
+                return Content("<script>alert('用户民已存在');window.location.href = document.referrer;</script>");
             }
             else
             {
-                return "该用户名未被注册，可以使用！";
+                return Content("<script>alert('该用户名可以使用');window.location.href = document.referrer;</script>");
             }
         }
         #endregion
@@ -253,15 +253,14 @@ namespace SEEWeb.Controllers
         {
             int UID = Convert.ToInt32(Session["UID"].ToString());
             var chk_member = db.Attention.Where(o => o.UID == UID).Where(o => o.ToUID == ToUID).FirstOrDefault();
-        
+            ViewBag.attentionde = chk_member;
+
             if (chk_member != null)
             {
                 Attention attention = db.Attention.Remove(chk_member);
                 db.SaveChanges();
                 return Content("<script>;alert('取消关注成功！');history.go(-1)</script>");
             }
-            if (ToUID != null)
-            {
                 atten.ToUID = Convert.ToInt32(ToUID);
                 atten.UID = Convert.ToInt32(Session["UID"].ToString());
                
@@ -270,9 +269,6 @@ namespace SEEWeb.Controllers
                 db.SaveChanges();
 
                 return Content("<script>;alert('关注成功！');history.go(-1)</script>");
-            }
-            ViewBag.attentionde = chk_member;
-            return View(atten);
         }
         #endregion
 
