@@ -9,5 +9,7 @@ namespace IDAL
 {
     public interface IAlbum:IBase<Album>
     {
+        //查看全部相册
+        List<Album> List();
     }
 }

@@ -9,6 +9,7 @@ namespace IDAL
 {
     public interface IAlbum_Comment:IBase<Album_Comment>
     {
-        
+        //获取全部献策评论
+        List<Album_Comment> List();
     }
 }

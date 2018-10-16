@@ -3,57 +3,48 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-
-
-<body class="app sidebar-mini rtl">
-    <div>
-        <div class="app-title">
-            <div class="div">
-                <h1><i class="fa fa-dashboard"></i>类别修改</h1>
-                <p>有什么地方不对？修改一下就好了</p>
-            </div>
-            <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="@Url.Action("Index","Picture_Type")">类别List</a></li>
-                <li class="breadcrumb-item"><a href="@Url.Action("Edit","Picture_Type")">类别修改</a></li>
-            </ul>
-        </div>
-        <div class="tile mb-4">
+<body class="layui-body">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            类名修改
+        </blockquote>
+    </div>
+    <div class="layui-form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
             <div>
-                @Html.ActionLink("返回列表", "Index")
-            </div>
-            <div>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <div>
-                        @Html.ValidationSummary(true, "")
-                        @Html.HiddenFor(model => model.TID)
-                        <div>
-                            @Html.Label("类型ID")
-                            <div>
-                                @Html.DisplayFor(model => model.TID)
-                            </div>
-                        </div>
-                        <div>
-                            @Html.Label("分类名称")
-                            <div>
-                                @Html.EditorFor(model => model.Name, new { @class = "form-control-label" })
-                                @Html.ValidationMessageFor(model => Model.Name)
-                            </div>
-                        </div>
-
-
+                @Html.ValidationSummary(true, "")
+                @Html.HiddenFor(model => model.TID)
+                <div>
+                    <label class="layui-form-label">
+                        @Html.Label("类型ID")
+                    </label>
+                    <label class="layui-form-label layui-bg-gray">
+                        @Html.DisplayFor(model => model.TID)
+                    </label>
+                    <label class="layui-form-label">
+                        @Html.Label("分类名称")
+                    </label>
+                    <div class="layui-input-inline">
+                        @Html.EditorFor(model => model.Name,new {@class="layui-inline"})
+                        @Html.ValidationMessageFor(model => model.Name)
                     </div>
-                    <div>
-                        <div>
-                            <input type="submit" value="修改" class="btn btn-primary" />
-                        </div>
-                    </div>
-
-                }
+                 
+                </div>
             </div>
-        </div>
+            <div><br /><br /><br /> </div>
+            <div class="layui-row">
+                <div class="layui-col-md4 layui-col-md-offset4">
+                    <button type="submit" class="layui-btn">
+                        修改
+                    </button>
+                    <button class="layui-btn">
+                        @Html.ActionLink("返回查询", "Index")
+                    </button>
+                </div>
+            </div>
+        }
     </div>
 </body>
       

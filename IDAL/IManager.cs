@@ -14,5 +14,7 @@ namespace IDAL
         int Login(Manager manager);
         Manager GetManagerByID(int Manager_Id);
         Manager GetManagerByName(string Manager_Name);
+        //获取全部管理员
+        List<Manager> List();
     }
 }

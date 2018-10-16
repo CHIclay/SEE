@@ -11,5 +11,6 @@ namespace IDAL
     {
         Picture_Type SelectID(int id);
         int DeleteID(int id);
+        List<Picture_Type> List();
     }
 }

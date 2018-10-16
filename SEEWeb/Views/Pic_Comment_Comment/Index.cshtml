@@ -1,54 +1,48 @@
-﻿@using Model
-@model Common.PagingHelper<Pic_Comment_Comment>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Pic_Comment_Comment>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-
-
-
-<body class="app sidebar-mini rtl">
-
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>评论回复管理</h1>
-            <p>评论回复的管理很重要，不可有违规评论出现</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","Pic_Comment_Comment")">评论回复</a></li>
-        </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body class="layui-bg-gray">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            评论回复
+        </blockquote>
     </div>
-    <div class="tile mb-4">
-        <table class="table">
+    <table class="layui-table">
+        <colgroup>
+            <col width="100" />
+            <col width="100" />
+            <col width="150" />
+            <col width="600" />
+            <col width="200" />
+            <col />
+        </colgroup>
+        <thead>
             <tr>
-                <th>
-                    回复ID
-                </th>
-                <th>
-                    回复人姓名
-                </th>
-                <th>
-                   评论ID
-                </th>
-                <th>
-                    回复内容
-                </th>
-                <th>
-                    回复时间
-                </th>
+                <th>编号</th>
+                <th>回复人</th>
+                <th>评论编号</th>
+                <th>内容</th>
+                <th>时间</th>
                 <th></th>
             </tr>
-
-            @foreach (var item in Model.GetPagingData())
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.PCC_ID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.User.User_Name)
+                        @Html.DisplayFor(modelItem => item.UserInfo.User_Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PC_ID)
@@ -60,40 +54,23 @@
                         @Html.DisplayFor(modelItem => item.PCC_Time)
                     </td>
                     <td>
-
-                        @Html.ActionLink("删除", "Delete", new { id = item.PCC_ID })
+                        @Html.ActionLink("删除", "Delete", new { id = item.PCC_ID }, new { @class = "layui-btn layui-btn-danger layui-btn-sm" })
                     </td>
                 </tr>
             }
-
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    @if (Model.HasPrev)
-                    {
-                        <td><a href="@Url.Action("Index","Pic_Comment_Comment",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">上一页</em></td>
-                    }
-                    @if (Model.HasNext)
-                    {
-                        <td>
-                            <a href="@Url.Action("Index", "Pic_Comment_Comment", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">下一页</em></td>
-                    }
-                </tr>
-            </tfoot>
-
-        </table>
+        </tbody>
+    </table>
+    <div class="layui-row">
+        <div class="layui-col-md4 layui-col-md-offset4">
+            <div>
+                第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
+            </div>
+            <button class="layui-btn">
+                @Html.PagedListPager(Model, page => Url.Action("Index","Pic_Comment_Comment", new { page }))
+            </button>
+        </div>
     </div>
 </body>
+</html>
+
     

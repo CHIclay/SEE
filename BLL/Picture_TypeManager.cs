@@ -11,6 +11,7 @@ namespace BLL
 {
     public class Picture_TypeManager:BaseManager<Picture_Type>
     {
+        private IPicture_Type ipt = DataAccess.CreatePicture_Type();
         public override IBase<Picture_Type> GetDal()
         {
             return DataAccess.CreatePicture_Type();
@@ -22,6 +23,11 @@ namespace BLL
         public bool DeleteID(int id)
         {
             return DataAccess.CreatePicture_Type().DeleteID(id) > 0;
+        }
+        //获取全部用户信息
+        public List<Picture_Type> List()
+        {
+            return ipt.List();
         }
     }
 }

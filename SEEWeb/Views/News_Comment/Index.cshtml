@@ -1,46 +1,40 @@
-﻿@using Model
-@model Common.PagingHelper<News_Comment>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.News_Comment>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-
-<body class="app sidebar-mini rtl">
-
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>新闻评论管理</h1>
-            <p>拒绝黑恶势力</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","News_Comment")">新闻评论管理</a></li>
-        </ul>
+<!DOCTYPE html>
+<html lang="en"> 
+<head></head>
+<body class="layui-body">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            新闻评论查询
+        </blockquote>
     </div>
-    <div class="tile mb-4">
-        <table class="table">
+    <table class="layui-table">
+        <colgroup>
+            <col width="100" />
+            <col width="100" />
+            <col width="100" />
+            <col width="550" />
+            <col width="200" />
+            <col />
+        </colgroup>
+        <thead>
             <tr>
-                <th>
-                    评论ID
-                </th>
-                <th>
-                    评论人ID
-                </th>
-                <th>
-                    评论新闻ID
-                </th>
-                <th>
-                    评论内容
-                </th>
-                <th>
-                    评论时间
-                </th>
+                <th>编号</th>
+                <th>评论人</th>
+                <th>新闻编号</th>
+                <th>评论内容</th>
+                <th>评论时间</th>
                 <th></th>
             </tr>
-
-            @foreach (var item in Model.GetPagingData())
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -59,39 +53,25 @@
                         @Html.DisplayFor(modelItem => item.NC_Time)
                     </td>
                     <td>
-                        @Html.ActionLink("查看详细", "Details", new { id = item.NC_ID }) |
-                        @Html.ActionLink("删除", "Delete", new { id = item.NC_ID })
+                        @Html.ActionLink("查看详细", "Details", new { id = item.NC_ID },new { @class="layui-btn layui-btn-sm"}) 
+                        @Html.ActionLink("删除", "Delete", new { id = item.NC_ID },new { @class="layui-btn layui-btn-danger layui-btn-sm"})
                     </td>
                 </tr>
             }
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    @if (Model.HasPrev)
-                    {
-                        <td><a href="@Url.Action("Index","News_Comment",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">上一页</em></td>
-                    }
-                    @if (Model.HasNext)
-                    {
-                        <td>
-                            <a href="@Url.Action("Index", "News_Comment", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td><em style="color:dimgray">下一页</em></td>
-                    }
-                </tr>
-            </tfoot>
-
-        </table>
+        </tbody>
+    </table>
+    <div class="layui-row">
+        <div class="layui-col-md4 layui-col-md-offset4">
+            <div>
+                第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
+            </div>
+            <button class="layui-btn">
+                @Html.PagedListPager(Model, page => Url.Action("Index", "News_Comment", new { page }))
+            </button>
+        </div>
     </div>
 </body>
+</html>
+
 
        

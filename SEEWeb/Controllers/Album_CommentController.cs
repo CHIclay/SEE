@@ -7,6 +7,7 @@ using Model;
 using BLL;
 using System.Data.Entity;
 using Common;
+using PagedList;
 
 namespace SEEWeb.Controllers
 {
@@ -15,13 +16,12 @@ namespace SEEWeb.Controllers
         SEEEntities db = new SEEEntities();
         Album_CommentManager albcmanager = new Album_CommentManager();
         // GET: Album_Comment
-        public ActionResult Index(int pageIndex=1)
+        public ActionResult Index(int ? page)
         {
-            var ac = db.Album_Comment.Include(n => n.UserInfo).Include(n => n.Album).ToList();
-            PagingHelper<Album_Comment> ABPaging = new PagingHelper<Album_Comment>(10, ac);
-            ABPaging.PageIndex = pageIndex;
-            return View(ABPaging);
-           
+            var alc = albcmanager.List();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(alc.ToPagedList(pageNumber, pageSize));  
         }
 
         #region 相册评论删除

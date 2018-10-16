@@ -6,20 +6,22 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
 using Model;
-using Common;
+using PagedList;
+using BLL;
 
 namespace SEEWeb.Controllers
 {
     public class News_CommentController : Controller
     {
+        News_CommentManager ncm = new News_CommentManager();
         private SEEEntities db = new SEEEntities();
         // GET: News_Comment
-        public ActionResult Index(int pageIndex=1)
+        public ActionResult Index(int ? page)
         {
-            var newscomment = db.News_Comment.Include(n => n.UserInfo).Include(n => n.News).ToList();
-            PagingHelper<News_Comment> NPPaging = new PagingHelper<News_Comment>(10, newscomment);
-            NPPaging.PageIndex = pageIndex;
-            return View(NPPaging);
+            var ncs = ncm.List();
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(ncs.ToPagedList(pageNumber, pageSize));
         }
         #region 新闻评论详细
         public ActionResult Details(int?id)

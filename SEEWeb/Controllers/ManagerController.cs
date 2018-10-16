@@ -10,6 +10,7 @@ using Model;
 using Common;
 using SEEWeb.Attributes;
 using SEEWeb.ViewModel;
+using PagedList;
 
 namespace SEEWeb.Controllers
 {
@@ -18,14 +19,12 @@ namespace SEEWeb.Controllers
         private SEEEntities db = new SEEEntities();
         ManagerManager managermanager = new ManagerManager();
         // GET: Manager
-        public ActionResult Index(int pageIndex=1)
+        public ActionResult Index(int ? page)
         {
-            var pt = managermanager.GetAll();
-            PagingHelper<Manager> ManagerPaging = new PagingHelper<Manager>(10, pt);
-            ManagerPaging.PageIndex = pageIndex;
-            return View(ManagerPaging);
-            //var managers = db.Manager;
-            //return View(managers.ToList());
+            var man = managermanager.List();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(man.ToPagedList(pageNumber, pageSize));
         }
         #region 管理员登录
         public ActionResult Login()

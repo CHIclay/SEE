@@ -40,5 +40,11 @@ namespace DAL
                         select p).Count();
             return data;
         }
+        //获取全部图片评论信息
+        public List<Pic_Comment> List()
+        {
+            var pc = (from p in db.Pic_Comment select p).ToList();
+            return pc;
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace IDAL
         IEnumerable<Pic_Comment> GetPC(int picid);
         void InsertPC(Pic_Comment pcmes);
         int Pic_CommentCount(int picid);
+        //获取全部图片评论
+        List<Pic_Comment> List();
     }
 }

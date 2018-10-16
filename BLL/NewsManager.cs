@@ -37,5 +37,10 @@ namespace BLL
         {
             return inews.List();
         }
+        //获取全部新闻信息
+        public List<News> NList()
+        {
+            return inews.NList();
+        }
     }
 }

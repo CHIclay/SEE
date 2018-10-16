@@ -28,5 +28,10 @@ namespace BLL
         {
             return ipic_comment.Pic_CommentCount(picid);
         }
+        //获取全部图片评论信息
+        public List<Pic_Comment> List()
+        {
+            return ipic_comment.List();
+        }
     }
 }

@@ -54,5 +54,11 @@ namespace DAL
         {
             return db.Set<News>();
         }
+        //获取全部新闻信息
+        public List<News> NList()
+        {
+            var news = (from p in db.News select p).ToList();
+            return news;
+        }
     }
 }

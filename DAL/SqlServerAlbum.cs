@@ -11,6 +11,7 @@ namespace DAL
 {
     public class SqlServerAlbum:SqlServerBase<Album>,IAlbum
     {
+        SEEEntities db = new SEEEntities();
         public override Expression<Func<Album,bool>> GetByIdKey(int id)
         {
             return u => u.Alb_ID == id;
@@ -18,6 +19,12 @@ namespace DAL
         public override Expression<Func<Album,string>> GetKey()
         {
             return u => u.Alb_Mes;
+        }
+        //获取全部相册信息
+        public List<Album> List()
+        {
+            var albums = (from p in db.Album select p).ToList();
+            return albums;
         }
     }
 }

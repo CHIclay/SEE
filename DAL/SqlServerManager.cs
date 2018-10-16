@@ -50,6 +50,12 @@ namespace DAL
                                 select u).FirstOrDefault();
             return managers;
         }
+        //获取全部管理员
+        public List<Manager> List()
+        {
+            var man = (from p in db.Manager select p).ToList();
+            return man;
+        }
          
     }
 }

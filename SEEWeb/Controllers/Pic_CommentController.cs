@@ -8,7 +8,7 @@ using BLL;
 using PagedList;
 using SEEWeb.ViewModel;
 using System.Data.Entity;
-using Common;
+using PagedList;
 
 namespace SEEWeb.Controllers
 {
@@ -17,14 +17,12 @@ namespace SEEWeb.Controllers
         SEEEntities db = new SEEEntities();
         Pic_CommentManager pic_commentmanager = new Pic_CommentManager();
         // GET: Pic_Comment
-        public ActionResult Index(int pageIndex=1)
+        public ActionResult Index(int ? page)
         {
-            var pc = db.Pic_Comment.Include(n => n.UserInfo).Include(n => n.Picture).ToList();
-            PagingHelper<Pic_Comment> Pic_CommentPaging = new PagingHelper<Pic_Comment>(10, pc);
-            Pic_CommentPaging.PageIndex = pageIndex;
-            return View(Pic_CommentPaging);
-            //return View(pc.ToList());
-
+            var pcs = pic_commentmanager.List();
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(pcs.ToPagedList(pageNumber, pageSize));
         }
 
 

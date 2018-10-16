@@ -1,76 +1,57 @@
-﻿@using Model
-@model Common.PagingHelper<Picture_Type>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Picture_Type>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<body class="app sidebar-mini rtl">
-    <div>
-        <div class="app-title">
-            <div class="div">
-                <h1><i class="fa fa-dashboard"></i>类别List</h1>
-                <p>合理的管理会带来合适的流量增长</p>
-            </div>
-            <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="@Url.Action("Index","Picture_Type")">类别List</a></li>
-            </ul>
-        </div>
-        <div class="tile mb-4">
+<body class="layui-body">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            类别查询
+        </blockquote>
+    </div>
+    <div class="layui-col-md4 layui-col-md-offset2">
+        <button class="layui-btn">
+            @Html.ActionLink("创建分类", "Create")
+        </button>
+    </div>
+    <table class="layui-table">
+        <colgroup>
+            <col width="100" />
+            <col width="300" />
+            <col />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>类名</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TID)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { id = item.TID },new { @class="layui-btn layui-btn-sm"})
+                        @Html.ActionLink("删除", "Delete", new { id = item.TID },new { @class="layui-btn layui-btn-danger layui-btn-sm"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="layui-row">
+        <div class="layui-col-md4 layui-col-md-offset4">
             <div>
-                <div>
-                    @Html.ActionLink("创建分类", "Create")
-                </div>
+                第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
             </div>
-            <div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>分类名称</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.GetPagingData())
-                        {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.TID)</td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("修改", "Edit", new { id = item.TID })|
-                                    @Html.ActionLink("删除", "Delete", new { id = item.TID })
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            @if (Model.HasPrev)
-                            {
-                                <td><a href="@Url.Action("Index","Picture_Type",new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
-                            }
-                            else
-                            {
-                                <td><em style="color:dimgray">上一页</em></td>
-                            }
-                            @if (Model.HasNext)
-                            {
-                                <td>
-                                    <a href="@Url.Action("Index", "Picture_Type", new { pageIndex = Model.PageIndex + 1 })">下一页</a>
-                                </td>
-                            }
-                            else
-                            {
-                                <td><em style="color:dimgray">下一页</em></td>
-                            }
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+            <button class="layui-btn">
+                @Html.PagedListPager(Model, page => Url.Action("Index", "Picture_Type", new { page }))
+            </button>
         </div>
     </div>
 </body>

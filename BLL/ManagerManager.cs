@@ -33,5 +33,10 @@ namespace BLL
         {
             return imanager.GetManagerByName(Man_Name);
         }
+        //获取全部管理员
+        public List<Manager> List()
+        {
+            return imanager.List();
+        }
     }
 }

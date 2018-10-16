@@ -15,5 +15,7 @@ namespace IDAL
         News GetNewsByName(string News_Name);
        
         IQueryable<News> List();
+        //查看全部新闻
+        List<News> NList();
     }
 }

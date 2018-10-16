@@ -11,9 +11,15 @@ namespace BLL
 {
     public class AlbumManager:BaseManager<Album>
     {
+        private IAlbum ialbum=DataAccess.CreateAlbum();
         public override IBase<Album> GetDal()
         {
             return DataAccess.CreateAlbum();
+        }
+        //获取全部相册信息
+        public List<Album> List()
+        {
+            return ialbum.List();
         }
     }
 }

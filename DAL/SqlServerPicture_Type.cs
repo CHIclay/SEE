@@ -32,5 +32,11 @@ namespace DAL
             db.Set<Picture_Type>().Remove(model);
             return db.SaveChanges();
         }
+        //获取全部图片类型信息
+        public List<Picture_Type> List()
+        {
+            var pt = (from p in db.Picture_Type select p).ToList().ToList();
+            return pt;
+        }
     }
 }

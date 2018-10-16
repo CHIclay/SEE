@@ -230,13 +230,12 @@ namespace SEEWeb.Controllers
 
 
         #region 后台管理
-        public ActionResult List(int pageIndex = 1)
+        public ActionResult List(int ? page)
         {
-            //var album = db.Album.Include(n => n.Album_Point).Include(n=>n.Album_Save).ToList();
-            var album = albumm.GetAll();
-            PagingHelper<Album> AlbumPaging = new PagingHelper<Album>(5, album);
-            AlbumPaging.PageIndex = pageIndex;
-            return View(AlbumPaging);
+            var alb =albumm.List();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(alb.ToPagedList(pageNumber, pageSize));
         }
 
         #endregion

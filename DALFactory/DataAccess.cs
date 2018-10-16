@@ -52,7 +52,7 @@ namespace DALFactory
 
         public static IPic_Comment CreatePic_Comment()
         {
-            string className = assemblyName + "." + db + "Picture_Comment";
+            string className = assemblyName + "." + db + "Pic_Comment";
             return (IPic_Comment)Assembly.Load(assemblyName).CreateInstance(className);
         }
 

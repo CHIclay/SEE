@@ -1,156 +1,138 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <!-- Twitter meta-->
-    <meta property="twitter:card" content="summary_large_image">
-    <!-- Open Graph Meta-->
-    <title>SEE</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title</title>
-    <!-- Main CSS-->
-    <link href="~/Content/_share/Manager/css/main.css" rel="stylesheet" />
-    <!-- Font-icon css-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
     <link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet" />
 </head>
-<body class="app sidebar-mini rtl">
-    <!-- Navbar-->
-    <header class="app-header" style="background-color:#999072">
-        <a class="app-header__logo"  style="background-color:#999072" href="@Url.Action("Index","Index")">S E E</a>
-        <a class="app-sidebar__toggle" href="#"  style="background-color:#999072" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-    
-        <ul class="app-nav">
-            <li class="dropdown">
-                <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-                <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> 管理员信息</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("Login","Manager")"><i class="fa fa-reply-all" aria-hidden="true"></i>切换角色</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("LogOff","Manager")"><i class="fa fa-fighter-jet" aria-hidden="true"></i> 登出</a></li>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header layui-bg-black">
+            <div class="layui-logo">
+                <a href="@Url.Action("Index","Index")">
+                    <span style="color:darkcyan">SEE后台管理系统</span>
+                </a>
+            </div>
+            <!--头部区域，可配合水平导航-->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="@Url.Action("Index","Manager")">网站总览</a></li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        @Session["Man_Name"]
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#">我的信息</a></dd>
+                        <dd><a href="#">升级申请</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        登出
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="@Url.Action("Login","Manager")">切换角色</a></dd>
+                        <dd><a href="@Url.Action("LogOff","Manager")">退出系统</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!--左侧导航区，配合头部区域-->
+                <!--lay-shrink="all"使得非焦点的下拉可以自动收起-->
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="layadmin-system-side-menu">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-username"></i>
+                            <cite>用户管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="@Url.Action("List","User")">用户查询</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-note"></i>
+                            <cite>类别管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="@Url.Action("Index","Picture_Type")">类别查询</a></dd>
+                            <dd><a href="@Url.Action("Create","Picture_Type")">类别添加</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-camera"></i>
+                            <cite>图片管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="@Url.Action("List","Picture")">图片查询</a></dd>
+                            <dd><a href="@Url.Action("Index","Pic_Comment")">图片评论</a></dd>
+                            <dd><a href="@Url.Action("Index","Pic_Comment_Comment")">评论回复</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-dialogue"></i>
+                            <cite>新闻管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="@Url.Action("List","News")">新闻查询</a></dd>
+                            <dd><a href="@Url.Action("Add","News")">新闻发布</a></dd>
+                            <dd><a href="@Url.Action("Index","News_Comment")">新闻评论</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-carousel"></i>
+                            <cite>相册管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="@Url.Action("List","Album")">相册查询</a></dd>
+                            <dd><a href="@Url.Action("Index","Album_Comment")">相册评论</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon layui-icon-speaker"></i>
+                            <cite>活动管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="#">活动查询</a></dd>
+                            <dd><a href="#">活动发布</a></dd>
+                        </dl>
+                    </li>
                 </ul>
-            </li>
-        </ul>
-    </header>
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-        <div class="app-sidebar__user">
-            <div>
-                <p class="app-sidebar__user-name">欢迎你，管理员</p>
-                <p class="app-sidebar__user-designation">@Session["Man_Name"]</p>
             </div>
         </div>
-        <ul class="app-menu">
-            <li><a  class="app-menu__item active" href="@Url.Action("Index","Manager")"><i class="fas fa-building"></i><span class="app-menu__label">站内总汇</span></a></li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fas fa-address-book"></i><span class="app-menu__label">用户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="@Url.Action("List","User")"><i class="icon fa fa-circle-o"></i> 用户List</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-object-group" aria-hidden="true"></i><span class="app-menu__label">图片类别</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="@Url.Action("Index","Picture_Type")"><i class="icon fa fa-circle-o"></i> 类别List</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("Create","Picture_Type")"><i class="icon fa fa-circle-o"></i>类别添加</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-film" aria-hidden="true"></i><span class="app-menu__label">图片管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item"  href="@Url.Action("List","Picture")"><i class="icon fa fa-circle-o"></i> 图片List</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("Index","Pic_Comment")"><i class="icon fa fa-circle-o"></i> 图片评论</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("Index","Pic_Comment_Comment")"><i class="icon fa fa-circle-o"></i> 评论回复</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-book" aria-hidden="true"></i><span class="app-menu__label">新闻管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="@Url.Action("Add","News")"><i class="icon fa fa-circle-o"></i> 发布新闻</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("List","News")"><i class="icon fa fa-circle-o"></i> 新闻List</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("Index","News_Comment")"><i class="icon fa fa-circle-o"></i> 新闻评论</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a class="app-menu__item" href="#" data-toggle="treeview"><i class="fa fa-camera-retro" aria-hidden="true"></i><span class="app-menu__label">相册管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>          
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="@Url.Action("List","Album")"><i class="icon fa fa-circle-o"></i>相册List</a></li>
-                    <li><a class="treeview-item" href="@Url.Action("Index","Album_Comment")"><i class="icon fa fa-circle-o"></i> 相册评论</a></li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
-    <main class="app-content">
-        <div>
+        <!--主体部分-->
+        <div class="layui-body">
             @RenderBody()
         </div>
-    </main>
-    <!-- Essential javascripts for application to work-->
-    <script src="~/Content/_share/Manager/js/jquery-3.2.1.min.js"></script>
-    <script src="~/Content/_share/Manager/js/popper.min.js"></script>
-    <script src="~/Content/_share/Manager/js/bootstrap.min.js"></script>
-    <script src="~/Content/_share/Manager/js/main.js"></script>
-    <script src="~/Content/_share/Manager/js/plugins/pace.min.js"></script>
-    <script type="text/javascript" src="~/Content/_share/Manager/js/plugins/chart.js"></script>
-    <script type="text/javascript">
-      var data = {
-      	labels: ["January", "February", "March", "April", "May"],
-      	datasets: [
-      		{
-      			label: "My First dataset",
-      			fillColor: "rgba(220,220,220,0.2)",
-      			strokeColor: "rgba(220,220,220,1)",
-      			pointColor: "rgba(220,220,220,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(220,220,220,1)",
-      			data: [65, 59, 80, 81, 56]
-      		},
-      		{
-      			label: "My Second dataset",
-      			fillColor: "rgba(151,187,205,0.2)",
-      			strokeColor: "rgba(151,187,205,1)",
-      			pointColor: "rgba(151,187,205,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(151,187,205,1)",
-      			data: [28, 48, 40, 19, 86]
-      		}
-      	]
-      };
-      var pdata = [
-      	{
-      		value: 300,
-      		color: "#46BFBD",
-      		highlight: "#5AD3D1",
-      		label: "Complete"
-      	},
-      	{
-      		value: 50,
-      		color:"#F7464A",
-      		highlight: "#FF5A5E",
-      		label: "In-Progress"
-      	}
-      ]
+        <!--底部固定区域-->
+        <div class="layui-footer">
 
-      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-      var lineChart = new Chart(ctxl).Line(data);
+        </div>
+    </div>
 
-      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-      var pieChart = new Chart(ctxp).Pie(pdata);
-    </script>
-    <!-- Google analytics script-->
-    <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
-      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      	ga('create', 'UA-72504830-1', 'auto');
-      	ga('send', 'pageview');
-      }
+    <script src="~/Content/layui/layui.js"></script>
+    <script>
+        layui.use('element', function () {
+            var element = layui.element
+        });
+        layui.use('laydate', function () {
+            var laydate = layui.laydate
+            laydate.render({
+                elem: 'clander'
+            });
+        });
+        layui.use('form', function () {
+            var form = layui.form;
+            form.render();
+        });
     </script>
 </body>
 </html>

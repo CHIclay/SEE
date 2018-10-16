@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
-using Common;
+using PagedList;
  
 
 namespace SEEWeb.Controllers
@@ -13,12 +13,12 @@ namespace SEEWeb.Controllers
     {
         BLL.Picture_TypeManager ptmanager = new BLL.Picture_TypeManager();
         #region 图片类别分页
-        public ActionResult Index(int pageIndex=1)
+        public ActionResult Index(int ? page)
         {
-           var pt = ptmanager.GetAll();
-           PagingHelper<Picture_Type> PicturePaging = new PagingHelper<Picture_Type>(10,pt); //初始化分页器
-           PicturePaging.PageIndex = pageIndex; //指定当前页
-           return View(PicturePaging); //返回分页器实例到视图
+            var pt = ptmanager.List();
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(pt.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
