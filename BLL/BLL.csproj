@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityManager.cs" />
+    <Compile Include="ActPictureManager.cs" />
     <Compile Include="AlbumManager.cs" />
     <Compile Include="Album_CommentManager.cs" />
     <Compile Include="BaseManager.cs" />

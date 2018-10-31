@@ -28,7 +28,10 @@
                         </div>
                         <div class="portfolio-item-details">
                             <div class="portfolio-item-name">
-                                <a href="@Url.Action("Details",new {id=p.Alb_ID})"> @p.Alb_Name  </a>   <br />    <small>  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@p.UserInfo.User_Name  </a></small>
+                                <a href="@Url.Action("Details",new {id=p.Alb_ID})"> @p.Alb_Name  </a>   <br />   
+                                <small> 
+                                    <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@p.UserInfo.User_Name  </a>
+                                </small>
                             </div>
 
                             <div class="port-heart">

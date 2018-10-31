@@ -1,0 +1,9 @@
+﻿@model Model.ActPicture
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<img src="@Model.AP_Pic" width="500" />
+@Model.UserInfo.UID
+@Model.AP_Mes
+@Model.AP_Time

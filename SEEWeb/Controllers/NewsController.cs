@@ -9,8 +9,6 @@ using SEEWeb.Attributes;
 using System.Data.Entity;
 using PagedList;
 using System.Net;
-using PagedList;
-
 
 namespace SEEWeb.Controllers
 {

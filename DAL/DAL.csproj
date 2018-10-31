@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlServerActivity.cs" />
+    <Compile Include="SqlServerActPicture.cs" />
     <Compile Include="SqlServerAlbum.cs" />
     <Compile Include="SqlServerAlbum_Comment.cs" />
     <Compile Include="SqlServerPicture.cs" />

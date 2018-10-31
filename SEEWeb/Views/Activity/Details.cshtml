@@ -1,0 +1,218 @@
+﻿@using PagedList.Mvc;
+@using Model;
+@model SEEWeb.ViewModel.ActivityDetailViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<head>
+    <script src="~/Content/foundation/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<div>
+    <section class="section-background">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                @if (Session["UID"] == null)
+                {
+                    <li class="active"><a href="@Url.Action("Index","Activity")">&nbsp;活动</a></li>
+                    <li class="active">&nbsp;活动详细</li>
+
+                }
+                else
+                {
+                    <li class="active"><a href="@Url.Action("Index","Activity")">&nbsp;活动</a></li>
+                    <li class="active">&nbsp;活动详细</li>
+                    <li style="float:right;"><a href="@Url.Action("MyAtt","Activity")">我的参与</a></li>
+                }
+                @if (Session["Man_ID"] != null)
+                {
+                    <li style="float:right;"><a href="@Url.Action("List","Activity")">活动列表</a></li>
+                }
+
+            </ol>
+
+
+        </div>
+    </section>
+    <section class="about" id="about" style="background: #f3f3f3;">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                Details  Of  SEE  Album
+            </h2>
+            <div class="underline purple"></div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <img src="@Model.Activity1.Ac_Pic" width="500" />
+                </div>
+                <div class="col-md-6 col-sm-12" style="height:350px">
+                    <p class="about-detail">
+                    </p>
+                    <p class="about-detail">
+                        <br />
+                        <br />
+                        <br />
+                    </p>
+                    <p class="about-detail">
+                        活动名:@Model.Activity1.Ac_Name
+                        <br />
+                    </p>
+                    <p class="about-detail">
+                        &nbsp;
+                    </p>
+                    <p class="about-detail">
+                        活动简介:@Model.Activity1.Ac_Mes
+                        <br />
+                    </p>
+                    <p class="about-detail">
+                        &nbsp;
+                    </p>
+                    <p class="about-detail">
+                        开始时间:@Model.Activity1.Ac_Sta_Time
+                        <br />
+                    </p>
+                    <p class="about-detail">
+                        结束时间:@Model.Activity1.Ac_Sto_Time
+                        <br />
+                    </p>
+                    @if (Session["Man_ID"] != null)
+                    {
+                        <p class="about-detail">
+                            <a class="center-align layui-btn layui-btn-sm layui-btn-danger" href="@Url.Action("End","Activity",new {id=Model.Activity1.Ac_ID})">
+                                活动结束
+                            </a>
+                        </p>
+                    }
+                    <p class="about-detail">
+                        &nbsp;
+                    </p>
+                    <div class="up" style="display:none">
+                        @using (Html.BeginForm("Attend", "Activity", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input type="file" name="img" id="img" />
+                            <input type="hidden" id="Ac_ID" name="Ac_ID" value="@Model.Activity1.Ac_ID" />
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">图片描述</label>
+                                <div class="layui-input-block">
+                                    <textarea placeholder="请输入内容" id="Mes" name="Mes" lay-verify="required" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <button id="shangchuan" class="btn-block" type="submit">上传图片</button>
+                        }
+                    </div>
+                    <button class="layui-btn-normal" id="btn-show">立即参与</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="team">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                Top Three Of The Activity
+            </h2> <!-- /.section-title -->
+            <div class="underline purple"></div>
+            <div class="row">
+
+                @if (ViewBag.second != null)
+                {
+                    <div class="col-md-4">
+                        <div class="team-item">
+
+                            <a href="@Url.Action("Index","ActPicture",new {id=Model.Second.ActPicture.AP_ID})">
+                                <img src="@Model.Second.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:280px">
+                            </a>
+                            <br />
+                            @if (Session["Man_ID"] != null)
+                            {
+                                <a class="center-align layui-btn layui-btn-sm layui-btn-danger" href="@Url.Action("SetNon","ActPicture",new { acid=Model.Second.Activity.Ac_ID,apid=Model.Second.ActPicture.AP_ID})">取消</a>
+                            }
+                        </div>
+                    </div>
+                }
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                @if (ViewBag.first != null)
+                {
+                    <div class="col-md-5"> 
+                        <div class="team-item">
+
+                            <a href="@Url.Action("Index","ActPicture",new {id=Model.First.ActPicture.AP_ID})">
+                                <img src="@Model.First.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:380px">
+                            </a>
+                            <br />
+                            @if (Session["Man_ID"] != null)
+                            {
+                                <a class="center-align layui-btn layui-btn-sm layui-btn-danger" href="@Url.Action("SetNon","ActPicture",new { acid=Model.First.Activity.Ac_ID,apid=Model.First.ActPicture.AP_ID})">取消</a>
+                            }
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.third != null)
+                {
+                    <div class="col-md-3">
+                        <div class="team-item">
+
+                            <a href="@Url.Action("Index","ActPicture",new {id=Model.Third.ActPicture.AP_ID})">
+                                <img src="@Model.Third.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:280px">
+                            </a>
+                            <br />
+                            @if (Session["Man_ID"] != null)
+                            {
+                                <a class="center-align layui-btn layui-btn-sm layui-btn-danger" href="@Url.Action("SetNon","ActPicture",new { acid=Model.Third.Activity.Ac_ID,apid=Model.Third.ActPicture.AP_ID})">取消</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+            <section class="team">
+                <div class="container section-wrapper">
+                    <h2 class="section-title black">
+                        Pictures In This Activity
+                    </h2> <!-- /.section-title -->
+                    <div class="underline purple"></div>
+                    <div class="row">
+                        @foreach (var p in Model.PicInActivity)
+                        {
+                            <div class="col-sm-3 col-xs-6" style="margin-top:20px;">
+                                <div class="team-item">
+                                    <a href="@Url.Action("Index","ActPicture",new {id=p.ActPicture.AP_ID})">
+                                        <img src="@p.ActPicture.AP_Pic" alt="team-image" class="team-img" style="height:180px">
+                                    </a>
+                                    <h4 class="team-item-name">
+                                        所有者：
+                                    </h4>
+                                    <p class="team-item-id">
+                                        <a href="@Url.Action("UserIndex","User",new {UID=p.ActPicture.UserInfo.UID})">
+                                            @p.ActPicture.UserInfo.User_Name
+                                        </a>
+                                    </p>
+                                    @if (Session["Man_ID"] != null)
+                                    {
+                                    <div style="float:right">
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal" href="@Url.Action("SetF","ActPicture",new { acid=p.Activity.Ac_ID,apid=p.ActPicture.AP_ID})">第一</a>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal" href="@Url.Action("SetS","ActPicture",new { acid=p.Activity.Ac_ID,apid=p.ActPicture.AP_ID})">第二</a>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal" href="@Url.Action("SetT","ActPicture",new { acid=p.Activity.Ac_ID,apid=p.ActPicture.AP_ID})">第三</a>
+
+                                    </div>
+                                        }
+                                </div> <!-- /.team-item -->
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                $("#btn-show").click(function () {
+                    $(".up").toggle();
+                });
+            });
+        </script>
+
+

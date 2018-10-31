@@ -5,6 +5,28 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="SEEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Ac_ID" />
+          </Key>
+          <Property Name="Ac_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ac_Pic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ac_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ac_Mes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ac_Sta_Time" Type="datetime" Nullable="false" />
+          <Property Name="Ac_Sto_Time" Type="datetime" Nullable="false" />
+          <Property Name="IsAct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActPicture">
+          <Key>
+            <PropertyRef Name="AP_ID" />
+          </Key>
+          <Property Name="AP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="AP_Pic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AP_Mes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AP_Time" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Album">
           <Key>
             <PropertyRef Name="Alb_ID" />
@@ -112,6 +134,15 @@
           <Property Name="Pic_ID" Type="int" Nullable="false" />
           <Property Name="PP_Time" Type="datetime" />
         </EntityType>
+        <EntityType Name="PicInActivity">
+          <Key>
+            <PropertyRef Name="PIAC_ID" />
+          </Key>
+          <Property Name="PIAC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ac_ID" Type="int" Nullable="false" />
+          <Property Name="AP_ID" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Pic_ID" />
@@ -153,6 +184,18 @@
           <Property Name="User_Pho" Type="nvarchar" MaxLength="50" />
           <Property Name="User_Time" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ActPicture_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="ActPicture" Type="Self.ActPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="ActPicture">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Album_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
           <End Role="Album1" Type="Self.Album" Multiplicity="0..1" />
@@ -381,6 +424,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PicInActivity_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="PicInActivity" Type="Self.PicInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Ac_ID" />
+            </Principal>
+            <Dependent Role="PicInActivity">
+              <PropertyRef Name="Ac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PicInActivity_ActPicture">
+          <End Role="ActPicture" Type="Self.ActPicture" Multiplicity="1" />
+          <End Role="PicInActivity" Type="Self.PicInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActPicture">
+              <PropertyRef Name="AP_ID" />
+            </Principal>
+            <Dependent Role="PicInActivity">
+              <PropertyRef Name="AP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Picture_In_Album_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
           <End Role="Picture_In_Album" Type="Self.Picture_In_Album" Multiplicity="*" />
@@ -442,6 +509,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SEEModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActPicture" EntityType="Self.ActPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Album_Comment" EntityType="Self.Album_Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Album_Point" EntityType="Self.Album_Point" Schema="dbo" store:Type="Tables" />
@@ -453,10 +522,15 @@
           <EntitySet Name="Pic_Comment" EntityType="Self.Pic_Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pic_Comment_Comment" EntityType="Self.Pic_Comment_Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pic_Point" EntityType="Self.Pic_Point" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PicInActivity" EntityType="Self.PicInActivity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActPicture_UserInfo" Association="Self.FK_ActPicture_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="ActPicture" EntitySet="ActPicture" />
+          </AssociationSet>
           <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album1" EntitySet="Album" />
@@ -533,6 +607,14 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Pic_Point" EntitySet="Pic_Point" />
           </AssociationSet>
+          <AssociationSet Name="FK_PicInActivity_Activity" Association="Self.FK_PicInActivity_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="PicInActivity" EntitySet="PicInActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PicInActivity_ActPicture" Association="Self.FK_PicInActivity_ActPicture">
+            <End Role="ActPicture" EntitySet="ActPicture" />
+            <End Role="PicInActivity" EntitySet="PicInActivity" />
+          </AssociationSet>
           <AssociationSet Name="FK_Picture_In_Album_Album" Association="Self.FK_Picture_In_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Picture_In_Album" EntitySet="Picture_In_Album" />
@@ -559,6 +641,31 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Ac_ID" />
+          </Key>
+          <Property Name="Ac_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ac_Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ac_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ac_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ac_Sta_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ac_Sto_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsAct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PicInActivity" Relationship="Self.FK_PicInActivity_Activity" FromRole="Activity" ToRole="PicInActivity" />
+        </EntityType>
+        <EntityType Name="ActPicture">
+          <Key>
+            <PropertyRef Name="AP_ID" />
+          </Key>
+          <Property Name="AP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="AP_Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AP_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AP_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_ActPicture_UserInfo" FromRole="ActPicture" ToRole="UserInfo" />
+          <NavigationProperty Name="PicInActivity" Relationship="Self.FK_PicInActivity_ActPicture" FromRole="ActPicture" ToRole="PicInActivity" />
+        </EntityType>
         <EntityType Name="Album">
           <Key>
             <PropertyRef Name="Alb_ID" />
@@ -693,6 +800,17 @@
           <NavigationProperty Name="Picture" Relationship="Self.FK_Pic_Point_Picture" FromRole="Pic_Point" ToRole="Picture" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_Pic_Point_UserInfo" FromRole="Pic_Point" ToRole="UserInfo" />
         </EntityType>
+        <EntityType Name="PicInActivity">
+          <Key>
+            <PropertyRef Name="PIAC_ID" />
+          </Key>
+          <Property Name="PIAC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ac_ID" Type="Int32" Nullable="false" />
+          <Property Name="AP_ID" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_PicInActivity_Activity" FromRole="PicInActivity" ToRole="Activity" />
+          <NavigationProperty Name="ActPicture" Relationship="Self.FK_PicInActivity_ActPicture" FromRole="PicInActivity" ToRole="ActPicture" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Pic_ID" />
@@ -743,6 +861,7 @@
           <Property Name="User_Ema" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Pho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ActPicture" Relationship="Self.FK_ActPicture_UserInfo" FromRole="UserInfo" ToRole="ActPicture" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Album_UserInfo" FromRole="UserInfo" ToRole="Album" />
           <NavigationProperty Name="Album_Comment" Relationship="Self.FK_Album_Comment_UserInfo" FromRole="UserInfo" ToRole="Album_Comment" />
           <NavigationProperty Name="Album_Point" Relationship="Self.FK_Album_Point_UserInfo" FromRole="UserInfo" ToRole="Album_Point" />
@@ -755,6 +874,42 @@
           <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_UserInfo" FromRole="UserInfo" ToRole="Pic_Point" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_UserInfo" FromRole="UserInfo" ToRole="Picture" />
         </EntityType>
+        <Association Name="FK_PicInActivity_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="PicInActivity" Type="Self.PicInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Ac_ID" />
+            </Principal>
+            <Dependent Role="PicInActivity">
+              <PropertyRef Name="Ac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActPicture_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="ActPicture" Type="Self.ActPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="ActPicture">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PicInActivity_ActPicture">
+          <End Role="ActPicture" Type="Self.ActPicture" Multiplicity="1" />
+          <End Role="PicInActivity" Type="Self.PicInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActPicture">
+              <PropertyRef Name="AP_ID" />
+            </Principal>
+            <Dependent Role="PicInActivity">
+              <PropertyRef Name="AP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Album_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="1" />
           <End Role="Album1" Type="Self.Album" Multiplicity="0..1" />
@@ -1044,6 +1199,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SEEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Self.Activity" />
+          <EntitySet Name="ActPicture" EntityType="Self.ActPicture" />
           <EntitySet Name="Album" EntityType="Self.Album" />
           <EntitySet Name="Album_Comment" EntityType="Self.Album_Comment" />
           <EntitySet Name="Album_Point" EntityType="Self.Album_Point" />
@@ -1055,10 +1212,23 @@
           <EntitySet Name="Pic_Comment" EntityType="Self.Pic_Comment" />
           <EntitySet Name="Pic_Comment_Comment" EntityType="Self.Pic_Comment_Comment" />
           <EntitySet Name="Pic_Point" EntityType="Self.Pic_Point" />
+          <EntitySet Name="PicInActivity" EntityType="Self.PicInActivity" />
           <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="Picture_In_Album" EntityType="Self.Picture_In_Album" />
           <EntitySet Name="Picture_Type" EntityType="Self.Picture_Type" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <AssociationSet Name="FK_PicInActivity_Activity" Association="Self.FK_PicInActivity_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="PicInActivity" EntitySet="PicInActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActPicture_UserInfo" Association="Self.FK_ActPicture_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="ActPicture" EntitySet="ActPicture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PicInActivity_ActPicture" Association="Self.FK_PicInActivity_ActPicture">
+            <End Role="ActPicture" EntitySet="ActPicture" />
+            <End Role="PicInActivity" EntitySet="PicInActivity" />
+          </AssociationSet>
           <AssociationSet Name="FK_Album_Album" Association="Self.FK_Album_Album">
             <End Role="Album" EntitySet="Album" />
             <End Role="Album1" EntitySet="Album" />
@@ -1162,6 +1332,30 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SEEModelStoreContainer" CdmEntityContainer="SEEEntities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="SEEModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Ac_ID" ColumnName="Ac_ID" />
+                <ScalarProperty Name="Ac_Pic" ColumnName="Ac_Pic" />
+                <ScalarProperty Name="Ac_Name" ColumnName="Ac_Name" />
+                <ScalarProperty Name="Ac_Mes" ColumnName="Ac_Mes" />
+                <ScalarProperty Name="Ac_Sta_Time" ColumnName="Ac_Sta_Time" />
+                <ScalarProperty Name="Ac_Sto_Time" ColumnName="Ac_Sto_Time" />
+                <ScalarProperty Name="IsAct" ColumnName="IsAct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActPicture">
+            <EntityTypeMapping TypeName="SEEModel.ActPicture">
+              <MappingFragment StoreEntitySet="ActPicture">
+                <ScalarProperty Name="AP_ID" ColumnName="AP_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="AP_Pic" ColumnName="AP_Pic" />
+                <ScalarProperty Name="AP_Mes" ColumnName="AP_Mes" />
+                <ScalarProperty Name="AP_Time" ColumnName="AP_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Album">
             <EntityTypeMapping TypeName="SEEModel.Album">
               <MappingFragment StoreEntitySet="Album">
@@ -1277,6 +1471,16 @@
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Pic_ID" ColumnName="Pic_ID" />
                 <ScalarProperty Name="PP_Time" ColumnName="PP_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PicInActivity">
+            <EntityTypeMapping TypeName="SEEModel.PicInActivity">
+              <MappingFragment StoreEntitySet="PicInActivity">
+                <ScalarProperty Name="PIAC_ID" ColumnName="PIAC_ID" />
+                <ScalarProperty Name="Ac_ID" ColumnName="Ac_ID" />
+                <ScalarProperty Name="AP_ID" ColumnName="AP_ID" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

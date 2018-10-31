@@ -70,5 +70,17 @@ namespace DALFactory
 
         }
 
+        public static IActivity CreateActivity()
+        {
+            string className=assemblyName+"."+db + "Activity";
+            return (IActivity)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+
+        public static IActPicture CreateActPicture()
+        {
+            string className = assemblyName + "." + db + "ActPicture";
+            return (IActPicture)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+
     }
 }

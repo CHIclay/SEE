@@ -101,8 +101,8 @@
                             <cite>活动管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="#">活动查询</a></dd>
-                            <dd><a href="#">活动发布</a></dd>
+                            <dd><a href="@Url.Action("List","Activity")">活动查询</a></dd>
+                            <dd><a href="@Url.Action("Add","Activity")">活动发布</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -126,8 +126,11 @@
         layui.use('laydate', function () {
             var laydate = layui.laydate
             laydate.render({
-                elem: 'clander'
+                elem: '#stopdate'
             });
+            laydate.render({
+                elem: '#startdate'
+            })
         });
         layui.use('form', function () {
             var form = layui.form;

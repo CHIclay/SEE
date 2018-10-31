@@ -61,8 +61,6 @@ namespace SEEWeb.Controllers
             {
                 return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
             }
-         
-           
         }
         #endregion
     }

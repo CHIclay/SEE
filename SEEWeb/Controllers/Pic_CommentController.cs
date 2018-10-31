@@ -8,7 +8,6 @@ using BLL;
 using PagedList;
 using SEEWeb.ViewModel;
 using System.Data.Entity;
-using PagedList;
 
 namespace SEEWeb.Controllers
 {

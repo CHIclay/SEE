@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IActivity.cs" />
+    <Compile Include="IActPicture.cs" />
     <Compile Include="IAlbum.cs" />
     <Compile Include="IAlbum_Comment.cs" />
     <Compile Include="IBase.cs" />

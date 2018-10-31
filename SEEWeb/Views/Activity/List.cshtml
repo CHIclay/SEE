@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Activity>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body class="layui-bg-gray">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            活动
+        </blockquote>
+    </div>
+    <table class="layui-table">
+        <colgroup>
+            <col width="100" />
+            <col width="130" />
+            <col width="360" />
+            <col width="200" />
+            <col width="120" />
+            <col width="100" />
+            <col width="100"/>
+            <col />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>活动标题</th>
+                <th>活动描述</th>
+                <th>活动封面</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>作品数量</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ac_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ac_Name)
+                    </td>
+                    <td>
+                        @Html.Raw(@Html.DisplayFor(modelItem => item.Ac_Mes))
+                    </td>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.Ac_Pic))
+                        {
+                            @:none
+                        }
+                        else
+                        {
+                            <img height="75" src="@Url.Content(item.Ac_Pic)" alt="images" />
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ac_Sta_Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ac_Sto_Time)
+                    </td>
+                    <td>
+                        @item.PicInActivity.Count()
+                    </td>
+                    <td>
+                        @Html.ActionLink("查看详细", "Details", new { id = item.Ac_ID }, new { @class = "layui-btn layui-btn-normal layui-btn-sm" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.Ac_ID }, new { @class = "layui-btn layui-btn-danger layui-btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="layui-row">
+        <div class="layui-col-md4 layui-col-md-offset4">
+            <div>
+                第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
+            </div>
+            <button class="layui-btn">
+                @Html.PagedListPager(Model, page => Url.Action("List", "Activity", new { page }))
+            </button>
+        </div>
+    </div>
+</body>
+</html>

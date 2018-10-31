@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActPicture.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Album.cs">
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
@@ -85,6 +91,9 @@
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
     <Compile Include="News_CommentMetaData.cs" />
+    <Compile Include="PicInActivity.cs">
+      <DependentUpon>SEE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Picture.cs">
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>

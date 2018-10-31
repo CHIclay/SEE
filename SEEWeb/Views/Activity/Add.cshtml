@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+<!DOCTYPE>
+<html>
+<head>
+</head>
+<body>
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            活动添加
+        </blockquote>
+    </div>
+
+    @using (Html.BeginForm("Add", "Activity", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">活动标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="ActivityName" name="ActivityName" lay-verify="required" placeholder="请输入活动标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">开始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="startdate" name="startdate" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">结束时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="stopdate" name="stopdate" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">活动描述</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" id="ActivityMes" name="ActivityMes" lay-verify="required" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-left:50px;">
+                <div class="layui-input-inline">
+                    <input type="file" name="actimage" id="actimage" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" type="submit" lay-submit="">立即提交</button>
+                </div>
+            </div>
+        </div>
+    }
+    </body>
+
+</html>
+

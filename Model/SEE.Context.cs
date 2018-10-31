@@ -25,6 +25,8 @@ namespace Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Activity> Activity { get; set; }
+        public virtual DbSet<ActPicture> ActPicture { get; set; }
         public virtual DbSet<Album> Album { get; set; }
         public virtual DbSet<Album_Comment> Album_Comment { get; set; }
         public virtual DbSet<Album_Point> Album_Point { get; set; }
@@ -36,6 +38,7 @@ namespace Model
         public virtual DbSet<Pic_Comment> Pic_Comment { get; set; }
         public virtual DbSet<Pic_Comment_Comment> Pic_Comment_Comment { get; set; }
         public virtual DbSet<Pic_Point> Pic_Point { get; set; }
+        public virtual DbSet<PicInActivity> PicInActivity { get; set; }
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<Picture_In_Album> Picture_In_Album { get; set; }
         public virtual DbSet<Picture_Type> Picture_Type { get; set; }

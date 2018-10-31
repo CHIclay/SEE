@@ -228,7 +228,6 @@ namespace SEEWeb.Controllers
         }
         #endregion
 
-
         #region 后台管理
         public ActionResult List(int ? page)
         {
