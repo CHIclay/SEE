@@ -4,52 +4,44 @@
         Layout = "~/Views/Shared/_LayoutManager.cshtml";
     }
 
-
-<body class="app sidebar-mini rtl">
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>管理员添加</h1>
-            <p>拒绝黑恶势力</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","Manager")">站内总汇</a></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Add","Manager")">管理员添加</a></li>
-        </ul>
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+<body>
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            管理员添加
+        </blockquote>
     </div>
-    <div class="tile mb-4">
-        <div>
-            <a href="@Url.Action("Index","Manager")">返回总站</a>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  
+    </fieldset>
+
+    @using (Html.BeginForm("Add", "Manager", FormMethod.Post, new { enctype = "multipart/form-date" }))
+    {
+        <div class="layui-form">
+            @Html.AntiForgeryToken()
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员名</label>
+                <div class="layui-input-block">
+                    @Html.EditorFor(model => model.Man_Name, new { htmlAttributes = new { @class = "layui-input" } })
+                    @Html.ValidationMessageFor(model => model.Man_Name)
+                </div>
+            </div>
+            <div  class="layui-form-item">
+                <label class="layui-form-label">管理员密码</label>
+                <div class="layui-input-block">
+                    @Html.EditorFor(model => model.Man_Pas, new { htmlAttributes = new { @class = "layui-input" } })
+                    @Html.ValidationMessageFor(model => model.Man_Pas)
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input type="submit" value="创建" style="float:right;" class="layui-btn layui-btn-normal" />
+                </div>
+            </div>
         </div>
-        <div>
-            @using (Html.BeginForm("Add", "Manager", FormMethod.Post, new { enctype = "multipart/form-date" }))
-            {
-                @Html.AntiForgeryToken()
-                <div>
-                    @Html.LabelFor(model => model.Man_Name, new { @class = "form-control-label" })
-                    <div>
-                        @Html.EditorFor(model => model.Man_Name, new { @class = "form-control-label" })
-                        @Html.ValidationMessageFor(model => model.Man_Name)
-                    </div>
-                </div>
-                <div>
-                    @Html.LabelFor(model => model.Man_Pas, new { @class = "form-control-label" })
-                    <div>
-                        @Html.EditorFor(model => model.Man_Pas, new { @class = "form-control-label" })
-                        @Html.ValidationMessageFor(model => model.Man_Pas)
-                    </div>
-                </div>
 
-                <div>
-                    <div>
-                        <input type="submit" value="创建"  class="btn btn-primary" />
-                    </div>
-                </div>
-            }
-        </div>
-
-
-    </div>
+    }
 </body>
 
 

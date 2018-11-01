@@ -24,6 +24,7 @@
             <col width="120" />
             <col width="100" />
             <col width="100"/>
+            <col width="60"/>
             <col />
         </colgroup>
         <thead>
@@ -35,6 +36,7 @@
                 <th>开始时间</th>
                 <th>结束时间</th>
                 <th>作品数量</th>
+                <th>状态</th>
                 <th></th>
             </tr>
         </thead>
@@ -70,6 +72,9 @@
                     </td>
                     <td>
                         @item.PicInActivity.Count()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.IsAct)
                     </td>
                     <td>
                         @Html.ActionLink("查看详细", "Details", new { id = item.Ac_ID }, new { @class = "layui-btn layui-btn-normal layui-btn-sm" })

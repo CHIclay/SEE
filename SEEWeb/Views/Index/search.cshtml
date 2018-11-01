@@ -3,12 +3,47 @@
 @{
     ViewBag.Title = "search";
 }
-
 <section class="portfolio" id="portfolio">
     <div class="container section-wrapper">
         <div><h1>搜索结果</h1></div>
+
         <h2 class="section-title black">
-            News Of SEE
+            活  动
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            @foreach (var p in Model.activity)
+            {
+                <div class="col-sm-4 col-xs-6">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+
+                            <img src="@p.Ac_Pic" alt="port3" height="280" />
+
+                            <div class="portfolio-img-hover">
+                                <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-item-details">
+                            <div class="portfolio-item-name">
+                                <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})">@p.Ac_Mes </a>    <br />
+                            </div>
+
+                            <div class="port-heart">
+                                <i class="ion-ios-heart-outline"></i>  @p.PicInActivity.Count()
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            新  闻
         </h2>
         <div class="underline purple"></div>
         <div class="row">
@@ -50,7 +85,7 @@
 <section class="portfolio" id="portfolio">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-           Picture Of SEE
+           图  片
         </h2>
         <div class="underline purple"></div>
         <div class="row">
@@ -93,7 +128,7 @@
 <section class="portfolio" id="portfolio">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-            Album  Of  SEE
+            相  册
         </h2>
         <div class="underline purple"></div>
         <div class="row">

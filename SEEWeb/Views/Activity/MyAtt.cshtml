@@ -1,8 +1,67 @@
-﻿
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Activity>
 @{
     ViewBag.Title = "MyAtt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section class="section-background">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Index")">主页</a></li>
+            @if (Session["UID"] == null)
+            {
+             <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
+            }
+            else
+            {
+                <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
+                <li style="float:right;"><a href="@Url.Action("MyAtt","Activity")">我的参与</a></li>
+            }
+        </ol>
+    </div>
+</section>
+<section class="portfolio" id="portfolio">
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            Activity  Of  SEE
+        </h2>
+        <div class="underline purple"></div>
+        <div class="row">
+            @foreach (var p in Model)
+            {
+                <div class="col-sm-4 col-xs-6">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="@p.Ac_Pic" alt="port3" height="280" />
 
-<h2>MyAtt</h2>
+                            <div class="portfolio-img-hover">
+                                <a href="@Url.Action("Details",new {id=p.Ac_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-item-details">
+                            <div style="text-align:center" class="portfolio-item-name">
+                                <a style="text-align:center" href="@Url.Action("Details",new { id=p.Ac_ID})">@p.Ac_Name</a>
+                            </div>
+                            <div class="port-heart">
+                                <i class="ion-ios-heart-outline"></i>  @p.PicInActivity.Count()
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="container">
+        <div style="float:right">
+            <div>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("MyAtt", "Activity", new { page }))
+            </div>
+        </div>
+
+    </div>
+</section>
 

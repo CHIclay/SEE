@@ -28,6 +28,8 @@ namespace SEEWeb.ViewModel
 
         public IEnumerable<News_Comment> News_Comment { get; set; }
 
+        public IEnumerable<Activity> Activity { get; set; }
+
         
 
     }

@@ -3,7 +3,52 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<img src="@Model.AP_Pic" width="500" />
-@Model.UserInfo.UID
-@Model.AP_Mes
-@Model.AP_Time
+<head>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="section-background">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Index")">主页</a></li>
+                @if (Session["UID"] == null)
+                {
+                    <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
+                }
+                else
+                {
+                    <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
+                    <li style="float:right;"><a href="@Url.Action("MyAtt","Activity")">我的参与</a></li>
+                }
+            </ol>
+        </div>
+    </section>
+    <div class="container section-wrapper">
+        <h2 class="section-title black">
+            图片详细
+        </h2>
+        <div class="underline purple"></div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-lg-offset1">
+            <img src="@Model.AP_Pic" height="500" />
+        </div>
+        <div class="layui-col-xs5">
+            <div>
+                上传人：  @Model.UserInfo.User_Name
+            </div>
+
+            <br /><br />
+            <div>
+                图片描述：  @Model.AP_Mes
+            </div>
+            <br /><br />
+            <div>
+                上传时间 @Model.AP_Time
+            </div>
+        </div>
+    </div>
+    <div>
+        <br /><br />
+    </div>
+</body>

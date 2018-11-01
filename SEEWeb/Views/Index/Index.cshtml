@@ -54,7 +54,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    
+
                 </div> <!-- /.navbar-header -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,15 +63,16 @@
                             @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form" }))
                             {
                                 <span> <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:25px">  </span>
-                         
+
 
                             }
                         </li>
-                        
+
                         <li><a href="@Url.Action("Index", "Index")">主页</a></li>
                         <li><a href="@Url.Action("Index","News")">新闻</a></li>
                         <li><a href="@Url.Action("Index","Picture")">图片</a></li>
                         <li><a href="@Url.Action("Index","Album")">相册</a></li>
+                        <li><a href="@Url.Action("Index","Activity")">活动</a></li>
                         <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
                         @if (Session["UID"] != null)
                         {
@@ -111,7 +112,42 @@
     <section class="portfolio" id="portfolio">
         <div class="container section-wrapper">
             <h2 class="section-title black">
-                New  Picture  Of  SEE
+                最  新  活  动
+            </h2>
+            <div class="underline purple"></div>
+            <div class="row">
+                @foreach (var p in Model.Activity)
+                {
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <div class="portfolio-img">
+
+                                <img src="@p.Ac_Pic" alt="port3" height="280" />
+
+                                <div class="portfolio-img-hover">
+                                    <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-details">
+                                <div class="portfolio-item-name">
+                                    <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})">@p.Ac_Mes </a>    <br />    
+                                </div>
+
+                                <div class="port-heart">
+                                    <i class="ion-ios-heart-outline"></i>  @p.PicInActivity.Count()
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                最  新  图  片
             </h2>
             <div class="underline purple"></div>
             <div class="row">
@@ -140,10 +176,6 @@
                         </div>
                     </div>
                 }
-
-
-
-
             </div>
         </div>
     </section> <!-- /.portfolio -->
@@ -155,7 +187,7 @@
             <div class="underline white"></div>
             <div class="owl-carousel twitter-owl">
                 <div class="item">
-                    <p class="day">甲级新闻</p>
+                    <p class="day">一</p>
                     <p class="feed">
                         @foreach (var p in Model.News1)
                         {
@@ -168,7 +200,7 @@
                     </p>
                 </div> <!-- /.item -->
                 <div class="item">
-                    <p class="day">乙级新闻</p>
+                    <p class="day">二</p>
                     <p class="feed">
                         @foreach (var p in Model.News2)
                         {
@@ -181,7 +213,7 @@
                     </p>
                 </div> <!-- /.item -->
                 <div class="item">
-                    <p class="day">丙级新闻</p>
+                    <p class="day">三</p>
                     <p class="feed">
                         @foreach (var p in Model.News3)
                         {
@@ -194,7 +226,7 @@
                     </p>
                 </div> <!-- /.item -->
                 <div class="item">
-                    <p class="day">丁级新闻</p>
+                    <p class="day">四</p>
                     <p class="feed">
                         @foreach (var p in Model.News4)
                         {
@@ -207,7 +239,7 @@
                     </p>
                 </div> <!-- /.item -->
                 <div class="item">
-                    <p class="day">戊级新闻</p>
+                    <p class="day">五</p>
                     <p class="feed">
                         @foreach (var p in Model.News5)
                         {
@@ -231,7 +263,7 @@
     <section class="portfolio" id="portfolio">
         <div class="container section-wrapper">
             <h2 class="section-title black">
-                New  Album  Of  SEE
+                最  新  相  册
             </h2>
             <div class="underline purple"></div>
             <div class="row">

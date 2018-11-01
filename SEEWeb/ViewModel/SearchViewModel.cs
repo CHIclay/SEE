@@ -11,5 +11,6 @@ namespace SEEWeb.ViewModel
         public IEnumerable<Picture> picture { get; set; }
         public IEnumerable<Album> album { get; set; }
         public IEnumerable<News> news { get; set; }
+        public IEnumerable<Activity> activity { get; set; }
     }
 }

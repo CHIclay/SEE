@@ -162,9 +162,15 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 我的参与
-        public ActionResult MyAtt()
+        public ActionResult MyAtt(int ? page)
         {
-            return View();
+            int UID = Convert.ToInt32(Session["UID"].ToString());
+            var Activity = (from a in db.Activity
+                            join b in db.PicInActivity on a.Ac_ID equals b.Ac_ID
+                            join c in db.ActPicture.Where(c => c.UID==UID) on b.AP_ID equals c.AP_ID select a).Distinct().ToList();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(Activity.ToPagedList(pageNumber,pageSize));
         }
         #endregion
 

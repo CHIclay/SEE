@@ -3,7 +3,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<body class="app sidebar-mini rtl">
+<body >
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             类别添加
@@ -19,8 +19,8 @@
                     <label class="layui-form-label">
                         类型名称
                     </label>
-                    <div class="layui-input-inline">
-                        @Html.EditorFor(model => model.Name,new { @class="layui-inline"})
+                    <div class="layui-input-block">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "layui-input" } })
                         @Html.ValidationMessageFor(model => model.Name)
                     </div>
                 </div>

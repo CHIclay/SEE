@@ -4,86 +4,63 @@
     ViewBag.Title = "Details2";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<body class="app sidebar-mini rtl">
-
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>新闻详细</h1>
-            <p>拒绝黑恶势力</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("List","News")">新闻管理</a></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Edit","News")">新闻修改</a></li>
-        </ul>
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+<body class="layui-container">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            新闻详细
+        </blockquote>
     </div>
-    <div class="tile mb-4">
-        <div>
-            @Html.ActionLink("返回列表", "List", "News")
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    新闻ID
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.News_ID)
-                </dd>
-
-                <dt>
-                    上传管理员ID
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Man_ID)
-                </dd>
-                <dt>
-                    新闻名
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.News_Name)
-                </dd>
-                <dt>
-                    添加时间
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.News_Time)
-                </dd>
-
-                <dt>
-                    新闻封面
-                </dt>
-
-                <dd>
-                    <div>
-                        @if (string.IsNullOrEmpty(Model.News_Pic))
-                        {
-                            @:none
-                        }
-                        else
-                        {
-                            <img width="350"   src="@Url.Content(Model.News_Pic)" alt="images" />
-                        }
-                    </div>
-                </dd>
-
-                <dt>
-                    新闻内容
-                </dt>
-
-                <dd>
-                    @Html.Raw(@Model.News_Mes)
-                </dd>
-
-
-            </dl>
-        </div> 
-        <div class="form-group">
-          @Html.ActionLink("修改", "Edit", new { id = Model.News_ID},new { @class= "btn btn - primary" })             
+    <div class="layui-row">
+        <div class="layui-col-xs4  layui-col-md-offset1">
+            <div>
+                <div>
+                    @if (string.IsNullOrEmpty(Model.News_Pic))
+                    {
+                        @:none
+                    }
+                    else
+                    {
+                        <img width="350" src="@Url.Content(Model.News_Pic)" alt="images" />
+                    }
+                </div>
+            </div>
         </div>
+            <div class="layui-col-xs4 ">
+                <br /><br />
+                <div>
+                    新闻ID: @Html.DisplayFor(model => model.News_ID)
+                    <br /><br />
+                </div>
+                <div>
+                    上传管理员ID: @Html.DisplayFor(model => model.Man_ID)
+                    <br /><br />
+                </div>
+                <div>
+                    新闻名: @Html.DisplayFor(model => model.News_Name)
+                    <br /><br />
+                </div>
+
+                <div>
+                    添加时间: @Html.DisplayFor(model => model.News_Time)
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+    <div class="layui-row">
+        <br /><br />
+              <div class="layui-col-xs9  layui-col-md-offset1">
+                  <div>
+                      新闻内容
+                  </div>
+
+                  <div>
+                      @Html.Raw(@Model.News_Mes)
+                  </div>
+              </div>
+     
     </div>
+            @*@Html.ActionLink("修改", "Edit", new { id = Model.News_ID }, new { htmlAttributes = new { @class = "layui-btn layui-btn-normal" } })*@
 </body>
-       
-   
+
+

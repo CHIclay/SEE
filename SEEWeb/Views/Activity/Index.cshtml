@@ -11,12 +11,12 @@
             <li><a href="@Url.Action("Index","Index")">主页</a></li>
             @if (Session["UID"] == null)
             {
-                <li class="active">&nbsp;活动</li>
+            <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
             }
             else
             {
-                <li class="active">&nbsp;活动</li>
-                <li style="float:right;"><a href="@Url.Action("MyAct","Activity")">我的参与</a></li>
+            <li class="active">&nbsp;<a href="@Url.Action("Index","Activity")">活动</a></li>
+                <li style="float:right;"><a href="@Url.Action("MyAtt","Activity")">我的参与</a></li>
             }
         </ol>
     </div>
@@ -24,7 +24,7 @@
 <section class="portfolio" id="portfolio">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-            Activity  Of  SEE
+            活  动
         </h2>
         <div class="underline purple"></div>
         <div class="row">
