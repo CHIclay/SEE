@@ -4,53 +4,53 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<body class="app sidebar-mini rtl">
-    <div class="app-title">
-        <div class="div">
-            <h1><i class="fa fa-dashboard"></i>站内总汇</h1>
-            <p>拒绝黑恶势力</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","Manager")">站内总汇</a></li>
-            <li class="breadcrumb-item"><a href="@Url.Action("Edit","Manager")">管理员修改</a></li>
-        </ul>
+<body class="layui-body">
+    <div class="layui-row">
+        <blockquote class="layui-elem-quote layui-text">
+            管理员修改
+        </blockquote>
     </div>
-    <div class="tile mb-4">
-        <div>
+    <div class="layui-form">
+        <div class="layui-form-item">
             @using (Html.BeginForm("Edit", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
             {
                 @Html.AntiForgeryToken()
-                <div>
-                    <h4>管理员</h4>
-                    <hr />
-                    @Html.ValidationSummary(true)
-                    @Html.HiddenFor(model => model.Man_ID)
-                    <div>
-                        @Html.LabelFor(model => model.Man_Name)
+                <div class="layui-row">
+                    <div class="layui-col-xs4 layui-col-lg-offset3">
                         <div>
-                            @Html.EditorFor(model => model.Man_Name)
-                            @Html.ValidationMessageFor(model => model.Man_Name);
-                        </div>
-                    </div>
-                    <div>
-                        @Html.LabelFor(model => model.Man_Pas)
-                        <div>
-                            @Html.EditorFor(model => model.Man_Pas)
-                            @Html.ValidationMessageFor(model => model.Man_Pas);
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input type="submit" value="确定" />
+                            <hr />
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.Man_ID)
+                            <div>
+                                <label class="layui-form-label">管理员名</label>
+                                <div class="layui-input-block">
+                                    @Html.EditorFor(model => model.Man_Name, new { htmlAttributes = new { @class = "layui-input-block" } })
+                                    @Html.ValidationMessageFor(model => model.Man_Name)
+                                </div>
+                            </div>
+                            <div>
+                                <br /><br />
+                            </div>
+                            <div>
+                                <label class="layui-form-label">管理员密码</label>
+                                <div class="layui-input-block">
+                                    @Html.EditorFor(model => model.Man_Pas, new { htmlAttributes = new { @class = "layui-input-block" } })
+                                    @Html.ValidationMessageFor(model => model.Man_Pas)
+                                </div>
+                            </div>
+                            <div>
+                                <div style="float:right;margin-top:20px;margin-right:50px;">
+                                    <input type="submit" class="layui-btn layui-btn-normal" value="确定" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             }
-
-
-
         </div>
     </div>
 </body>
-  
+
+   

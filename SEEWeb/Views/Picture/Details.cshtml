@@ -13,6 +13,37 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/_share/User/assets/css/contact.css" rel="stylesheet" />
     <title></title>
+    <style>
+        .row #show div img {
+            height:auto;
+            max-width:100%;
+        }
+           
+    </style>
+    <script>
+        var sum;
+        var succ;
+        function asypoint(pot) {
+            $.ajax({
+                url: "/Picture/Point",
+                async: false,
+                type: "post",
+                data: { Pic_ID: pot },
+                dataType: "json",
+                success: function (list) {
+                    var data = eval(list);
+                    $("#sum").val(data[0].sum);
+                    if (data[0].succ == 1) {
+                        alert("你已经点过赞了哦！");
+                    }
+                }
+            });    
+        }    
+
+        function unLogin() {
+            alert("你还没有登录哦");
+        }
+    </script>
 </head>
 
 <body>
@@ -41,17 +72,13 @@
         </div>
     </section>
     <section class="portfolio" id="about" style="background: #f3f3f3;">
-        <div class="container section-wrapper">
-            <h2 class="section-title black">
-                图片详细
-            </h2>
-            <div class="underline purple"></div>
+        <div class="container-fluid section-wrapper">
             <div class="row">
-                <div>
-                    <div class="col-md-8 col-sm-6">
-                        <img src="@Model.Picture1.Pic_Pic" width="500" />
+                <div id="show">
+                    <div class="col-md-9 col-sm-9">
+                        <img style="object-fit: cover;width:1000px;" src="@Model.Picture1.Pic_Pic"/>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-3 col-sm-3">
                         <p class="about-detail">
                             上传人: <a href="@Url.Action("UserIndex","User",new {UID=Model.Picture1.UserInfo.UID})">
                                 @Model.Picture1.UserInfo.User_Name
@@ -71,20 +98,21 @@
                             <br />
                             <br />
                         </p>
-
+                        <a class="btn btn-primary" role="button" href="@Model.Picture1.Pic_Pic" download="@Model.Picture1.Pic_Mes">下载到本地</a>                         
                         <p class="about-detail">
 
                             @if (Session["User_Name"] != null)
                             {
-                                <a href="@Url.Action("Point", "Picture", new {Pic_ID=Model.Picture1.Pic_ID})">
-                                    <span class="btn-outline-info">点赞(@Model.Pic_Point.Count()) </span>
-                                </a>
+                                <button onclick="asypoint(@Model.Picture1.Pic_ID)">
+                                    <span class="btn-outline-info">点赞 </span>
+                                </button>
+                                <input id="sum" type="text" value="@Model.Pic_Point.Count()" ></input>
                             }
                             else
                             {
-                                <a href="@Url.Action("Point", "Picture", new {Pic_ID=Model.Picture1.Pic_ID})">
+                                <button onclick="unLogin()">
                                     <span class="btn-outline-primary">点赞(@Model.Pic_Point.Count()) </span>
-                                </a>
+                                </button>
                             }
                             <br />
                             <br />

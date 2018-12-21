@@ -134,41 +134,33 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 相册点赞
-        public ActionResult Point(Album_Point albpoint,int Alb_ID)
+        public JsonResult Point(Album_Point albpoint,int Alb_ID)
         {
-            if(Session["UID"]!=null)
+            var list = new List<PointList>();
+            var album = db.Album.Find(Alb_ID);
+            int albid = Alb_ID;
+            int UID = Convert.ToInt32(Session["UID"].ToString());
+            int chk_member = db.Album_Point.Where(p => p.UID == UID).Where(p => p.Alb_ID == albid).Count();
+                if(chk_member != 1)
+                {
+                    if(ModelState.IsValid)
+                    {
+                        albpoint.Alb_ID = albid;
+                        albpoint.UID = UID;
+                        albpoint.AP_Time = DateTime.Now;
+                        db.Album_Point.Add(albpoint);
+                        db.SaveChanges();
+                    }
+                }
+            var sum = db.Album_Point.Where(a => a.Alb_ID == albid).ToList().Count();
+            for(int i = 1;i <= 1; i++)
             {
-                    var album = db.Album.Find(Alb_ID);
-                    int albid = Alb_ID;
-                    int UID = Convert.ToInt32(Session["UID"].ToString());
-                    var chk_member = db.Album_Point.Where(p => p.UID == UID).Where(p => p.Alb_ID == albid).FirstOrDefault();
-                     if(chk_member==null)
-                     {
-                        if(ModelState.IsValid)
-                        {
-                          albpoint.Alb_ID = albid;
-                          albpoint.UID = UID;
-                          albpoint.AP_Time = DateTime.Now;
-                          db.Album_Point.Add(albpoint);
-                          db.SaveChanges();
-                                //return Content("<script>alert('点赞成功！');window.open('" + Url.Action("Details", "Album") + "','_self');</script>");
-                          return Content("<script>;alert('成功!');history.go(-1)</script>");
-                        }
-                     }
-                     else
-                     {
-                          return  Content("<script>;alert('你已经点过赞了哦！');history.go(-1)</script>");
-                     }
+                PointList pl = new PointList();
+                pl.sum = sum;
+                pl.succ = chk_member;
+                list.Add(pl);
             }
-            else
-            {
-                return Content("<script>;alert('你还没有登录哦！');history.go(-1)</script>");
-            }
-          
-           
-         
-
-            return Redirect("Details");
+            return Json(list);
         }
         #endregion
 

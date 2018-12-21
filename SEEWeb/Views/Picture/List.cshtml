@@ -7,8 +7,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
 <body class="layui-bg-gray">
+    <div>
+        @using (Html.BeginForm("List", "Picture", FormMethod.Post, new { @class = "search_form" }))
+        {
+            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
+        }
+    </div>
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             图片管理
@@ -80,7 +87,7 @@
                         @item.Pic_Comment.Count()
                     </td>
                     <td>
-                        @Html.ActionLink("删除", "Delete", new { id = item.Pic_ID },new { @class = "layui-btn layui-btn-danger layui-btn-sm" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.Pic_ID }, new { @class = "layui-btn layui-btn-danger layui-btn-sm" })
                     </td>
                 </tr>
             }
@@ -91,9 +98,7 @@
             <div>
                 第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
             </div>
-             <button class="layui-btn">
-                @Html.PagedListPager(Model, page => Url.Action("List", "Picture", new { page }))
-            </button>
+            @Html.PagedListPager(Model, page => Url.Action("List", "Picture", new { page }))
         </div>
     </div>
 </body>

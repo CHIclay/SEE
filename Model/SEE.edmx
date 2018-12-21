@@ -153,6 +153,8 @@
           <Property Name="TID" Type="int" />
           <Property Name="Pic_Mes" Type="nvarchar(max)" />
           <Property Name="Pic_Time" Type="datetime" />
+          <Property Name="Pic_Width" Type="float" />
+          <Property Name="Pic_Height" Type="float" />
         </EntityType>
         <EntityType Name="Picture_In_Album">
           <Key>
@@ -821,6 +823,8 @@
           <Property Name="TID" Type="Int32" />
           <Property Name="Pic_Mes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Pic_Time" Type="DateTime" Precision="3" />
+          <Property Name="Pic_Width" Type="Double" />
+          <Property Name="Pic_Height" Type="Double" />
           <NavigationProperty Name="Pic_Comment" Relationship="Self.FK_Pic_Comment_Picture" FromRole="Picture" ToRole="Pic_Comment" />
           <NavigationProperty Name="Pic_Point" Relationship="Self.FK_Pic_Point_Picture" FromRole="Picture" ToRole="Pic_Point" />
           <NavigationProperty Name="Picture_In_Album" Relationship="Self.FK_Picture_In_Album_Picture" FromRole="Picture" ToRole="Picture_In_Album" />
@@ -1493,6 +1497,8 @@
                 <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="Pic_Mes" ColumnName="Pic_Mes" />
                 <ScalarProperty Name="Pic_Time" ColumnName="Pic_Time" />
+                <ScalarProperty Name="Pic_Width" ColumnName="Pic_Width" />
+                <ScalarProperty Name="Pic_Height" ColumnName="Pic_Height" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

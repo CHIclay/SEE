@@ -9,6 +9,12 @@
 <head>
 </head>
 <body class="layui-bg-gray">
+    <div>
+        @using (Html.BeginForm("List", "User", FormMethod.Post, new { @class = "search_form" }))
+        {
+            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
+        }
+    </div>
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             用户信息查询

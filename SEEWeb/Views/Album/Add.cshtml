@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Add";
 }
-
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
 <section class="section-background">
     <div class="container">
         <ol class="breadcrumb">
@@ -18,7 +18,7 @@
 <section class="about" id="about" style="background: #f3f3f3;">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-            Create Your Album
+            创  建  相  册
         </h2>
         <div class="underline purple"></div>
 
@@ -30,32 +30,30 @@
             <div class="col-sm-3 col-xs-12 form-group">
                 &nbsp;
             </div>
-            <div class="col-sm-3 col-xs-12 form-group">
+            <div class="col-sm-2 col-xs-12 form-group">
                 &nbsp;
             </div>
             <div class="col-sm-4 col-xs-12 form-group">
-                <lable>相册名称</lable>
-                <div>
-                    @Html.EditorFor(model => model.Alb_Name, new { @class = "form-control", placeholder = "请输入相册名称" })
-                    @Html.ValidationMessageFor(model => model.Alb_Name)
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div>
+                            @Html.EditorFor(model => model.Alb_Name, new { htmlAttributes = new { @class = "layui-input", placeholder = "请输入相册名称" } })
+                            @Html.ValidationMessageFor(model => model.Alb_Name)
+                        </div>
+                        <br /><br />
+                        <div>
+                            @Html.EditorFor(model => model.Alb_Mes, new { htmlAttributes = new { @class = "layui-input", placeholder = "请输入相册简介" } })
+                            @Html.ValidationMessageFor(model => model.Alb_Mes)
+                        </div>
+                        <br /><br />
+                        <div>
+                            <input type="file" name="albumimage" />
+                        </div>
+                        <div style="float:right;margin-top:30px;">
+                            <input type="submit" value="创建相册" class="btn" />
+                        </div>
+                    </div>
                 </div>
-                <label>相册简介</label>
-                <div>
-                    @Html.EditorFor(model => model.Alb_Mes, new { @class = " form-control", placeholder = "请输入相册简介" })
-                    @Html.ValidationMessageFor(model => model.Alb_Mes)
-                </div>
-                <label>相册封面</label>
-                <div>
-                    <input type="file" name="albumimage" />
-                </div>
-            </div>
-            <div class="col-sm-4 col-xs-12 form-group">
-                &nbsp;
-            </div> <div class="col-sm-4 col-xs-12 form-group">
-                &nbsp;
-            </div>
-            <div class="col-sm-4 col-xs-12 form-group">
-                <input type="submit" value="创建相册" class="btn" />
             </div>
         </div>
         }

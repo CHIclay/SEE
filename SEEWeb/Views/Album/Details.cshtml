@@ -6,7 +6,30 @@
 }
 <!DOCTYPE html>
 <head>
+    <script type="text/javascript">
+        function asyncPoint(alp) {
+            $.ajax({
+                url: "/Album/Point",
+                async: false,
+                type: "post",
+                data: { Alb_ID: alp },
+                dataType: "json",
+                success: function (list) {
+                    var data = eval(list);
+                    $("#sum").val(data[0].sum);                   
+                    if (data[0].succ == 1) {
+                        alert("你已经点过赞了哦");
+                    } else {
+                        alert("点赞成功");
+                    }
+                }
+            })
 
+        }
+        function unLogin() {
+            alert("你还没有登录哦");
+        }
+    </script>
 </head>
 <body>
     <section class="section-background">
@@ -78,15 +101,16 @@
 
                         @if (Session["User_Name"] != null)
                         {
-                            <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
-                                <span class="btn-outline-info">点赞(@Model.Album_Point.Count()) </span>
-                            </a>
+                            <button onclick="asyncPoint(@Model.Album1.Alb_ID)">
+                                <span class="btn-outline-info">点赞 </span>
+                            </button>
+                            <input id="sum" type="text" value="@Model.Album_Point.Count()" />
                         }
                         else
                         {
-                            <a href="@Url.Action("Point", "Album", new {Alb_ID=Model.Album1.Alb_ID})">
+                            <button onclick="unLogin()">
                                 <span class="btn-outline-primary">点赞(@ViewBag.pc) </span>
-                            </a>
+                            </button>
                         }
 
                     </p>
@@ -120,7 +144,7 @@
     <section class="team">
         <div class="container section-wrapper">
             <h2 class="section-title black">
-                Pictures In This Album
+                包  含  的  图  片
             </h2> <!-- /.section-title -->
             <div class="underline purple"></div>
             <div class="row">

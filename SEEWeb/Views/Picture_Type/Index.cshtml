@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 <body class="layui-body">
+    <div>
+        @using (Html.BeginForm("Index", "Picture_Type", FormMethod.Post, new { @class = "search_form" }))
+        {
+            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
+        }
+    </div>
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             类别查询
@@ -37,8 +43,8 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.ActionLink("修改", "Edit", new { id = item.TID },new { @class="layui-btn layui-btn-sm"})
-                        @Html.ActionLink("删除", "Delete", new { id = item.TID },new { @class="layui-btn layui-btn-danger layui-btn-sm"})
+                        @Html.ActionLink("修改", "Edit", new { id = item.TID }, new { @class = "layui-btn layui-btn-sm" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.TID }, new { @class = "layui-btn layui-btn-danger layui-btn-sm" })
                     </td>
                 </tr>
             }

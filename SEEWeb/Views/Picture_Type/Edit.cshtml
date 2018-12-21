@@ -27,7 +27,7 @@
                         @Html.Label("分类名称")
                     </label>
                     <div class="layui-input-inline">
-                        @Html.EditorFor(model => model.Name,new {@class="layui-inline"})
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "layui-form-label" } })
                         @Html.ValidationMessageFor(model => model.Name)
                     </div>
                  

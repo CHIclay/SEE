@@ -165,12 +165,22 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 用户List
-        public ActionResult List(int? page)
+        public ActionResult List(int? page,string search)
         {
-            var users = usermanager.List();
+            var list = new List<UserInfo>();
+            if(search != null)
+            {
+                var users = (from p in db.UserInfo select p).Where(a => (a.User_Name.Contains(search)) || (a.User_Sex.Contains(search)) || (a.User_Pho.Contains(search)) || (a.User_Ema.Contains(search))).Where(a => a.User_Name != "此账号已关闭").ToList();
+                list = users;
+            }
+            else
+            {
+                var users = (from p in db.UserInfo select p).Where(a => a.User_Name != "此账号已关闭").ToList();
+                list = users;
+            }           
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(users.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
@@ -271,7 +281,6 @@ namespace SEEWeb.Controllers
                 return Content("<script>;alert('关注成功！');history.go(-1)</script>");
         }
         #endregion
-
         
         #region 用户收藏相册
         public ActionResult Save()

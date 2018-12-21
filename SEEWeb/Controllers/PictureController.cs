@@ -54,12 +54,23 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 后台管理
-        public ActionResult List(int ? page)
+        public ActionResult List(int ? page,string search)
         {
-            var users = pm.List();
+            var list = new List<Picture>();
+            if(search != null)
+            {
+                var users = (from p in db.Picture select p).Where(a => (a.Pic_Mes.Contains(search)) || (a.Picture_Type.Name.Contains(search))).ToList();
+                list = users;
+            }
+            else
+            {
+                var users = pm.List();
+                list = users;
+            }
+           
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(users.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
@@ -86,15 +97,25 @@ namespace SEEWeb.Controllers
                     picture.Pic_Pic = relativepath;
 
                 }
+                Stream stream = file.InputStream;
+                System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+
+                int Iwidth = image.Width;
+                int Iheight = image.Height;
                 picture.Pic_Time = DateTime.Now;
                 picture.UID = Convert.ToInt32(Session["UID"].ToString());
+                picture.Pic_Width = Iwidth;
+                picture.Pic_Height=Iheight;
                 Picture addpicture = new Picture
                 {
                     UID = picture.UID,
                     Pic_Pic = picture.Pic_Pic,
                     TID = picture.TID,
                     Pic_Mes = picture.Pic_Mes,
-                    Pic_Time = picture.Pic_Time
+                    Pic_Time = picture.Pic_Time,
+                    Pic_Height=picture.Pic_Height,
+                    Pic_Width=picture.Pic_Width
+                    
                 };
                 var temp = pm.Add(addpicture);
                 if(temp==true)
@@ -155,7 +176,7 @@ namespace SEEWeb.Controllers
                 pictures = pictures.Where(x => x.Picture_Type.Name == typeInfoFrom);
             }
 
-            int pageSize =12;
+            int pageSize =100;
             int pageNumber = (page ?? 1);
             return View(pictures.ToPagedList(pageNumber, pageSize));
         }
@@ -201,37 +222,35 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 图片点赞
-        public ActionResult Point(Pic_Point picpoint,int Pic_ID)
+        public JsonResult Point(Pic_Point picpoint,int Pic_ID)
         {
-            if(Session["UID"]!=null)
-            {
-                var picture = db.Picture.Find(Pic_ID);
-                int picid = Pic_ID;
-                int UID= Convert.ToInt32(Session["UID"].ToString()); 
+            var picture = db.Picture.Find(Pic_ID);
+            int picid = Pic_ID;
+            int UID= Convert.ToInt32(Session["UID"].ToString());
+            var list = new List<PointList>();
+            int chk_member = db.Pic_Point.Where(o => o.UID == UID).Where(o => o.Pic_ID == picid).Count();
 
-                var chk_member = db.Pic_Point.Where(o => o.UID == UID).Where(o => o.Pic_ID == picid).FirstOrDefault();
-                if(chk_member==null)
+        
+            if (chk_member!=1)
+            {
+                if (ModelState.IsValid)
                 {
-                  if (ModelState.IsValid)
-                  {
                     picpoint.Pic_ID = picid;
                     picpoint.UID = UID;
                     picpoint.PP_Time = DateTime.Now;
                     db.Pic_Point.Add(picpoint);
                     db.SaveChanges();
-                    return Content("<script>;alert('成功!');history.go(-1)</script>");
-                  }
-                }
-                else
-                {
-                    return Content("<script>;alert('你已经点过赞了哦!');history.go(-1)</script>");
                 }
             }
-            else
+            var sum = db.Pic_Point.Where(a => a.Pic_ID == picid).ToList().Count();
+            for (int i = 1; i <= 1; i++)
             {
-                return Content("<script>;alert('你还没登陆哦!');history.go(-1)</script>");
+                PointList pl = new PointList();
+                pl.sum = sum;
+                pl.succ = chk_member;
+                list.Add(pl);
             }
-            return Redirect("Details");
+            return Json(list);
         }
         #endregion
 

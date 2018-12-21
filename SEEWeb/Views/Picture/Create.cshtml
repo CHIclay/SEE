@@ -2,10 +2,7 @@
 @{
     ViewBag.Title = "Create";
 }
-
- 
-
-
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
 <section class="section-background">
     <div class="container">
         <ol class="breadcrumb">
@@ -20,7 +17,7 @@
 <section class="about" id="about" style="background: #f3f3f3;">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-            Update Your Picture
+            上 传 图 片
         </h2>
         <div class="underline purple"></div>
 
@@ -32,48 +29,36 @@
                 <div class="col-sm-3 col-xs-12 form-group">
                     &nbsp;
                 </div>
-                <div class="col-sm-3 col-xs-12 form-group">
+                <div class="col-sm-2 col-xs-12 form-group">
                     &nbsp;
                 </div>
                 <div class="col-sm-4 col-xs-12 form-group">
-                    <lable>图片文件：</lable>
-                        <div>
-                            <input type="file" name="image" />
-                        </div>
-                    <br /><br />
-                    <label>图片类型</label>
-                    <div>
-                        @Html.DropDownListFor(model => model.TID, ViewBag.picturetype as SelectList, "请选择类型")<br />
-                        @Html.ValidationMessageFor(model => model.TID, "")
-                    </div>
-                    <br /><br />
-                    <div>
-                        <div>
-                           <label>图片名称</label>
+                    <div class="layui-form">
+                        <div class="layui-form-item">
                             <div>
-
-                                @Html.EditorFor(model => model.Pic_Mes,new { @class="form-control"})
-                                @Html.ValidationMessageFor(model => model.Pic_Mes)
+                                <input type="file" name="image" />
                             </div>
+                            <br /><br />
+                            <div>
+                                <div>
+                                    @Html.EditorFor(model => model.Pic_Mes, new { htmlAttributes = new { @class = "layui-input", placeholder = "请输入图片名称" } })
+                                    @Html.ValidationMessageFor(model => model.Pic_Mes)
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    
+                    <br />
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            @Html.DropDownListFor(model => model.TID, ViewBag.picturetype as SelectList, "请选择类型")<br />
+                            @Html.ValidationMessageFor(model => model.TID, "")
+                        </div>
+                    </div>
+                    <div style="float:right;margin-top:30px;">
+                        <input type="submit" value="发表图片" class="btn" />
+                    </div>
                 </div>
-                <div class="col-sm-4 col-xs-12 form-group">
-                    &nbsp;
-                </div> <div class="col-sm-4 col-xs-12 form-group">
-                    &nbsp;
-                </div>
-                
-                       <div class="col-sm-4 col-xs-12 form-group">
-
-                           <br />
-               
-                               <input type="submit" value="发表图片" class="btn" />
-
-                      
-
-                       </div>
             </div>
         }
 

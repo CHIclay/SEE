@@ -11,14 +11,23 @@ namespace SEEWeb.Controllers
 {
     public class Picture_TypeController : Controller
     {
+        SEEEntities db = new SEEEntities();
         BLL.Picture_TypeManager ptmanager = new BLL.Picture_TypeManager();
         #region 图片类别分页
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var pt = ptmanager.List();
+            var list = new List<Picture_Type>();
+            if(search != null)
+            {
+                var pt = (from p in db.Picture_Type select p).Where(a => a.Name.Contains(search)).ToList();
+                list = pt;
+            }else{
+                var pt = ptmanager.List();
+                list = pt;
+            }            
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(pt.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
