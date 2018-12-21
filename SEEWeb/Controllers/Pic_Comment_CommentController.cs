@@ -13,12 +13,22 @@ namespace SEEWeb.Controllers
     {
         SEEEntities db = new SEEEntities();
         // GET: Pic_Comment_Comment
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var pcc = db.Pic_Comment_Comment.Include(n => n.UserInfo).Include(n => n.Pic_Comment).ToList();
+            var list = new List<Pic_Comment_Comment>();
+            if(search != null)
+            {
+                var pcc = (from p in db.Pic_Comment_Comment select p).Where(a => (a.PCC_Mes.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
+                list = pcc;
+            }
+            else
+            {
+                var pcc = db.Pic_Comment_Comment.Include(n => n.UserInfo).Include(n => n.Pic_Comment).ToList();
+                list = pcc;
+            }            
             int pageSize = 15;
             int pageNumber = (page ?? 1);
-            return View(pcc.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #region 评论回复
         public ActionResult ReplyComments()

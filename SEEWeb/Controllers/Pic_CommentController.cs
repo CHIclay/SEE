@@ -16,12 +16,22 @@ namespace SEEWeb.Controllers
         SEEEntities db = new SEEEntities();
         Pic_CommentManager pic_commentmanager = new Pic_CommentManager();
         // GET: Pic_Comment
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var pcs = pic_commentmanager.List();
+            var list = new List<Pic_Comment>();
+            if(search != null)
+            {
+                var pcs = (from p in db.Pic_Comment select p).Where(a => (a.PC_Mes.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
+                list = pcs;
+            }
+            else
+            {
+                var pcs = pic_commentmanager.List();
+                list = pcs;
+            }            
             int pageSize = 15;
             int pageNumber = (page ?? 1);
-            return View(pcs.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
 

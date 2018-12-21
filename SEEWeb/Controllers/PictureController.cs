@@ -59,7 +59,7 @@ namespace SEEWeb.Controllers
             var list = new List<Picture>();
             if(search != null)
             {
-                var users = (from p in db.Picture select p).Where(a => (a.Pic_Mes.Contains(search)) || (a.Picture_Type.Name.Contains(search))).ToList();
+                var users = (from p in db.Picture select p).Where(a => (a.Pic_Mes.Contains(search)) || (a.Picture_Type.Name.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
                 list = users;
             }
             else

@@ -23,7 +23,7 @@ namespace DAL
         //获取全部图片信息
         public List<Picture> List()
         {
-            var pic = (from p in db.Picture select p).OrderByDescending(a => a.Pic_Time).ToList();
+            var pic = (from p in db.Picture select p).OrderBy(a => a.Pic_Time).ToList();
             return pic;
         }
     }

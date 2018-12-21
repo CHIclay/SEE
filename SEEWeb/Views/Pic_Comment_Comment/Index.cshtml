@@ -10,6 +10,12 @@
 <head>
 </head>
 <body class="layui-bg-gray">
+    <div>
+        @using (Html.BeginForm("Index", "Pic_Comment_Comment", FormMethod.Post, new { @class = "search_form" }))
+        {
+            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
+        }
+    </div>
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             评论回复
@@ -66,7 +72,7 @@
                 第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
             </div>
             <button class="layui-btn">
-                @Html.PagedListPager(Model, page => Url.Action("Index","Pic_Comment_Comment", new { page }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", "Pic_Comment_Comment", new { page }))
             </button>
         </div>
     </div>

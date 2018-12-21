@@ -56,12 +56,23 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 新闻List
-        public ActionResult List(int ? page)
+        public ActionResult List(int ? page,string search)
         {
-            var news = newsmanager.NList();
+            var list = new List<News>();
+            if(search != null)
+            {
+                var news = (from p in db.News select p).Where(a => (a.News_Mes.Contains(search)) || (a.News_Name).Contains(search) || (a.Manager.Man_Name.Contains(search))).ToList();
+                list = news;
+            }
+            else
+            {
+                var news = newsmanager.NList();
+                list = news;
+            }
+            
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(news.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
