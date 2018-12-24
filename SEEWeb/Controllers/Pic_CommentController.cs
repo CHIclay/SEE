@@ -42,13 +42,13 @@ namespace SEEWeb.Controllers
         {
             if(Session["UID"]!=null)
             {
-                   string textarea = Request["textarea"];
-                  int Pic_ID = Convert.ToInt32(Request["picid"]);
+                string textarea = Request["textarea"];
+                int Pic_ID = Convert.ToInt32(Request["picid"]);
 
-                  if (ModelState.IsValid)
-                  {
-                       piccomment.Pic_ID = Pic_ID;
-                      piccomment.UID = Convert.ToInt32(Session["UID"].ToString());
+                if (ModelState.IsValid)
+                {
+                    piccomment.Pic_ID = Pic_ID;
+                    piccomment.UID = Convert.ToInt32(Session["UID"].ToString());
                 piccomment.PC_Mes = textarea;
                 piccomment.PC_Time = DateTime.Now;
                 db.Pic_Comment.Add(piccomment);

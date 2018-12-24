@@ -141,17 +141,17 @@ namespace SEEWeb.Controllers
             int albid = Alb_ID;
             int UID = Convert.ToInt32(Session["UID"].ToString());
             int chk_member = db.Album_Point.Where(p => p.UID == UID).Where(p => p.Alb_ID == albid).Count();
-                if(chk_member != 1)
+            if(chk_member != 1)
+            {
+                if(ModelState.IsValid)
                 {
-                    if(ModelState.IsValid)
-                    {
-                        albpoint.Alb_ID = albid;
-                        albpoint.UID = UID;
-                        albpoint.AP_Time = DateTime.Now;
-                        db.Album_Point.Add(albpoint);
-                        db.SaveChanges();
-                    }
+                    albpoint.Alb_ID = albid;
+                    albpoint.UID = UID;
+                    albpoint.AP_Time = DateTime.Now;
+                    db.Album_Point.Add(albpoint);
+                    db.SaveChanges();
                 }
+            }
             var sum = db.Album_Point.Where(a => a.Alb_ID == albid).ToList().Count();
             for(int i = 1;i <= 1; i++)
             {
@@ -165,38 +165,33 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 相册收藏
-        public ActionResult Save(Album_Save albsave,int Alb_ID)
+        public JsonResult Save(Album_Save albsave,int Alb_ID)
         {
-            if(Session["UID"]!=null)
+            var list = new List<PointList>();
+            var album = db.Album.Find(Alb_ID);
+            int albid = Alb_ID;
+            int UID = Convert.ToInt32(Session["UID"].ToString());
+            int chk_member = db.Album_Save.Where(p => p.UID == UID).Where(p => p.Alb_ID == albid).Count();
+            if(chk_member != 1)
             {
-               var album = db.Album.Find(Alb_ID);
-               int albid = Alb_ID;
-               int UID = Convert.ToInt32(Session["UID"].ToString());
-               var chk_member = db.Album_Save.Where(p => p.UID == UID).Where(o => o.Alb_ID == albid).FirstOrDefault();
-               if(chk_member==null)
-               {
-                    if (ModelState.IsValid)
-                  {
-                   albsave.Alb_ID = albid;
-                   albsave.UID = UID;
-                   albsave.AS_Time = DateTime.Now;
-                   db.Album_Save.Add(albsave);
-                   db.SaveChanges();
-                   return Content("<script>;alert('成功!');history.go(-1)</script>");
-                  } 
-               }
-               else
-               {
-                   return Content("<script>;alert('你已经收藏过了哦!');history.go(-1)</script>");
-               }
-               }
-            else
-            {
-                return Content("<script>;alert('你还没有登录哦！');history.go(-1)</script>");
+                if (ModelState.IsValid)
+                {
+                    albsave.Alb_ID = albid;
+                    albsave.UID = UID;
+                    albsave.AS_Time = DateTime.Now;
+                    db.Album_Save.Add(albsave);
+                    db.SaveChanges();
+                }
             }
-          
-           
-            return Redirect("Details");
+            var sum = db.Album_Save.Where(a => a.Alb_ID == albid).ToList().Count();
+            for(int i = 1;i <= 1; i++)
+            {
+                PointList pl = new PointList();
+                pl.sum = sum;
+                pl.succ = chk_member;
+                list.Add(pl);
+            }
+            return Json(list);
         }
         #endregion
 

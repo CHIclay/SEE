@@ -24,10 +24,28 @@
                     }
                 }
             })
-
         }
         function unLogin() {
             alert("你还没有登录哦");
+        }
+
+        function ansyncSave(alp) {
+            $.ajax({
+                url: "/Album/Save",
+                async: false,
+                type: "post",
+                data: { Alb_ID: alp },
+                dataType: "json",
+                success: function (list) {
+                    var data = eval(list);
+                    $("#save").val(data[0].sum);
+                    if (data[0].succ == 1) {
+                        alert("你已经收藏过了哦");
+                    } else {
+                        alert("收藏成功");
+                    }
+                }
+            })
         }
     </script>
 </head>
@@ -120,21 +138,18 @@
                     <p class="about-detail">
                         @if (Session["User_Name"] != null)
                         {
-                            <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
-                                <span class="btn-outline-info">收藏(@Model.Album_Save.Count()  )</span>
-                            </a>
+                            <button onclick="ansyncSave(@Model.Album1.Alb_ID)" >
+                                <span class="btn-outline-info">收藏</span>
+                            </button>    
+                            <input type="text" id="save" value="@Model.Album_Save.Count()"/>
                         }
                         else
                         {
-                            <a href="@Url.Action("Save","Album",new { Alb_ID=Model.Album1.Alb_ID})">
+                            <button onclick="unLogin()">
                                 <span class="btn-outline-info">收藏(@Model.Album_Save.Count()  )</span>
-                            </a>
+                            </button>
                         }
                     </p>
-
-
-
-
                 </div>
 
             </div>

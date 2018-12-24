@@ -200,6 +200,8 @@
     <Content Include="Content\foundation\retina-1.1.0.min.js" />
     <Content Include="Content\foundation\scripts.js" />
     <Content Include="Content\foundation\style.css" />
+    <Content Include="Content\jquery-1.7.1.min.js" />
+    <Content Include="Content\jquery.SuperSlide2.js" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\layui.mobile.css" />
     <Content Include="Content\layui\css\modules\code.css" />
@@ -489,10 +491,16 @@
     <Content Include="Global.asax" />
     <Content Include="images\header1.jpg" />
     <Content Include="images\header2.jpg" />
+    <Content Include="images\i.jpg" />
+    <Content Include="images\i2.jpg" />
+    <Content Include="images\i3.jpg" />
+    <Content Include="images\i4.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\mfrl.gif" />
+    <Content Include="images\mfrr.gif" />
+    <Content Include="images\plus %281%29.gif" />
+    <Content Include="images\plus.gif" />
     <Content Include="images\Register.jpg" />
-    <Content Include="images\大谷幸 - 早乙女くんと歩く.mp3" />
-    <Content Include="images\新建文本文档.txt" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

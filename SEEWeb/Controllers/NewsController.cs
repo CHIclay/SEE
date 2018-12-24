@@ -165,15 +165,15 @@ namespace SEEWeb.Controllers
                 string pcmes = Request["pcmes"];
                 int pic_ID = Convert.ToInt32(Request["picid"]);
 
-                  if (ModelState.IsValid)
-                 {
-                news_comment.News_ID = pic_ID;
-                news_comment.UID = Convert.ToInt32(Session["UID"].ToString());
-                news_comment.NC_Mes = pcmes;
-                news_comment.NC_Time = System.DateTime.Now;
-                db.News_Comment.Add(news_comment);
-                db.SaveChanges();
-                return Content("<script>;alert('评论成功');history.go(-1)</script>");
+                if (ModelState.IsValid)
+                {
+                    news_comment.News_ID = pic_ID;
+                    news_comment.UID = Convert.ToInt32(Session["UID"].ToString());
+                    news_comment.NC_Mes = pcmes;
+                    news_comment.NC_Time = System.DateTime.Now;
+                    db.News_Comment.Add(news_comment);
+                    db.SaveChanges();
+                    return Content("<script>;alert('评论成功');history.go(-1)</script>");
                 }
                return RedirectToAction("Details", "News");
             }
