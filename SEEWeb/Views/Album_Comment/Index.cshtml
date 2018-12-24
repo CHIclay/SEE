@@ -8,8 +8,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
 <body class="layui-bg-gray">
+    <div>
+        @using (Html.BeginForm("Index","Album_Comment",FormMethod.Post,new { @class="search_form" }))
+        {
+            <span><input type="text" placeholder="请输入搜索内容" name="search" style="height:25px" /></span>
+        }
+    </div>
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             相册评论查询
@@ -65,9 +72,9 @@
             <div>
                 第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
             </div>
-            <button class="layui-btn">
-                @Html.PagedListPager(Model, page => Url.Action("List", "Album_Comment", new { page }))
-            </button>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", "Album_Comment", new { page }))
+            </div>
         </div>
     </div>
 </body>

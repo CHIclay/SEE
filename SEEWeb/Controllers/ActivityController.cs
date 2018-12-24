@@ -61,12 +61,23 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 活动查询
-        public ActionResult List(int ? page)
+        public ActionResult List(int ? page,string search)
         {
-            var acts = am.List();
+            var list = new List<Activity>();
+            if(search != null)
+            {
+                var acts = (from p in db.Activity select p).Where(a => (a.Ac_Mes.Contains(search)) || (a.Ac_Name.Contains(search))).ToList();
+                list = acts;
+            }
+            else
+            {
+                var acts = am.List();
+                list = acts;
+            }
+        
             int pageSize = 9;
             int pageNumber=(page ?? 1);
-            return View(acts.ToPagedList(pageNumber,pageSize));
+            return View(list.ToPagedList(pageNumber,pageSize));
         }
         #endregion
 

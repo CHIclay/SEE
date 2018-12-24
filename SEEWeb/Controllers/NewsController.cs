@@ -61,7 +61,7 @@ namespace SEEWeb.Controllers
             var list = new List<News>();
             if(search != null)
             {
-                var news = (from p in db.News select p).Where(a => (a.News_Mes.Contains(search)) || (a.News_Name).Contains(search) || (a.Manager.Man_Name.Contains(search))).ToList();
+                var news = (from p in db.News select p).Where(a => (a.News_Mes.Contains(search)) || (a.News_Name.Contains(search)) || (a.Manager.Man_Name.Contains(search))).ToList();
                 list = news;
             }
             else

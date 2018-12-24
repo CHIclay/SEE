@@ -16,12 +16,23 @@ namespace SEEWeb.Controllers
         SEEEntities db = new SEEEntities();
         Album_CommentManager albcmanager = new Album_CommentManager();
         // GET: Album_Comment
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var alc = albcmanager.List();
+            var list = new List<Album_Comment>();
+            if (search != null)
+            {
+                var alc = (from p in db.Album_Comment select p).Where(a => (a.AC_Mes.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
+                list = alc;
+            }
+            else
+            {
+                var alc = albcmanager.List();
+                list = alc;
+            }
+           
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(alc.ToPagedList(pageNumber, pageSize));  
+            return View(list.ToPagedList(pageNumber, pageSize));  
         }
 
         #region 相册评论删除

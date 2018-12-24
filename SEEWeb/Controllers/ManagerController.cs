@@ -19,12 +19,23 @@ namespace SEEWeb.Controllers
         private SEEEntities db = new SEEEntities();
         ManagerManager managermanager = new ManagerManager();
         // GET: Manager
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var man = managermanager.List();
+            var list = new List<Manager>();
+            if(search != null)
+            {
+                var man = (from p in db.Manager select p).Where(a => (a.Man_Name.Contains(search))).ToList();
+                list = man;
+            }
+            else
+            {
+                var man = managermanager.List();
+                list = man;
+            }
+       
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(man.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #region 管理员登录
         public ActionResult Login()

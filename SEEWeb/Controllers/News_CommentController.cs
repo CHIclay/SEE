@@ -16,12 +16,22 @@ namespace SEEWeb.Controllers
         News_CommentManager ncm = new News_CommentManager();
         private SEEEntities db = new SEEEntities();
         // GET: News_Comment
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page,string search)
         {
-            var ncs = ncm.List();
+            var list = new List<News_Comment>();
+            if(search != null)
+            {
+                var ncs = (from p in db.News_Comment select p).Where( a => (a.NC_Mes.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
+                list = ncs;
+            }
+            else
+            {
+                var ncs = ncm.List();
+                list = ncs;
+            }           
             int pageSize = 15;
             int pageNumber = (page ?? 1);
-            return View(ncs.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         #region 新闻评论详细
         public ActionResult Details(int?id)

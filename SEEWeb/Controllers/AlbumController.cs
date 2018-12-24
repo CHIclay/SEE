@@ -221,12 +221,22 @@ namespace SEEWeb.Controllers
         #endregion
 
         #region 后台管理
-        public ActionResult List(int ? page)
+        public ActionResult List(int ? page,string search)
         {
-            var alb =albumm.List();
+            var list = new List<Album>();
+            if(search != null)
+            {
+                var alb = (from p in db.Album select p).Where(a => (a.Alb_Name.Contains(search)) || (a.Alb_Mes.Contains(search)) || (a.UserInfo.User_Name.Contains(search))).ToList();
+                list = alb;
+            }
+            else
+            {
+                var alb = albumm.List();
+                list = alb;
+            }
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            return View(alb.ToPagedList(pageNumber, pageSize));
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         #endregion

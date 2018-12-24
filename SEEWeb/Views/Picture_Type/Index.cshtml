@@ -4,6 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+<head>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
 <body class="layui-body">
     <div>
         @using (Html.BeginForm("Index", "Picture_Type", FormMethod.Post, new { @class = "search_form" }))
@@ -55,9 +58,9 @@
             <div>
                 第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页  共 @Model.PageCount 页
             </div>
-            <button class="layui-btn">
+            <div>
                 @Html.PagedListPager(Model, page => Url.Action("Index", "Picture_Type", new { page }))
-            </button>
+            </div>
         </div>
     </div>
 </body>
