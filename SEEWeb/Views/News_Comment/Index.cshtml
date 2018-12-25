@@ -10,19 +10,28 @@
 <head>
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
-<body class="layui-body">
-    <div>
-        @using (Html.BeginForm("Index", "News_Comment", FormMethod.Post, new { @class = "search_form" }))
-        {
-            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
-        }
-    </div>
+<body class="layui-body">    
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             新闻评论查询
         </blockquote>
     </div>
-    <table class="layui-table">
+    <div class="layui-col-md4 layui-col-md-offset8">
+        <div>
+            @using (Html.BeginForm("Index", "News_Comment", FormMethod.Post, new { @class = "search_form" }))
+            {
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <span> <input class="form-control" type="text" name="search" placeholder="请输入关键字" style="height:25px">  </span>
+                            <button class="layui-btn layui-btn-sm">搜索</button> 
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div> 
+    <table class="layui-anim layui-anim-scale layui-table">
         <colgroup>
             <col width="100" />
             <col width="100" />
@@ -61,7 +70,7 @@
                         @Html.DisplayFor(modelItem => item.NC_Time)
                     </td>
                     <td>
-                        @Html.ActionLink("查看详细", "Details", new { id = item.NC_ID },new { @class="layui-btn layui-btn-sm"}) 
+                        @*@Html.ActionLink("查看详细", "Details", new { id = item.NC_ID },new { @class="layui-btn layui-btn-sm"})*@ 
                         @Html.ActionLink("删除", "Delete", new { id = item.NC_ID },new { @class="layui-btn layui-btn-danger layui-btn-sm"})
                     </td>
                 </tr>

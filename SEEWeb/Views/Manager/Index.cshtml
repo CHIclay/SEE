@@ -10,29 +10,54 @@
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
 <body class="layui-bg-gray">
-    <div>
-        @using (Html.BeginForm("Index","Manager",FormMethod.Post ,new { @class = "search_form" }))
-        {
-            <span><input type="text" name="search" style="height:25px" placeholder="请输入搜索信息" /></span>
-        }
-    </div>
+
+
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             站内总汇
         </blockquote>
     </div>
-    <div class="layui-col-md4 ">
-        <button class="layui-btn">
-            @Html.ActionLink("添加管理员", "Add")
-        </button>
+
+
+
+    <div>
+        <br /><br />
+        @{ Html.RenderAction("ManagerDetails", "Manager");}
+        <br /><br /><br /><br /><br /><br />
     </div>
-    <table class="layui-table">
+    <br />
+
+    <hr />
+    <br /><br />
+    <div class="layui-col-md4 ">
+        <a class="layui-btn layui-btn-sm" href="@Url.Action("Add","Manager")">
+            添加管理员
+        </a>
+    </div>
+    <div class="layui-col-md4 layui-col-md-offset4">
+        <div>
+            @using (Html.BeginForm("Index", "Manager", FormMethod.Post, new { @class = "search_form" }))
+            {
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <span>
+                                <input class="form-control" type="text" name="search" style="height:25px" placeholder="请输入搜索信息" />
+                                <button class="layui-btn layui-btn-sm">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="layui-anim layui-anim-scale layui-table">
         <colgroup>
             <col width="200" />
             <col width="200" />
             <col width="200" />
-            <col width="200" />
-            <col width="200" />
+            <col width="250" />
+            <col />
         </colgroup>
         <thead>
             <tr>
@@ -79,9 +104,7 @@
         </div>
     </div>
     <br /><br /><br /><br /><br /><br />
-    <div>
-        @{ Html.RenderAction("ManagerDetails", "Manager");}
-    </div>
+
 </body>
 </html>
 

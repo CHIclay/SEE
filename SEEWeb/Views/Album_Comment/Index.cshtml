@@ -10,19 +10,28 @@
 <head>
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 </head>
-<body class="layui-bg-gray">
-    <div>
-        @using (Html.BeginForm("Index","Album_Comment",FormMethod.Post,new { @class="search_form" }))
-        {
-            <span><input type="text" placeholder="请输入搜索内容" name="search" style="height:25px" /></span>
-        }
-    </div>
+<body class="layui-bg-gray"> 
     <div class="layui-row">
         <blockquote class="layui-elem-quote layui-text">
             相册评论查询
         </blockquote>
     </div>
-    <table class="layui-table">
+    <div class="layui-col-md4 layui-col-md-offset8">
+        <div>
+            @using (Html.BeginForm("Index", "Album_Comment", FormMethod.Post, new { @class = "search_form" }))
+            {
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <span><input type="text" placeholder="请输入搜索内容" name="search" style="height:25px" /></span>
+                            <button class="layui-btn layui-btn-sm">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="layui-anim layui-anim-scale layui-table">
         <colgroup>
             <col width="100" />
             <col width="100" />

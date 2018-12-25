@@ -491,15 +491,6 @@
     <Content Include="Global.asax" />
     <Content Include="images\header1.jpg" />
     <Content Include="images\header2.jpg" />
-    <Content Include="images\i.jpg" />
-    <Content Include="images\i2.jpg" />
-    <Content Include="images\i3.jpg" />
-    <Content Include="images\i4.jpg" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\mfrl.gif" />
-    <Content Include="images\mfrr.gif" />
-    <Content Include="images\plus %281%29.gif" />
-    <Content Include="images\plus.gif" />
     <Content Include="images\Register.jpg" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

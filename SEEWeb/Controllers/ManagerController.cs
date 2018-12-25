@@ -150,6 +150,7 @@ namespace SEEWeb.Controllers
             var album1=(from p in db.Album select p).ToList();
             var album_point1 = (from p in db.Album_Point select p);
             var news1 = (from p in db.News select p).ToList();
+            var activity1 = (from p in db.Activity select p).ToList();
             var index = new SEEWeb.ViewModel.ManagerDetailsViewModel()
             {
                 Picture1 = picture1,
@@ -157,6 +158,7 @@ namespace SEEWeb.Controllers
                 Album1 = album1,
                 Album_Point1 = album_point1,
                 News1 = news1,
+                Activity1 = activity1,
             };
             return View(index);
 

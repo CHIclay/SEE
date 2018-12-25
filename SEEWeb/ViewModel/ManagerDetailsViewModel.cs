@@ -13,5 +13,6 @@ namespace SEEWeb.ViewModel
         public IEnumerable<News> News1 { get; set; }
         public IEnumerable<Album> Album1 { get; set; }
         public IEnumerable<Album_Point> Album_Point1 { get; set; }
+        public IEnumerable<Activity> Activity1 { get; set; }
     }
 }
