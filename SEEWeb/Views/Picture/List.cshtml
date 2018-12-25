@@ -7,7 +7,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="~/Content/foundation/jquery-1.11.1.min.js"></script>
     <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <style>
+        li {
+            list-style: none;
+            float: left;
+        }
+
+        img {
+            margin: 10px;
+        }
+
+        #d1, #d2, #d3, #d4 {
+            display: none;
+        }
+
+        #tooltip {
+            position: absolute;
+            border: 1px solid #ccc;
+            background: #333;
+            padding: 2px;
+            display: none;
+            color: #fff;
+        }
+    </style>
 </head>
 <body class="layui-bg-gray">
     
@@ -79,7 +103,9 @@
                         }
                         else
                         {
-                            <img height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
+                            <a class="tooltip" href="@Url.Content(item.Pic_Pic)" title="PicDet">
+                                <img height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
+                            </a>
                         }
                     </td>
                     <td>
@@ -112,6 +138,31 @@
             @Html.PagedListPager(Model, page => Url.Action("List", "Picture", new { page }))
         </div>
     </div>
+    <script>
+        $(function () {
+            var x = 10;
+            var y = 20;
+            $("a.tooltip").mouseover(function (e) {
+
+                var tooltip = "<div id='tooltip'><img src='" + this.href + "' alt='图片预览'/><\/div>"; //创建 div 元素
+                $("body").append(tooltip);	//把它追加到文档中						 
+                $("#tooltip")
+                    .css({
+                        "z-index": 9999,
+                        "top": (e.pageY + y) + "px",
+                        "left": (e.pageX + x) + "px"
+                    }).show("fast");	  //设置x坐标和y坐标，并且显示
+            }).mouseout(function () {
+                $("#tooltip").remove();	 //移除 
+            }).mousemove(function (e) {
+                $("#tooltip")
+                    .css({
+                        "top": (e.pageY + y) + "px",
+                        "left": (e.pageX + x) + "px"
+                    });               
+            });
+        })
+    </script>
 </body>
 </html>
 
