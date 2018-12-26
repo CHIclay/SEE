@@ -103,7 +103,7 @@
                         }
                         else
                         {
-                            <a class="tooltip" href="@Url.Content(item.Pic_Pic)" title="PicDet">
+                            <a class="tooltip" href="@Url.Content(item.Pic_Pic)">
                                 <img height="75" src="@Url.Content(item.Pic_Pic)" alt="images" />
                             </a>
                         }
@@ -144,7 +144,7 @@
             var y = 20;
             $("a.tooltip").mouseover(function (e) {
 
-                var tooltip = "<div id='tooltip'><img src='" + this.href + "' alt='图片预览'/><\/div>"; //创建 div 元素
+                var tooltip = "<div id='tooltip'><img src='" + this.href + "' height=250px alt='图片预览'/><\/div>"; //创建 div 元素
                 $("body").append(tooltip);	//把它追加到文档中						 
                 $("#tooltip")
                     .css({

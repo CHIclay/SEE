@@ -3,15 +3,10 @@
 @{
     ViewBag.Title = "UserIndex";
 }
-@*<link href="~/Content/_share/userindex/css/bootstrap1.css" rel="stylesheet" />
-    <script src="~/Content/_share/userindex/js/bootstrap.min1.js"></script>
-    <script src="~/Content/_share/userindex/js/jquery-1.11.1.min1.js"></script>
-*@
-<link href="~/Content/_share/userindex/css/style1.css" rel="stylesheet" />
 <!DOCTYPE HTML>
 <html>
 <head>
-
+    <link href="~/Content/_share/userindex/css/style1.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="" />
@@ -23,10 +18,7 @@
                 <div class="blog">
                     <span><img src="@Model.User1.User_Img" height="50" width="50" /></span>
                     <br />
-
-                    <span>  <h2 class="w3" style="color:#97b7b7">@Model.User1.User_Name 的主页 </h2></span>
-
-
+                    <h2 class="w3" style="color:#97b7b7">@Model.User1.User_Name 的主页 </h2>
                     <span style="float:right;">
                         @if (Session["User_Name"] != null)
                         {
@@ -42,25 +34,16 @@
                                     关注
                                 </a>
                             }
-
                         }
-                        else
-                        {
-                            <a></a>
-                        }
-
                     </span>
                     <hr />
                     <h3>他/她的图片</h3>
-
                     <div class="blog-grids1">
-
-
                         @foreach (Picture p in Model.Picture1)
                         {
                             <div class="col-md-6 blog-grid">
                                 <div class="blog-grid-left1">
-                                    <img src="@p.Pic_Pic" height="280" />
+                                    <img src="@p.Pic_Pic" style="object-fit:cover" height="280" />
                                 </div>
 
                                 <div class="blog-grid-right1">
@@ -69,47 +52,24 @@
                                     <p>
                                         @p.Pic_Mes
                                     </p>
-                                </div>
-                                <div class="clearfix"> </div>
-                                <div class="more m1">
-
-                                    <a class="btn effect6" href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">查看详细</a>
-                                </div>
+                                    <a style="float:right;color:cadetblue;margin-top:-35px;font-size:20px;"  href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">查看详细</a>
+                                </div>                                  
                             </div>
                         }
-
-
-                        <div class="clearfix"> </div>
                     </div>
-
-
-
-
                 </div>
             </div>
             <!-- technology-right -->
             <div class="col-md-3 technology-right">
-
-
                 <div class="blo-top1">
-
                     <div class="tech-btm">
-
                         <h4 style="color:#97b7b7">他/她关注的 </h4>
                         @{ Html.RenderAction("UserAttention1", "User");}
-
                         <h4 style="color:#97b7b7" >关注他/她的</h4>
                         @{ Html.RenderAction("UserAttention", "User");}
-
                     </div>
-
-
-
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </body>

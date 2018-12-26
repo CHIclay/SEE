@@ -24,19 +24,19 @@
     <link href="~/Content/_share/User/assets/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/Content/_share/User/assets/css/owl.theme.css" rel="stylesheet" />
     <link href="~/Content/_share/User/assets/css/main.css" rel="stylesheet" />
- 
-
     <link href="~/Content/_share/Manager/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet" />
     <link href="~/Content/_share/Manager/svg-with-js/css/fa-svg-with-js.css" rel="stylesheet" />
     <link href="~/Content/_share/User/assets/css/portfolio.css" rel="stylesheet" />
     <link href="~/Content/_share/User/assets/css/one-page.css" rel="stylesheet" />
+    <style>
+        .searchbox{
+            width:250px;
+        }
+    </style>
 </head>
-
 <body>
-
     <!-- Home -->
     <section class="header" id="header">
-
         <nav class="navbar navbar-default">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,37 +59,39 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li style="margin-right:200px;margin-top:7px;color:black">
-                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form" }))
+                            <li style="margin-right:200px;margin-top:7px;color:black;display:inline">
+                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form searchbox" }))
                             {
-                                <span> <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:25px">  </span>
-
-
+                                <div class="form-row">
+                                    <div style="margin-top:0px;margin-right:-5px;" class="form-group col-md-7">
+                                        <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:30px;width:200px;">
+                                    </div>
+                                    <div class="form-group col-md-2 col-md-offset-3">
+                                        <button class="btn btn-secondary btn-sm">搜索</button>
+                                    </div>
+                                </div>                            
                             }
-                        </li>
-
-                        <li><a href="@Url.Action("Index", "Index")">主页</a></li>
-                        <li><a href="@Url.Action("Index","News")">新闻</a></li>
-                        <li><a href="@Url.Action("Index","Picture")">图片</a></li>
-                        <li><a href="@Url.Action("Index","Album")">相册</a></li>
-                        <li><a href="@Url.Action("Index","Activity")">活动</a></li>
-                        <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
-                        @if (Session["UID"] != null)
-                        {
-                            <li>
-                                <img src="@Session["User_Img"]" height="35" width="35" />
                             </li>
-
-                            <li>
-                                <a href="@Url.Action("LogOff","User")">登出</a>
-                            </li>
-
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Login","User")">登录</a></li>
-                        }
-                    </ul> <!-- /.nav -->
+                            <li><a href="@Url.Action("Index", "Index")">主页</a></li>
+                            <li><a href="@Url.Action("Index","News")">新闻</a></li>
+                            <li><a href="@Url.Action("Index","Picture")">图片</a></li>
+                            <li><a href="@Url.Action("Index","Album")">相册</a></li>
+                            <li><a href="@Url.Action("Index","Activity")">活动</a></li>
+                            <li><a href="@Url.Action("UserCenter","User")">个人中心</a></li>
+                            @if (Session["UID"] != null)
+                            {
+                                <li>
+                                    <img src="@Session["User_Img"]" height="35" width="35" />
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("LogOff","User")">登出</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Login","User")">登录</a></li>
+                            }
+                        </ul> <!-- /.nav -->
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
         </nav>
@@ -137,7 +139,6 @@
                                     <i class="ion-ios-heart-outline"></i>  @p.PicInActivity.Count()
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 }
@@ -156,9 +157,7 @@
                     <div class="col-sm-4 col-xs-6">
                         <div class="portfolio-item">
                             <div class="portfolio-img">
-
                                 <img src="@p.Pic_Pic" alt="port3" height="280" />
-
                                 <div class="portfolio-img-hover">
                                     <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
                                 </div>
@@ -167,12 +166,10 @@
                                 <div class="portfolio-item-name">
                                     <a href="@Url.Action("Details","Picture",new {id=p.Pic_ID})">@p.Pic_Mes </a>    <br />    <small> <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name </a></small>
                                 </div>
-
                                 <div class="port-heart">
                                     <i class="ion-ios-heart-outline"></i>  @p.Pic_Point.Count()
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 }
@@ -255,11 +252,7 @@
         </div> <!-- /.container -->
     </section> <!-- /.twitter-feed -->
     <!-- Portfolio -->
-
-
     <section class="porfolio"></section>
-
-
     <section class="portfolio" id="portfolio">
         <div class="container section-wrapper">
             <h2 class="section-title black">
@@ -272,9 +265,7 @@
                     <div class="col-sm-4 col-xs-6">
                         <div class="portfolio-item">
                             <div class="portfolio-img">
-
                                 <img src="@p.Alb_Pic" alt="port3" height="280" />
-
                                 <div class="portfolio-img-hover">
                                     <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
                                 </div>
@@ -283,19 +274,13 @@
                                 <div class="portfolio-item-name">
                                     <a href="@Url.Action("Details","Album",new {id=p.Alb_ID})"> @p.Alb_Name    </a> <br />    <small> <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">  @p.UserInfo.User_Name </a></small>
                                 </div>
-
                                 <div class="port-heart">
                                     <i class="ion-ios-heart-outline"></i>  @p.Album_Point.Count()
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 }
-
-
-
-
             </div>
         </div>
     </section> <!-- /.portfolio -->
@@ -313,16 +298,12 @@
                 </div>
                 <div class="col-sm-4 text-center">
                     <div class="social-icon">
-
                         <a href="#">
-
                         </a>
                         <a href="https://github.com/CHIclay">
                             <i class="ion-social-github fa-3x"></i>
                         </a>
-
                         &nbsp;  &nbsp;  &nbsp;  &nbsp;
-
                         <a href="@Url.Action("Login","Manager")">
                             <i class="ion-android-contact fa-3x"></i>
                         </a>
@@ -336,15 +317,10 @@
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </footer>
-
     <script src="~/Content/_share/User/assets/js/jquery-1.11.2.min.js"></script>
     <script src="~/Content/_share/User/assets/js/bootstrap.min.js"></script>
     <script src="~/Content/_share/User/assets/js/owl.carousel.min.js"></script>
     <script src="~/Content/_share/User/assets/js/contact.js"></script>
     <script src="~/Content/_share/User/assets/js/script.js"></script>
-
-
-
 </body>
-
 </html>

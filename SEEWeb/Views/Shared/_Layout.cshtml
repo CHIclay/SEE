@@ -35,7 +35,6 @@
 
     <!-- Home -->
     <section class="portfolio-header" id="header">
-
         <nav class="navbar navbar-default _navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,13 +51,18 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li style="margin-right:200px;margin-top:7px;color:black">
-                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form" }))
+                        <li style="margin-right:200px;margin-top:7px;color:black;display:inline">
+                            @using (Html.BeginForm("search", "Index", FormMethod.Post, new { @class = "search_form searchbox" }))
                             {
-                            <span> <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:25px">  </span>
-                            <span> <input type="submit" value="S e a r c h" class="btn btn-block" style="float:right;height:25px;" /> </span> 
+                                <div class="form-row">
+                                    <div style="margin-top:0px;margin-right:-28px;" class="form-group col-md-7">
+                                        <input class="form-control" type="text" name="keywords" placeholder="请输入关键字" style="height:30px;width:200px;">
+                                    </div>
+                                    <div class="form-group col-md-2 col-md-offset-3">
+                                        <button class="btn btn-secondary btn-sm">搜索</button>
+                                    </div>
+                                </div>
                             }
-
                         </li>
                         <li><a href="@Url.Action("Index","Index")">主页</a></li>
                         <li><a href="@Url.Action("Index","News")">新闻</a></li>
@@ -71,11 +75,9 @@
                             <li>
                                 <img src="@Session["User_Img"]" height="35" width="35" />
                             </li>
-
                             <li>
                                 <a href="@Url.Action("LogOff","User")">登出</a>
                             </li>
-
                         }
                         else
                         {
@@ -103,17 +105,13 @@
                     </div>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <div class="social-icon">
-                         
-                        <a href="#">
-                            
+                    <div class="social-icon">                         
+                        <a href="#">                            
                         </a>
                         <a href="https://github.com/CHIclay">
                                 <i class="ion-social-github fa-3x"></i>
-                        </a>
-                        
-                            &nbsp;  &nbsp;  &nbsp;  &nbsp;
-                         
+                        </a>                        
+                            &nbsp;  &nbsp;  &nbsp;  &nbsp;                         
                         <a href="@Url.Action("Login","Manager")">
                             <i class="ion-android-contact fa-3x"></i>
                         </a>
@@ -127,15 +125,10 @@
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </footer>
-
     <script src="~/Content/_share/User/assets/js/jquery-1.11.2.min.js"></script>
     <script src="~/Content/_share/User/assets/js/bootstrap.min.js"></script>
     <script src="~/Content/_share/User/assets/js/owl.carousel.min.js"></script>
     <script src="~/Content/_share/User/assets/js/contact.js"></script>
-    <script src="~/Content/_share/User/assets/js/script.js"></script>
-
-    
-
-
+    <script src="~/Content/_share/User/assets/js/script.js"></script> 
 </body>
 </html>
