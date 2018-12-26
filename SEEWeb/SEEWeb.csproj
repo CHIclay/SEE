@@ -309,6 +309,9 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\_share\bootstrap.min.css" />
+    <Content Include="Content\_share\FirstGalary\baguetteBox.min.css" />
+    <Content Include="Content\_share\FirstGalary\baguetteBox.min.js" />
+    <Content Include="Content\_share\FirstGalary\thumbnail-gallery.css" />
     <Content Include="Content\_share\IndexPicture\css\style1.css" />
     <Content Include="Content\_share\IndexPicture\js\hubslider.js" />
     <Content Include="Content\_share\IndexPicture\js\hubslider.min.js" />
