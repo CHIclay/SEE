@@ -1,0 +1,6 @@
+/*给图片过渡效果*/
+img{transition: all 0.5s;-moz-transition: all 0.5s;	/* Firefox 4 */-webkit-transition: all 0.5s;	/* Safari 和 Chrome */-o-transition: all 0.5s;	/* Opera */;}
+.index{width: 400px;margin: 0 auto;padding-bottom: 100px;}
+.index-img{width: 100%;height:210px;margin-top:100px;}
+/*object-fit: cover;解决图片指定大小被压缩问题*/
+.index-img>img{width: 100%;height: 100%;object-fit: cover;}

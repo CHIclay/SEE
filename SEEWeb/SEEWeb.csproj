@@ -410,9 +410,13 @@
     <Content Include="Content\_share\Picture\js\bootstrap.js" />
     <Content Include="Content\_share\Picture\js\easing.js" />
     <Content Include="Content\_share\Picture\js\easyResponsiveTabs.js" />
+    <Content Include="Content\_share\Picture\js\懒加载DEMO\flowLiu.js" />
+    <Content Include="Content\_share\Picture\js\懒加载DEMO\index.css" />
+    <Content Include="Content\_share\Picture\js\懒加载DEMO\index.html" />
     <Content Include="Content\_share\Picture\js\jquery.min.js" />
     <Content Include="Content\_share\Picture\js\move-top.js" />
     <Content Include="Content\_share\Picture\js\owl.carousel.js" />
+    <Content Include="Content\_share\Picture\js\懒加载DEMO\reset.css" />
     <Content Include="Content\_share\userindex\css\animate.min.css" />
     <Content Include="Content\_share\userindex\css\bootstrap1.css" />
     <Content Include="Content\_share\userindex\css\chocolat.css" />
