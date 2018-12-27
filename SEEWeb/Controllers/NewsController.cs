@@ -19,7 +19,13 @@ namespace SEEWeb.Controllers
         // GET: News
         public ActionResult Index()
         {
-            return View();
+            //热闻推荐
+            var news = (from p in db.News select p).ToList().OrderByDescending(a => a.News_Comment.Count()).ToList().Take(10);
+            var index = new SEEWeb.ViewModel.NewsViewModel
+            {
+                NewsTop = news,
+            };
+            return View(index);
         }
         #region 新闻添加
         public ActionResult Add()
@@ -201,6 +207,24 @@ namespace SEEWeb.Controllers
         }
         #endregion
 
+        #region 判断首页新闻长度
+        [HttpGet]
+        public string strLength(string news)
+        {
+            int length = news.Length;
+            string dotDot = "...";
+            if(length >= 20)
+            {
+                string cutStr = news.Substring(0, 20);
+                string endNews = String.Format("{0}{1}", cutStr, dotDot);
+                return endNews;
+            }
+            else
+            {
+                return news;
+            }
+        }
+        #endregion
 
     }
 }

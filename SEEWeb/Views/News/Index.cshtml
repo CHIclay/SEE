@@ -3,16 +3,43 @@
     ViewBag.Title = "Index";
 
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/_share/User/assets/css/about.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="section-background">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Index")">Home</a></li>
+                <li class="active">&nbsp;新闻</li>
+            </ol>
+        </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+        <div class="container section-wrapper">
+            <h2 class="section-title black">
+                新  闻
+            </h2>
+            <div class="underline purple"></div>
+            <div class="col-md-8">
+                @{ Html.RenderAction("News", "News");}
+            </div>
+            
+            <div class="col-md-4">
+                时下最热
+                @foreach (var item in Model.NewsTop)
+                {                    
+                    @Html.Action("strLength", "News", new { news = item.News_Name })
+                    @item.News_Comment.Count()
+                    <br />
+                    }
+                </div>
+        </div>
+    </section>
 
-<section class="section-background">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index","Index")">Home</a></li>
-            <li class="active">&nbsp;新闻</li>
-        </ol>
-    </div> <!-- /.container -->
-</section> <!-- /.section-background -->
+</body>
+</html>
 
-@{ Html.RenderAction("News", "News");}
 
-<link href="~/Content/_share/User/assets/css/about.css" rel="stylesheet" />

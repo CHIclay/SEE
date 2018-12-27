@@ -16,6 +16,7 @@ namespace SEEWeb.Controllers
         // GET: Index
         public ActionResult Index()
         {
+            Session["UID"] = null;
             var picture1 = (from p in db.Picture select p).OrderByDescending(p => p.Pic_Time).Take(6);//显示最新的十张图片
             var picture2 = (from p in db.Picture select p).OrderByDescending(p => p.Pic_Point.Count()).ToList().Take(8);//显示点赞数最多的八张图片
             var news1 = (from p in db.News select p).ToList().OrderByDescending(p => p.News_Time).ToList().Take(1);//显示最新的第一条新闻
