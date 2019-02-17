@@ -19,7 +19,7 @@
         //实例化编辑器
         var editor = new baidu.editor.ui.Editor({
             autoHeightEnabled: true,//高度自动增长
-            minFrameHeight: 500//最小高度
+            minFrameHeight: 800//最小高度
         });
         editor.render('editor');
     </script>
@@ -53,27 +53,26 @@
             <br /><br />
         </div>
         <div>
-            <label  class="layui-form-label">图片</label>
+            <label class="layui-form-label">图片</label>
             <div class="layui-input-block">
                 <input type="file" name="newsimage" />
             </div>
         </div>
-
+        <br />
         <div>
-
-            <div class="layui-input-inline">
+            <label class="layui-form-label">新闻内容</label>
+            <div class="layui-input-inline" style="width:1150px">
                 <textarea id="editor" name="News_Mes"></textarea>
             </div>
             <br /><br />
         </div>
         <div>
-            <div style="float:right;">
+            <div style="float:right;margin-right:50px">
                 <button type="submit" class="layui-btn">
                     新闻发布
                 </button>
             </div>
         </div>
-
     }
 </body>
 

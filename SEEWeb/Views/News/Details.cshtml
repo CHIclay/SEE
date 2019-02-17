@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
     <section class="section-background">
         <div class="container">
             <ol class="breadcrumb">
@@ -22,11 +21,9 @@
                 <li class="active"><a href="@Url.Action("Index","News")">&nbsp;新闻</a></li>
                 <li class="active"><a href="#">新闻详细</a></li>
             </ol>
-
-
         </div>
     </section>
-    <section class="portfolio" id="portfolio">
+    <section class="portfolio" id="portfolio" style="background-color:#f7f7f7">
         <div class="container section-wrapper">
             <h2 class="section-title black">
                 新  闻  详  细
@@ -34,25 +31,21 @@
             <div class="underline purple"></div>
             <div class="row">
                 <span style="font-size:26px;">
-
                     @Model.News1.News_Name
-
                 </span>
-
-                <span style="float:right">@Model.News1.News_Time</span>
+                <span style="float:right;margin-top:3px;">
+                    @Model.News1.News_Time.ToString().Substring(0,10)
+                </span>
                 <hr />
-                <div style="margin-left:300px"><img src="@Model.News1.News_Pic" height="388" /></div>
-
-
+                <div style="margin-left:300px">
+                    <img src="@Model.News1.News_Pic" height="388" />
+                </div>
                 <hr />
-                @Html.Raw(@Model.News1.News_Mes)
-                <hr />
-               
-
+                    @Html.Raw(@Model.News1.News_Mes)
+                <hr />            
                     </div>
                 </div>
-</section>      
-    
+    </section>          
     <section class="team">
         <div class="row">
             <div class="container section-wrapper">

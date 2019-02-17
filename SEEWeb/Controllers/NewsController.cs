@@ -20,7 +20,7 @@ namespace SEEWeb.Controllers
         public ActionResult Index()
         {
             //热闻推荐
-            var news = (from p in db.News select p).ToList().OrderByDescending(a => a.News_Comment.Count()).ToList().Take(10);
+            var news = (from p in db.News select p).ToList().OrderByDescending(a => a.News_Comment.Count()).ToList().Take(6);
             var index = new SEEWeb.ViewModel.NewsViewModel
             {
                 NewsTop = news,

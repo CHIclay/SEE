@@ -8,37 +8,27 @@
     <div class="row">
         @foreach (var p in Model)
         {
-            <div class="col-sm-12 col-xs-12">
-                <div class="portfolio-item">
-
+            <div class="col-sm-12 col-xs-12" style="background-color:#f7f7f7;">
+                <div>
                     <div style="float:left;margin-right:20px;">
                         <a href="@Url.Action("Details",new {id=p.News_ID})">
-                            <img height="150"   src="@p.News_Pic" />
+                            <img height="150" width="200" src="@p.News_Pic" />
                         </a>
                     </div>
-                    <div  style="margin-left:200px;">
+                    <hr />
+                    <div  style="margin-left:200px;margin-top:20px;font-size:22px;">
                         <a href="@Url.Action("Details",new {id=p.News_ID})">
-                            <h3>
-                                @p.News_Name
-                                                    </h3> 
-                     
+                                @p.News_Name                  
                         </a>
                     </div>
-                    <div style=" background: #e0e0e0;color: #666;padding: 2px 4px; float:right">
-                        <a href="@Url.Action("Details",new {id=p.News_ID})">
-                            @p.News_Time
-                        </a>
-                    </div>
+                    <div style=" background: #e0e0e0;color: #666;padding: 2px 4px; float:right;margin-top:30px;">
+                            @p.News_Time.ToString().Substring(0, 10)
                     </div>
                 </div>
-           
-                <li class="icon underline"></li>
-                <hr />
+             </div> 
             }
-
-                </div>
+     </div>
     <div class="container">
-
         <div style="float:right">
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
             <br />

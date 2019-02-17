@@ -12,7 +12,7 @@
     <section class="section-background">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="@Url.Action("Index","Index")">Home</a></li>
+                <li><a href="@Url.Action("Index","Index")">主页</a></li>
                 <li class="active">&nbsp;新闻</li>
             </ol>
         </div>
@@ -25,20 +25,27 @@
             <div class="underline purple"></div>
             <div class="col-md-8">
                 @{ Html.RenderAction("News", "News");}
-            </div>
-            
-            <div class="col-md-4">
-                时下最热
-                @foreach (var item in Model.NewsTop)
-                {                    
-                    @Html.Action("strLength", "News", new { news = item.News_Name })
-                    @item.News_Comment.Count()
-                    <br />
-                    }
+            </div>            
+            <div class="col-md-4" style="background-color:#f7f7f7;padding-left:-2px;border-left:solid;border-color:azure">
+                <div style="color:#007722;font-size:20px;height:34px;">
+                    时下最热   .   .   .   .   .   .   .
                 </div>
+                <br />
+                @foreach (var item in Model.NewsTop)
+                {
+                    <div style="margin-bottom:5px;">
+                        <div style="font-size:15px;">
+                            @Html.Action("strLength", "News", new { news = item.News_Name })
+                        </div>
+                        <div style="float:right;margin-bottom:5px;">
+                            @item.News_Comment.Count()
+                        </div>
+                    </div>                  
+                    <hr />  
+                }
+            </div>
         </div>
     </section>
-
 </body>
 </html>
 

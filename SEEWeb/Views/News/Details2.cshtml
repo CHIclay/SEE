@@ -26,41 +26,27 @@
                 </div>
             </div>
         </div>
-            <div class="layui-col-xs4 ">
+        <div class="layui-col-xs5 ">
+            <br /><br />
+            <div style="font-size:25px;color:black;float:right;margin-right:10px;">
+                @Html.DisplayFor(model => model.News_Name)
                 <br /><br />
-                <div>
-                    新闻ID: @Html.DisplayFor(model => model.News_ID)
-                    <br /><br />
-                </div>
-                <div>
-                    上传管理员ID: @Html.DisplayFor(model => model.Man_ID)
-                    <br /><br />
-                </div>
-                <div>
-                    新闻名: @Html.DisplayFor(model => model.News_Name)
-                    <br /><br />
-                </div>
-
-                <div>
-                    添加时间: @Html.DisplayFor(model => model.News_Time)
-                    <br /><br />
-                </div>
+            </div>
+            <div style="float:right;margin-right:10px;">
+                    @Html.DisplayFor(model => model.News_Time)
+                <br /><br />
             </div>
         </div>
+        <hr style="margin-left:60px;margin-right:60px;margin-top:50px;" />
+    </div>
     <div class="layui-row">
         <br /><br />
-              <div class="layui-col-xs9  layui-col-md-offset1">
-                  <div>
-                      新闻内容
-                  </div>
-
-                  <div>
-                      @Html.Raw(@Model.News_Mes)
-                  </div>
-              </div>
-     
+        <div class="layui-col-xs9  layui-col-md-offset1">
+            <div>
+                @Html.Raw(@Model.News_Mes)
+            </div>
+        </div>     
     </div>
-            @*@Html.ActionLink("修改", "Edit", new { id = Model.News_ID }, new { htmlAttributes = new { @class = "layui-btn layui-btn-normal" } })*@
 </body>
 
 

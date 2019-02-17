@@ -16,46 +16,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login In SEE</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link href="~/Content/_share/Login/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/_share/Login/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/_share/Login/assets/css/form-elements.css" rel="stylesheet" />
     <link href="~/Content/_share/Login/assets/css/style.css" rel="stylesheet" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="assets/ico/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-
 </head>
-
 <body>
-
-    <!-- Top content -->
     <div class="top-content" style="background-image: url('../../images/header1.jpg'); background-repeat: no-repeat; background-position: center center; background-size: cover; background-attachment: fixed; ">
-
         <div class="inner-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-4 form-box">
                     </div>
                     <div class="col-sm-4 col-sm-offset-4 form-box">
-                  
                     </div>
-
                         <div class="col-sm-8 col-sm-offset-2 text">
-                           <a href="@Url.Action("Index","Index")"> <img src="~/images/logo.png" /> </a> 
                         </div>
-
                         <div class="col-sm-4 col-sm-offset-4 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
@@ -63,14 +45,13 @@
                                     <p>更好的风景、更好的欣赏</p>
                                 </div>
                                 <div class="form-top-right">
-                                    <i class="fa fa-user"></i>
+                                    <a href="@Url.Action("Index","Index")">  <i class="fa fa-user"></i> </a>
                                 </div>
                             </div>
                             <div>
                                 @using (Html.BeginForm("Login", "User", FormMethod.Post))
                                 {
                                     @Html.ValidationSummary("");
-
                                     <div>
                                         <div class="form-group">
                                             <label class="sr-only" for="form-first-name">用户名</label>
@@ -90,18 +71,13 @@
                                     <div class="form-group">
                                         <a href="@Url.Action("Register","User")" style="float:right"><button class="btn-dark" style="color:black">注册 </button> </a>
                                     </div>
-
                             </div>
                             <br /><br /><br /><br /><br /><br /><br />
                         </div>
                     </div>
                 </div>
         </div>
-
     </div>
-
-
-    <!-- Javascript -->
     <script src="~/Content/_share/Login/assets/js/jquery-1.11.1.min.js"></script>
     <script src="~/Content/_share/Login/assets/js/jquery.backstretch.min.js"></script>
     <script src="~/Content/_share/Login/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -109,10 +85,5 @@
     <script src="~/Content/_share/Login/assets/js/retina-1.1.0.min.js"></script>
     <script src="~/Content/_share/Login/assets/js/scripts.js"></script>
     <script src="~/Content/_share/Login/assets/js/placeholder.js"></script>
-    <!--[if lt IE 10]>
-        <script src="assets/js/placeholder.js"></script>
-    <![endif]-->
-
 </body>
-
 </html>
