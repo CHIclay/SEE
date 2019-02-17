@@ -83,13 +83,14 @@
                 var divWidth = p.Pic_Width * 200;
                 var divSize = divWidth / p.Pic_Height;
                 var divPx = divSize + "px";
-                var iSize = (p.Pic_Height / p.Pic_Width) * 100 + "%";
+                double iSize = ((double)Convert.ToDouble(p.Pic_Height) / (double)Convert.ToDouble(p.Pic_Width)) * 100;
+                var sSize = iSize + "%";
                 ViewBag.divSize = divSize;
                 ViewBag.divPx = divPx;
-                ViewBag.iSize = iSize;
+                ViewBag.iSize = sSize;
             }
             <div style="width:@ViewBag.divPx;flex-grow:@ViewBag.divSize">
-                <i id="size" style="padding-bottom:@ViewBag.iSize"></i>
+                <i style="padding-bottom:@ViewBag.iSize"></i>
                 <a href="@Url.Action("Details", new { id = p.Pic_ID })">
                     <img src="@p.Pic_Pic" />
                 </a>

@@ -116,18 +116,15 @@
     <Compile Include="Pic_Point.cs">
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Util\PointList.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Picture_TypeMetaData.cs" />
     <Compile Include="SEE.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SEE.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="SEE.cs">
-      <DependentUpon>SEE.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
     <Compile Include="SEE.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -137,6 +134,9 @@
     <Compile Include="UserInfo.cs">
       <DependentUpon>SEE.tt</DependentUpon>
     </Compile>
+    <Compile Include="Util\PointList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Picture_TypeMetaData.cs" />
     <Compile Include="UserMetaData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +161,8 @@
     </Content>
     <Content Include="SEE.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SEE.cs</LastGenOutput>
       <DependentUpon>SEE.edmx</DependentUpon>
+      <LastGenOutput>SEE.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

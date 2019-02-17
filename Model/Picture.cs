@@ -28,8 +28,8 @@ namespace Model
         public Nullable<int> TID { get; set; }
         public string Pic_Mes { get; set; }
         public Nullable<System.DateTime> Pic_Time { get; set; }
-        public Nullable<double> Pic_Width { get; set; }
-        public Nullable<double> Pic_Height { get; set; }
+        public Nullable<int> Pic_Width { get; set; }
+        public Nullable<int> Pic_Height { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pic_Comment> Pic_Comment { get; set; }
