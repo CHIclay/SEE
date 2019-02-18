@@ -194,5 +194,24 @@ namespace SEEWeb.Controllers
             return Content("<script>;alert('活动取消成功');history.go(-1)</script>");
         }
         #endregion
+
+        #region 控制信息长度
+        [HttpGet]
+        public string strLength(string news)
+        {
+            int length = news.Length;
+            string dotDot = "...";
+            if (length >= 50)
+            {
+                string cutStr = news.Substring(0, 50);
+                string endNews = String.Format("{0}{1}", cutStr, dotDot);
+                return endNews;
+            }
+            else
+            {
+                return news;
+            }
+        }
+        #endregion
     }
 }

@@ -33,18 +33,18 @@
         <div class="layui-col-xs6 layui-col-lg-offset1">
             <img src="@Model.AP_Pic" height="500" />
         </div>
-        <div class="layui-col-xs5">
-            <div>
+        <div class="layui-col-xs5" >
+            <div style="font-size:20px;">
                 上传人：  @Model.UserInfo.User_Name
             </div>
 
             <br /><br />
-            <div>
-                图片描述：  @Model.AP_Mes
+            <div style="font-size:20px;">
+                @Model.AP_Mes
             </div>
             <br /><br />
             <div>
-                上传时间 @Model.AP_Time
+                上传时间 @Model.AP_Time.ToString().Substring(0,10)
             </div>
         </div>
     </div>

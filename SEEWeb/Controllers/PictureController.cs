@@ -80,8 +80,6 @@ namespace SEEWeb.Controllers
             ViewBag.picturetype = new SelectList(ptm.GetAll(), "TID", "Name");
             return View();
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult AfterCreate(Picture picture)
         {
             HttpPostedFileBase file = Request.Files["image"];
@@ -95,11 +93,9 @@ namespace SEEWeb.Controllers
                     string relativepath = @"/images/pictures/" + fileName;
                     file.SaveAs(serverpath);
                     picture.Pic_Pic = relativepath;
-
                 }
                 Stream stream = file.InputStream;
                 System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
-
                 int Iwidth = image.Width;
                 int Iheight = image.Height;
                 picture.Pic_Time = DateTime.Now;
@@ -125,8 +121,7 @@ namespace SEEWeb.Controllers
                 else
                 {
                     return Content("上传失败");
-                }
-              
+                }              
             }
             ViewBag.picturetype = new SelectList(ptm.GetAll(), "Type_ID", "Name");
             return View();
@@ -197,7 +192,7 @@ namespace SEEWeb.Controllers
         #region 图片详细
         public ActionResult Details ( int id)
         {
-            
+            Session["Pic_ID"] = id;
             Picture pictures = db.Picture.Find(id);
             Pic_Point pp = db.Pic_Point.Find(id);
             var picpoint = from p in db.Pic_Point.Where(p => p.Pic_ID == id)
@@ -228,9 +223,7 @@ namespace SEEWeb.Controllers
             int picid = Pic_ID;
             int UID= Convert.ToInt32(Session["UID"].ToString());
             var list = new List<PointList>();
-            int chk_member = db.Pic_Point.Where(o => o.UID == UID).Where(o => o.Pic_ID == picid).Count();
-
-        
+            int chk_member = db.Pic_Point.Where(o => o.UID == UID).Where(o => o.Pic_ID == picid).Count();        
             if (chk_member!=1)
             {
                 if (ModelState.IsValid)

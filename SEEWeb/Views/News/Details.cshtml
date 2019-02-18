@@ -79,17 +79,18 @@
                     @foreach (News_Comment p in Model.News_Comment)
                     {
                     <div style="float:left;margin-right:20px;">
-                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@p.UserInfo.User_Img" height="50" width="50" /></a>
+                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@p.UserInfo.User_Img" height="50" width="50" style=" display: flex;border-radius: 50%; align-items: center;justify-content: center;overflow: hidden;"  /></a>
                     </div>
                     <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
-                        <span>    @p.NC_Time</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name</a>
+                        <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name</a>
                     </div>
-
+                    <div style="float:right;margin-top:-20px;">
+                        <span>    @p.NC_Time.ToString().Substring(0,10)</span>
+                    </div>
+                    <div style="margin-top:10px;margin-left:10px;">
 
                         <p> @p.NC_Mes</p>
-
-
+                    </div>
                         <br />
                     }
                 </div>

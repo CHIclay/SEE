@@ -4,13 +4,7 @@
     ViewBag.Title = "Index";
     Layout = null;
 }
- 
-
 <!DOCTYPE html>
-<!--[if IE 7 ]><html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
-<!--[if IE 8]><html class="ie ie8 lte9 lte8" lang="en-US">	<![endif]-->
-<!--[if IE 9]><html class="ie ie9 lte9" lang="en-US"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html class="noIE" lang="en-US">
 <!--<![endif]-->
 <head>
@@ -84,7 +78,7 @@
                         @if (Session["UID"] != null)
                         {
                             <li>
-                                <img src="@Session["User_Img"]" height="35" width="35" />
+                                <img src="@Session["User_Img"]" height="35" width="35" style=" display: flex;border-radius: 50%; align-items: center;justify-content: center;overflow: hidden;" />
                             </li>
                             <li>
                                 <a href="@Url.Action("LogOff","User")">登出</a>
@@ -130,12 +124,12 @@
                                 <img src="@p.Ac_Pic" alt="port3" height="280" />
 
                                 <div class="portfolio-img-hover">
-                                    <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
+                                    <a href="@Url.Action("Details", "Activity", new { id = p.Ac_ID })"><img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
                                 </div>
                             </div>
                             <div class="portfolio-item-details">
                                 <div class="portfolio-item-name">
-                                    <a href="@Url.Action("Details","Activity",new {id=p.Ac_ID})">@p.Ac_Mes </a>    <br />
+                                    <a href="@Url.Action("Details", "Activity", new { id = p.Ac_ID })">@Html.Action("strLength", "Activity",new { news = p.Ac_Name }) </a>    <br />
                                 </div>
 
                                 <div class="port-heart">
@@ -158,7 +152,7 @@
             <div class="underline purple"></div>
             <div class="row">
                 @foreach (var p in Model.Picture1)
-                {
+                                        {
                     <div class="col-sm-4 col-xs-6">
                         <div class="portfolio-item">
                             <div class="portfolio-img">
@@ -192,9 +186,9 @@
                     <p class="day">一</p>
                     <p class="feed">
                         @foreach (var p in Model.News1)
-                        {
-                            @p.News_Name
-                            <div class="options">
+                                    {
+                                        @p.News_Name
+                                        <div class="options">
                                 <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
                                 <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
                             </div>
@@ -205,9 +199,9 @@
                     <p class="day">二</p>
                     <p class="feed">
                         @foreach (var p in Model.News2)
-                        {
-                            @p.News_Name
-                            <div class="options">
+                                    {
+                                        @p.News_Name
+                                        <div class="options">
                                 <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
                                 <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
                             </div>
@@ -218,9 +212,9 @@
                     <p class="day">三</p>
                     <p class="feed">
                         @foreach (var p in Model.News3)
-                        {
-                            @p.News_Name
-                            <div class="options">
+                                    {
+                                        @p.News_Name
+                                        <div class="options">
                                 <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
                                 <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
                             </div>
@@ -231,9 +225,9 @@
                     <p class="day">四</p>
                     <p class="feed">
                         @foreach (var p in Model.News4)
-                        {
-                            @p.News_Name
-                            <div class="options">
+                                    {
+                                        @p.News_Name
+                                        <div class="options">
                                 <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
                                 <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
                             </div>
@@ -244,9 +238,9 @@
                     <p class="day">五</p>
                     <p class="feed">
                         @foreach (var p in Model.News5)
-                        {
-                            @p.News_Name
-                            <div class="options">
+                                    {
+                                        @p.News_Name
+                                        <div class="options">
                                 <a href="#"><span><i class="ion-reply"></i> 回顶</span></a>
                                 <a href="@Url.Action("Details","News",new {id=@p.News_ID})"><span><i class="ion-social-twitter"></i>阅读</span></a>
                             </div>
@@ -268,7 +262,7 @@
                     <div class="underline purple"></div>
                     <div class="row">
                         @foreach (var p in Model.Album)
-                        {
+                                    {
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <a class="lightbox" href="@p.Alb_Pic">

@@ -44,16 +44,16 @@ namespace SEEWeb.Controllers
             {
                 string textarea = Request["textarea"];
                 int Pic_ID = Convert.ToInt32(Request["picid"]);
-
+                Session["Pic_ID"] = Pic_ID;
                 if (ModelState.IsValid)
                 {
                     piccomment.Pic_ID = Pic_ID;
                     piccomment.UID = Convert.ToInt32(Session["UID"].ToString());
-                piccomment.PC_Mes = textarea;
-                piccomment.PC_Time = DateTime.Now;
-                db.Pic_Comment.Add(piccomment);
-                db.SaveChanges();
-                return Content("<script>;alert('评论成功!');history.go(-1)</script>");
+                    piccomment.PC_Mes = textarea;
+                    piccomment.PC_Time = DateTime.Now;
+                    db.Pic_Comment.Add(piccomment);
+                    db.SaveChanges();
+                    return Content("<script>alert('评论成功！');window.open('" + Url.Action("Details", "Picture",new { id = Pic_ID }) + "','_self');</script>");
                   }
             }
             else

@@ -4,10 +4,7 @@
 @{
     ViewBag.Title = "Details";
 }
-
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,8 +14,7 @@
         .row #show div img {
             height:auto;
             max-width:100%;
-        }
-           
+        }           
     </style>
     <script>
         var sum;
@@ -33,6 +29,7 @@
                 success: function (list) {
                     var data = eval(list);
                     $("#sum").val(data[0].sum);
+                    $("#sum").text(data[0].sum);
                     if (data[0].succ == 1) {
                         alert("你已经点过赞了哦！");
                     } else {
@@ -40,7 +37,7 @@
                     }
                 }
             });    
-        }    
+        }  
 
         function unLogin() {
             alert("你还没有登录哦");
@@ -67,10 +64,7 @@
                     <li style="float:right;"><a href="@Url.Action("Picture1","Picture")">我的图片</a></li>
                     <li style="float:right">@Html.ActionLink("上传图片", "Create", "Picture")  </li>
                 }
-
             </ol>
-
-
         </div>
     </section>
     <section class="portfolio" id="about" style="background: #f3f3f3;">
@@ -82,45 +76,47 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <p class="about-detail">
-                            上传人: <a href="@Url.Action("UserIndex","User",new {UID=Model.Picture1.UserInfo.UID})">
-                                @Model.Picture1.UserInfo.User_Name
-                            </a>
+                            <a href="@Url.Action("UserIndex","User",new {UID=Model.Picture1.UserInfo.UID})"><img src="@Model.Picture1.UserInfo.User_Img" height="60" width="60" style=" display: flex;border-radius: 50%; align-items: center;justify-content: center;overflow: hidden;" /></a>
+                            <div style="float:right;margin-top:-35px;font-size:20px;">
+                                <a href="@Url.Action("UserIndex","User",new {UID=Model.Picture1.UserInfo.UID})">
+                                    @Model.Picture1.UserInfo.User_Name
+                                </a>
+                            </div>
+                            <hr />
                             <br />
                             <br />
                             <br />
-
-                            图片简介:  @Model.Picture1.Pic_Mes
+                            @Model.Picture1.Pic_Mes
+                            <div style="float:right;margin-top:50px;">
+                                <hr />
+                                @Model.Picture1.Pic_Time.ToString().Substring(0, 10)
+                            </div>
                             <br />
                             <br />
                             <br />
                         </p>
                         <p class="about-detail">
-                            上传时间:@Model.Picture1.Pic_Time
                             <br />
                             <br />
                             <br />
                         </p>
-                        <a class="btn btn-primary" role="button" href="@Model.Picture1.Pic_Pic" download="@Model.Picture1.Pic_Mes">下载到本地</a>                         
-                        <p class="about-detail">
-
+                        <a class="btn btn-primary" style="float:left;" role="button" href="@Model.Picture1.Pic_Pic" download="@Model.Picture1.Pic_Mes">下载到本地</a>
+                        <p class="about-detail" style="margin-left:130px;">
+                            <a class="btn btn-success" href="@Url.Action("Add", "Picture_In_Album", new {Pic_ID=Model.Picture1.Pic_ID})"> <span>收藏到相册</span></a>
+                        </p>
+                        <p class="about-detail" style="float:right;margin-right:20px;margin-top:-44px;">
                             @if (Session["User_Name"] != null)
                             {
-                                <button onclick="asypoint(@Model.Picture1.Pic_ID)">
-                                    <span class="btn-outline-info">点赞 </span>
-                                </button>
-                                <input id="sum" type="text" value="@Model.Pic_Point.Count()" ></input>
+                                <button class="btn btn-danger" onclick="asypoint(@Model.Picture1.Pic_ID)">
+                                    <span>点赞<span id="sum">@Model.Pic_Point.Count()</span> </span>
+                                </button> 
                             }
                             else
                             {
-                                <button onclick="unLogin()">
-                                    <span class="btn-outline-primary">点赞(@Model.Pic_Point.Count()) </span>
+                                <button class="btn btn-danger" onclick="unLogin()">
+                                    点赞(@Model.Pic_Point.Count())
                                 </button>
                             }
-                            <br />
-                            <br />
-                        </p>
-                        <p class="about-detail">
-                            <a href="@Url.Action("Add", "Picture_In_Album", new {Pic_ID=Model.Picture1.Pic_ID})"> <span>收藏到相册</span></a>
                             <br />
                             <br />
                         </p>
@@ -142,39 +138,34 @@
                     if (Session["UID"] != null)
                     {
                         <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
-
-
                     }
                     else
                     {
-
                         <input type="submit" value="发表评论" class="btn btn-sub" style="float:right" />
-
                     }
                 }
-
             </div>
         </div>
         <div class="row">
             <div class="container section-wrapper">
                 <div class="col-md-12 col-xs-12 form-group">
-
                     <div>
                         @{ string tempid;}
                         @foreach (Pic_Comment p in Model.Pic_Comment)
                         {
                             tempid = "dev" + p.PC_ID;
-
-                        <div style="float:left;margin-right:20px;">
-                            <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"><img src="@p.UserInfo.User_Img" height="70" width="70" /></a>
-                        </div>
-                            <div style=" background: #f2fbf2;color: #666;padding: 2px 4px;">
-                                <span>    @p.PC_Time</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("UserIndex","User", new {UID=p.UID})">@p.UserInfo.User_Name</a>
+                            <div style="float:left;margin-right:20px;">
+                                <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"><img src="@p.UserInfo.User_Img" height="70" width="70" style=" display: flex;border-radius: 50%; align-items: center;justify-content: center;overflow: hidden;" /></a>
                             </div>
-
-
-                            <p> @p.PC_Mes</p>
+                            <div style=" background: #f2fbf2;color: #666;">                                
+                                <a href="@Url.Action("UserIndex","User", new {UID=p.UID})">@p.UserInfo.User_Name</a>
+                            </div>
+                            <div style="float:right;margin-top:-20px;">
+                                <span>  @p.PC_Time.ToString().Substring(0, 10)</span>
+                            </div>
+                            <div style="margin-top:10px;margin-left:10px;">
+                                <p> @p.PC_Mes</p>
+                            </div>
                             <button class="btn btn-xs btn-default" style="float:right" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">回复</button>
                             <div id="@tempid" style="display:none;">
                                 @using (Html.BeginForm("ReplyComments", "Pic_Comment_Comment", new { PC_ID = p.PC_ID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
@@ -206,16 +197,18 @@
                                 {
                                     <br />
                                     <div style="height:auto">
-
                                         <div style="float:left;margin-right:20px;margin-left:50px;">
-                                            <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@B.UserInfo.User_Img" height="70" width="70" /></a>
+                                            <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> <img src="@B.UserInfo.User_Img" height="70" width="70" style=" display: flex;border-radius: 50%; align-items: center;justify-content: center;overflow: hidden;" /></a>
                                         </div>
-                                        <div style=" background:#c7e0ed ;color: #666;padding: 2px 4px; margin-left:80px;">
-                                            <span>    @B.PCC_Time</span>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;   <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.UserInfo.User_Name </a> 回复  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.Pic_Comment.UserInfo.User_Name</a>
+                                        <div style=" background:#c7e0ed ;color: #666;padding: 2px 4px; margin-left:80px;">                                           
+                                             <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.UserInfo.User_Name </a> 回复  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})">@B.Pic_Comment.UserInfo.User_Name</a>
                                         </div>
-                                        @B.PCC_Mes
-                                        <br />
+                                        <div style="float:right;margin-top:-20px;">
+                                            <span>    @B.PCC_Time.ToString().Substring(0, 10)</span>
+                                        </div>
+                                        <div style="margin-top:10px;margin-left:10px;">
+                                            @B.PCC_Mes
+                                        </div>
                                     </div>
                                     <br /><hr style="margin-left:50px;" />
                                 }

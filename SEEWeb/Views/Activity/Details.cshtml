@@ -9,7 +9,7 @@
 <head>
     <script src="~/Content/layui/layui.js"></script>
     <script src="~/Content/foundation/jquery-1.11.1.min.js"></script>
-    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" /> 
 </head>
 <div>
     <section class="section-background">
@@ -49,26 +49,33 @@
                     <img src="@Model.Activity1.Ac_Pic" width="500" />
                 </div>
                 <div class="col-md-6 col-sm-12" style="height:350px">
-                    <p class="about-detail">
-                        活动名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Name
-                        <br />
+                    <p class="about-detail" style="font-size:25px; ">
+                        @Model.Activity1.Ac_Name
+                        <hr />
                     </p>
                     <p class="about-detail">
                         &nbsp;
                     </p>
                     <p class="about-detail">
-                        活动简介:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Mes
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Mes
                         <br />
                     </p>
                     <p class="about-detail">
                         &nbsp;
                     </p>
+                    <hr />
                     <p class="about-detail">
-                        开始时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Sta_Time.ToString("yyyy-MM-dd")
-                        <br /><br />
+                        <div style="float:left">
+                            开始时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Sta_Time.ToString("yyyy-MM-dd")
+                        </div>
+                        <div style="float:right">
+                            结束时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Sto_Time.ToString("yyyy-MM-dd")
+                        </div>
                     </p>
+                    <br />
+                    <hr />
                     <p class="about-detail">
-                        结束时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Activity1.Ac_Sto_Time.ToString("yyyy-MM-dd")
+
                         <br />
                         <br />
                     </p>
@@ -81,53 +88,62 @@
                             <br /><br />
                         </p>
                     }
-               
+
                     <div class="up" style="display:none">
                         @using (Html.BeginForm("Attend", "Activity", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                       
-                           <br />
-                           <form class="layui-form">
-                               <div style="float:right;">
-                                   <input type="file" name="img" id="img" />
-                                   <br /><br />
-                                   <input type="hidden" id="Ac_ID" name="Ac_ID" value="@Model.Activity1.Ac_ID" />
-                               </div>
-                               <div class="layui-form-item layui-form-text">
-                                   <div class="layui-input-block">
-                                       <textarea class="layui-textarea" placeholder="请输入图片描述" id="Mes" name="Mes"></textarea>
-                                   </div>
-                               </div>
-                               <div style="float:right;">
-                                   <button id="shangchuan" class="layui-btn layui-btn-normal" type="submit">上传图片</button>
-                               </div>
-                           </form>
-                           
+
+                            <br />
+                            <form class="layui-form">
+                                <div style="float:left;margin-left:110px;">
+                                    <input type="file" name="img" id="img" />
+                                    <br /><br />
+                                    <input type="hidden" id="Ac_ID" name="Ac_ID" value="@Model.Activity1.Ac_ID" />
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <div class="layui-input-block">
+                                        <textarea class="layui-textarea" placeholder="请输入图片描述" id="Mes" name="Mes"></textarea>
+                                    </div>
+                                </div>
+                                <div style="float:right;">
+                                    <button id="shangchuan" class="layui-btn layui-btn-normal" type="submit">上传图片</button>
+                                </div>
+                            </form>
+
                         }
                     </div>
-                    <button class="layui-btn layui-btn-normal" id="btn-show">立即参与</button>
-                    <button style="display:none" class="layui-btn layui-btn-danger" id="btn-hide">不参加了</button>
+                    @if (Session["Man_ID"] == null)
+                    {
+                        <button class="layui-btn layui-btn-normal" id="btn-show">立即参与</button>
+                        <button style="display:none;margin-left:110px;" class="layui-btn layui-btn-danger" id="btn-hide">不参加了</button>
+                    }
                 </div>
             </div>
         </div>
     </section>
-    <section class="team">
+    <section class="team" style="background: #f3f3f3;margin-top:1px;">
         <div class="container section-wrapper">
             <h2 class="section-title black">
                 获奖名单
-            </h2> <!-- /.section-title -->
+            </h2> 
             <div class="underline purple"></div>
             <div class="row">
 
                 @if (ViewBag.second != null)
                 {
                     <div class="col-md-4">
-                        <div class="team-item">
-
-                            <a href="@Url.Action("Index","ActPicture",new {id=Model.Second.ActPicture.AP_ID})">
-                                <img src="@Model.Second.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:280px">
-                            </a>
-                            <br />
+                        <div class="section-title" style="font-size:20px;color:deepskyblue">
+                            第二名
+                        </div> 
+                       <div class="underline purple"></div>
+                        <div class="team-item" >
+                            <div style="height:250px;overflow:hidden;">
+                                <a href="@Url.Action("Index","ActPicture",new {id=Model.Second.ActPicture.AP_ID})">
+                                    <img src="@Model.Second.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:380px">
+                                </a>
+                            </div>
+                           
+                            <br /> 
                             @if (Session["Man_ID"] != null)
                             {
                                 <a class="center-align layui-btn layui-btn-sm layui-btn-danger" href="@Url.Action("SetNon","ActPicture",new { acid=Model.Second.Activity.Ac_ID,apid=Model.Second.ActPicture.AP_ID})">取消</a>
@@ -138,12 +154,17 @@
                 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                 @if (ViewBag.first != null)
                 {
-                    <div class="col-md-5"> 
+                    <div class="col-md-4">
+                        <div class="section-title" style="font-size:20px;color:deepskyblue;">
+                            第一名
+                        </div>
+                        <div class="underline purple"></div>
                         <div class="team-item">
-
-                            <a href="@Url.Action("Index","ActPicture",new {id=Model.First.ActPicture.AP_ID})">
-                                <img src="@Model.First.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:380px">
-                            </a>
+                            <div style="height:250px;overflow:hidden;">
+                                <a href="@Url.Action("Index","ActPicture",new {id=Model.First.ActPicture.AP_ID})">
+                                    <img src="@Model.First.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:380px">
+                                </a>
+                            </div>
                             <br />
                             @if (Session["Man_ID"] != null)
                             {
@@ -152,14 +173,20 @@
                         </div>
                     </div>
                 }
+
                 @if (ViewBag.third != null)
                 {
-                    <div class="col-md-3">
+                    <div class="col-md-4" style="margin-top:-17px;">
+                        <div class="section-title" style="font-size:20px;color:deepskyblue">
+                            第三名
+                        </div>
+                        <div class="underline purple"></div>
                         <div class="team-item">
-
-                            <a href="@Url.Action("Index","ActPicture",new {id=Model.Third.ActPicture.AP_ID})">
-                                <img src="@Model.Third.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:280px">
-                            </a>
+                            <div style="height:250px;overflow:hidden;">
+                                <a href="@Url.Action("Index","ActPicture",new {id=Model.Third.ActPicture.AP_ID})">
+                                    <img src="@Model.Third.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:380px">
+                                </a>
+                            </div>
                             <br />
                             @if (Session["Man_ID"] != null)
                             {
@@ -175,20 +202,19 @@
                 <div class="container section-wrapper">
                     <h2 class="section-title black">
                          活动图片
-                    </h2> <!-- /.section-title -->
+                    </h2>  
                     <div class="underline purple"></div>
                     <div class="row">
                         @foreach (var p in Model.PicInActivity)
                         {
                             <div class="col-sm-3 col-xs-6" style="margin-top:20px;">
                                 <div class="team-item">
-                                    <a href="@Url.Action("Index","ActPicture",new {id=p.ActPicture.AP_ID})">
-                                        <img src="@p.ActPicture.AP_Pic" alt="team-image" class="team-img" style="height:180px">
-                                    </a>
-                                    <h4 class="team-item-name">
-                                        所有者：
-                                    </h4>
-                                    <p class="team-item-id">
+                                    <div style="height:195px;overflow:hidden;">
+                                        <a href="@Url.Action("Index","ActPicture",new {id=p.ActPicture.AP_ID})">
+                                            <img src="@p.ActPicture.AP_Pic" alt="team-image" class="team-img" style="width:270px;">
+                                        </a>
+                                    </div>                                                                  
+                                    <p class="team-item-id" style="float:right;margin-top:5px;">
                                         <a href="@Url.Action("UserIndex","User",new {UID=p.ActPicture.UserInfo.UID})">
                                             @p.ActPicture.UserInfo.User_Name
                                         </a>

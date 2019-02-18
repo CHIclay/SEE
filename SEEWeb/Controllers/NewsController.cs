@@ -179,7 +179,7 @@ namespace SEEWeb.Controllers
                     news_comment.NC_Time = System.DateTime.Now;
                     db.News_Comment.Add(news_comment);
                     db.SaveChanges();
-                    return Content("<script>;alert('评论成功');history.go(-1)</script>");
+                    return Content("<script>alert('评论成功！');window.open('" + Url.Action("Details", "News", new { id = pic_ID }) + "','_self');</script>");
                 }
                return RedirectToAction("Details", "News");
             }

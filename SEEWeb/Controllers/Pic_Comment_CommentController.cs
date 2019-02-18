@@ -53,8 +53,8 @@ namespace SEEWeb.Controllers
                 piccc.PCC_Time = DateTime.Now;
                 db.Pic_Comment_Comment.Add(piccc);
                 db.SaveChanges();
-                return Content("<script>;alert('回复成功!');history.go(-1)</script>");
-
+                Session["Pic_ID"] = null;
+                return Content("<script>alert('回复成功！');window.open('" + Url.Action("Details", "Picture", new { id = Pic_ID }) + "','_self');</script>");
             }
         }
         #endregion

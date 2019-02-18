@@ -37,25 +37,29 @@ namespace SEEWeb.Controllers
         public ActionResult Add(Album album)
         {
             HttpPostedFileBase file = Request.Files["albumimage"];
-            if (ModelState.IsValid)
+            if (Session["UID"] != null)
             {
-                if (file != null)
+                if (ModelState.IsValid)
                 {
-                    string filePath = file.FileName;
-                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string serverpath = Server.MapPath(@"\images\albums\") + fileName;
-                    string relativepath = @"/images/albums/" + fileName;
-                    file.SaveAs(serverpath);
-                    album.Alb_Pic= relativepath;
-
+                    if (file != null)
+                    {
+                        string filePath = file.FileName;
+                        string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                        string serverpath = Server.MapPath(@"\images\albums\") + fileName;
+                        string relativepath = @"/images/albums/" + fileName;
+                        file.SaveAs(serverpath);
+                        album.Alb_Pic = relativepath;
+                    }
+                    album.UID = Convert.ToInt32(Session["UID"].ToString());
+                    album.Alb_Time = DateTime.Now;
+                    albumm.Add(album);
+                    return Content("<script>alert('添加成功！');window.open('" + Url.Action("Index", "Album") + "','_self');</script>");
                 }
-                album.UID= Convert.ToInt32(Session["UID"].ToString());
-                
-                album.Alb_Time = DateTime.Now;
-                albumm.Add(album);
-            
-                return Content("<script>alert('添加成功！');window.open('" + Url.Action("Index", "Album") + "','_self');</script>");
             }
+            else
+            {
+                return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
+            }            
             return View(album);
         }
         #endregion
@@ -115,21 +119,27 @@ namespace SEEWeb.Controllers
         [HttpPost]
         public ActionResult AC_Add(Album_Comment album_comment)
         {
-            string acmes = Request["acmes"];
-            int alb_id = Convert.ToInt32(Request["albid"]);
-            
-            if(ModelState.IsValid)
+            if(Session["UID"] != null)
             {
-                
-                album_comment.Alb_ID = alb_id;
-                album_comment.UID = Convert.ToInt32(Session["UID"].ToString());
-                album_comment.AC_Mes = acmes;
-                album_comment.AC_Time = System.DateTime.Now;
-                db.Album_Comment.Add(album_comment);
-                db.SaveChanges();
-                return Content("<script>;alert('评论成功');history.go(-1)</script>");
+                string acmes = Request["acmes"];
+                int alb_id = Convert.ToInt32(Request["albid"]);
+                if (ModelState.IsValid)
+                {
+                    album_comment.Alb_ID = alb_id;
+                    album_comment.UID = Convert.ToInt32(Session["UID"].ToString());
+                    album_comment.AC_Mes = acmes;
+                    album_comment.AC_Time = System.DateTime.Now;
+                    db.Album_Comment.Add(album_comment);
+                    db.SaveChanges();
+                    return Content("<script>alert('评论成功！');window.open('" + Url.Action("Details", "Album", new { id = alb_id }) + "','_self');</script>");
+                }
+                return RedirectToAction("Details", "Album");
             }
-            return RedirectToAction("Details", "Album");
+            else
+            {
+                return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
+            }
+
         }
         #endregion
 

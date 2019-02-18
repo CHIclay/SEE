@@ -36,7 +36,8 @@
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div>
-                                <input type="file" name="image" />
+                                
+                                <input type="file" name="image" placeholder="选择图片" />
                             </div>
                             <br /><br />
                             <div>
@@ -50,8 +51,8 @@
                     </div>
                     <br />
                     <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            @Html.DropDownListFor(model => model.TID, ViewBag.picturetype as SelectList, "请选择类型")<br />
+                        <div class="layui-input-block" style="margin-left:0px;">
+                            @Html.DropDownListFor(model => model.TID, ViewBag.picturetype as SelectList, "请选择类型", new { @class = "form-first-name form-control" })<br />
                             @Html.ValidationMessageFor(model => model.TID, "")
                         </div>
                     </div>
@@ -61,8 +62,6 @@
                 </div>
             </div>
         }
-
-
     </div>
 </section>
 

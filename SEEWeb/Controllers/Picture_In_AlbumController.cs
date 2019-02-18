@@ -25,20 +25,23 @@ namespace SEEWeb.Controllers
         #region 添加图片进相册
         public ActionResult Add(int Pic_ID)
         {
-            int userid = Convert.ToInt32(Session["UID"].ToString());
-            
-            var album = from p in db.Album.Where(p => p.UID == userid)
-                        select p;
-            var picture = db.Picture.Find(Pic_ID);
-            
-                          
-
-            var pictureinalbum = new ViewModel.AlbumViewModel
+            if(Session["UID"] != null)
             {
-                Album2 = album,
-                Picture=picture,
-            };
-            return View(pictureinalbum); 
+                int userid = Convert.ToInt32(Session["UID"].ToString());
+                var album = from p in db.Album.Where(p => p.UID == userid)
+                            select p;
+                var picture = db.Picture.Find(Pic_ID);
+                var pictureinalbum = new ViewModel.AlbumViewModel
+                {
+                    Album2 = album,
+                    Picture = picture,
+                };
+                return View(pictureinalbum);
+            }
+            else
+            {
+                return Content("<script>;alert('你还没有登陆哦!');history.go(-1)</script>");
+            }          
 
         }
         
