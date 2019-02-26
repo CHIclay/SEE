@@ -12,8 +12,6 @@
             <li class="active"><a href="@Url.Action("UserCenter","User")">&nbsp;用户中心</a></li>
             <li class="active"><a href="#")">&nbsp;修改信息</a></li>
         </ol>
-
-
     </div>
 </section>
 <section class="portfolio" id="portfolio">
@@ -28,37 +26,33 @@
             </div>
                 <div class="col-sm-4 col-xs-6">
 
-                    <div class="portfolio-item">
-                        <a href="@Url.Action("UserCenter","User")"><h2>  <span class="label label-primary">我的信息</span></h2></a>
+                    <div class="form-inline">
+                        <a href="@Url.Action("UserCenter","User")"><h2>  <label class="label label-primary">我的信息</label></h2></a>
                         <br />
 
-                        <a href="@Url.Action("Album","User")"><h2>  <span class="label label-primary">我的相册</span></h2></a>
+                        <a href="@Url.Action("Album","User")"><h2>  <label class="label label-primary">我的相册</label></h2></a>
                         <br />
-                        <a href="@Url.Action("Picture1","Picture")"><h2><span class="label label-primary">我的图片</span> </h2></a>
+                        <a href="@Url.Action("Picture1","Picture")"><h2><label class="label label-primary">我的图片</label> </h2></a>
                         <br />
-                        <a href="@Url.Action("Save","User")"><h2> <span class="label label-primary">我的收藏</span></h2></a>
+                        <a href="@Url.Action("Save","User")"><h2> <label class="label label-primary">我的收藏</label></h2></a>
                         <br />
-                        <a href="@Url.Action("focusme","User")"><h2><span class="label label-primary">我的粉丝</span> </h2></a>
+                        <a href="@Url.Action("focusme","User")"><h2><label class="label label-primary">我的粉丝</label> </h2></a>
                         <br />
-                        <a href="@Url.Action("focus","User")"><h2><span class="label label-primary">我关注的</span> </h2></a>
-
-
+                        <a href="@Url.Action("focus","User")"><h2><label class="label label-primary">我关注的</label> </h2></a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-6">
-                    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class="form-inline" }))
                     {
                         @Html.AntiForgeryToken()//防止跨站攻击的一种措施
-
-                        <div>
-                          
+                        <div style="margin-left:100px;">                          
                             <hr />
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.UID)
                             <div>
-                                用户名： &nbsp;
-                                <div>
-                                    @Html.EditorFor(model => model.User_Name)
+                                用户名： &nbsp;<br />
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.User_Name, new {htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.User_Name)
                                 </div>
                             </div>
@@ -69,23 +63,23 @@
                                 </div>
                             </div>
                             <br />
-                            <div>
+                            <div class="form-group">
                                 用户密码：&nbsp;
                                 <div>
-                                    @Html.EditorFor(model => model.User_Pwd)
+                                    @Html.EditorFor(model => model.User_Pwd, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.User_Pwd)
                                 </div>
                             </div>
                             <br />
-                            <div>
+                            <div class="form-group">
                                确认密码:&nbsp;
                                 <div>
-                                    @Html.EditorFor(model => model.User_ConPwd)
+                                    @Html.EditorFor(model => model.User_ConPwd, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.User_ConPwd)
                                 </div>
                             </div>
                             <br />
-                            <div>
+                            <div class="form-group">
                                用户性别：&nbsp;
                                 <div>
                                     @Html.DropDownListFor(model => model.User_Sex, ViewBag.usersex as SelectList, "请选择", new { @class = "form-first-name form-control" })
@@ -93,25 +87,25 @@
                                 </div>
                             </div>
                             <br />
-                            <div>
+                            <div class="form-group">
                                用户邮箱：&nbsp;
                                 <div>
-                                    @Html.EditorFor(model => model.User_Ema)
+                                    @Html.EditorFor(model => model.User_Ema, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.User_Ema)
                                 </div>
                             </div>
                             <br />
-                            <div>
+                            <div class="form-group">
                               用户号码：&nbsp;
                                 <div>
-                                    @Html.EditorFor(model => model.User_Pho)
+                                    @Html.EditorFor(model => model.User_Pho, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.User_Pho)
                                 </div>
                             </div>
                             <br />
-                            <div>
-                                <div>
-                                    <input type="submit" value="确定" />
+                            <div >
+                                <div style="float:right;margin-top:10px;">
+                                    <input class="btn btn-success" type="submit" value="确定" />
                                 </div>
                             </div>
                         </div>

@@ -30,7 +30,7 @@
      </div>
     <div class="container">
         <div style="float:right">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页 / 共 @Model.PageCount 页
             <br />
             @Html.PagedListPager(Model, page => Url.Action("Index", "News", new { page }))
         </div>

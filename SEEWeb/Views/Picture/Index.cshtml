@@ -5,7 +5,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -19,7 +18,6 @@
     <meta name="keywords" content="" />
 </head>
 <body>
-
     <div class="section-background">
         <div class="container">
             <ol class="breadcrumb">
@@ -27,8 +25,6 @@
                 @if (Session["UID"] == null)
                 {
                     <li class="active"><a href="@Url.Action("Index","Picture")">&nbsp;图片</a></li>
-
-
                 }
                 else
                 {
@@ -38,26 +34,22 @@
 
                     <li style="float:right">@Html.ActionLink("上传图片", "Create", "Picture")</li>
                 }
-
-
             </ol>
         </div>
     </div>
-    <div class="portfolio" id="port">
+    <div class="portfolio" id="port" style="margin-top:-50px;">
         <div class="service-head text-center">
-            <h4>Picture</h4>
-            <h3>Pretty<span>Nice</span></h3>
+            <h4>图片</h4>
+            <h3>展<span>示</span></h3>
             <span class="border"></span>
         </div>
         <div class="portfolio-grids">
-
             <div class="sap_tabs">
                 <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                     <ul class="resp-tabs-list">
                         <li class="resp-tab-item">
                             @Ajax.ActionLink("全部", "Index", "Picture", null)
                         </li>
-
                         @foreach (Picture_Type p in Model.Type1)
                         {
                             <li class="resp-tab-item">
@@ -76,9 +68,6 @@
             </div>
         </div>
     </div>
-
-
-
 </body>
 </html>
 

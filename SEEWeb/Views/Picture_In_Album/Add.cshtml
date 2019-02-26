@@ -7,7 +7,7 @@
 <section class="portfolio" id="portfolio">
     <div class="container section-wrapper">
         <h2 class="section-title black">
-            Album  Of  Your's
+            我    的    相    册
         </h2>
         <div class="underline purple"></div>
 
@@ -19,10 +19,9 @@
                 @foreach (var p in Model.Album2)
                 {
                     <a href="@Url.Action("Add2","Picture_In_Album" ,new {albid=p.Alb_ID,picid=Model.Picture.Pic_ID } )" >
-                        <button class="btn-block">
+                        <button class="btn btn-block">
                             @p.Alb_Name
-                        </button>
-                     
+                        </button>                     
                     </a>
                     <br /> 
                 }

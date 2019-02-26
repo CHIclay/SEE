@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Model;
 using BLL;
 using System.Data.Entity;
-using Common;
 using PagedList;
 
 namespace SEEWeb.Controllers

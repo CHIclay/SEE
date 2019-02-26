@@ -498,8 +498,8 @@
     <Content Include="Content\_share\User\assets\src\js\lightbox.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\header1.jpg" />
     <Content Include="images\header2.jpg" />
+    <Content Include="images\header1.jpg" />
     <Content Include="images\Register.jpg" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1147,10 +1147,6 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{7515ca30-2cca-4b39-a985-d1e6c573fc28}</Project>
       <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{7197d45e-a2f8-4345-a65a-ef91d5f1b43a}</Project>
-      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{9db38e27-0d3b-4202-9273-a9301035d55b}</Project>

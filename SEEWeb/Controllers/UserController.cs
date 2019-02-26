@@ -262,6 +262,10 @@ namespace SEEWeb.Controllers
         public ActionResult attention(Attention atten, int ToUID)
         {
             int UID = Convert.ToInt32(Session["UID"].ToString());
+            if (UID == ToUID)
+            {
+                return Content("<script>;alert('不能关注自己哦!');history.go(-1)</script>");
+            }
             var chk_member = db.Attention.Where(o => o.UID == UID).Where(o => o.ToUID == ToUID).FirstOrDefault();
             ViewBag.attentionde = chk_member;
 

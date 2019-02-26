@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
-using Common;
 using Model;
 using System.IO;
 using System.Data.Entity;
@@ -171,7 +170,7 @@ namespace SEEWeb.Controllers
                 pictures = pictures.Where(x => x.Picture_Type.Name == typeInfoFrom);
             }
 
-            int pageSize =100;
+            int pageSize =50;
             int pageNumber = (page ?? 1);
             return View(pictures.ToPagedList(pageNumber, pageSize));
         }

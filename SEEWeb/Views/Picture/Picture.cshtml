@@ -4,49 +4,6 @@
     ViewBag.Title = "Picture";
     Layout = null;
 }
-@*<section class="portfolio" id="portfolio">
-        <div class="container section-wrapper">
-
-            <div class="row">
-                <div id="Div1">
-                    @foreach (var p in Model)
-                    {
-
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="portfolio-item">
-                                <div class="portfolio-img">
-
-                                    <img src="@p.Pic_Pic" alt="port3" height="280" />
-
-                                    <div class="portfolio-img-hover">
-                                        <a href="@Url.Action("Details", new {id=p.Pic_ID,@class="b-link-stripe b-animate-go  swipebox"})">     <img src="~/Content/_share/User/assets/images/plus.png" class="plus"></a>
-                                    </div>
-                                </div>
-                                <div class="portfolio-item-details">
-                                    <div class="portfolio-item-name">
-                                        @p.Picture_Type.Name<br /> <small>  <a href="@Url.Action("UserIndex","User",new {UID=p.UserInfo.UID})"> @p.UserInfo.User_Name  </a></small>
-                                    </div>
-
-                                    <div class="port-heart">
-                                        <i class="ion-ios-heart-outline"></i>  @p.Pic_Point.Count()
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    }
-                </div>
-
-            </div>
-        </div>
-        <div class="container">
-            <div style="float:right">
-                <div class="pagecout">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
-
-                @Html.PagedListPager(Model, page => Url.Action("Index", "Picture", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-            </div>
-        </div>
-    </section>*@
 <style>
     #Div1 {
         display: flex;
@@ -64,18 +21,18 @@
             position: relative;
         }
 
-        #Div1 div i {
-            display: block;
-        }
+            #Div1 div i {
+                display: block;
+            }
 
-        #Div1 div img {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            vertical-align: bottom;
-        }
+            #Div1 div img {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                vertical-align: bottom;
+            }
 </style>
-<section class="portfolio" id="portfolio">
+<section class="portfolio" id="portfolio" style="margin:-60px;">
     <div id="Div1">
         @foreach (var p in Model)
         {
@@ -94,7 +51,15 @@
                 <a href="@Url.Action("Details", new { id = p.Pic_ID })">
                     <img src="@p.Pic_Pic" />
                 </a>
-            </div>         
+            </div>
         }
     </div>
 </section>
+<div class="container">
+    <div style="float:right">
+        第 @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) 页 / 共 @Model.PageCount 页
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Picture", new { page }))
+    </div>
+</div>
+
