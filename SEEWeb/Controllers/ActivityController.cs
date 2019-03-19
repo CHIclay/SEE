@@ -100,9 +100,9 @@ namespace SEEWeb.Controllers
                            select p;
             var activity2 = from p in db.Activity.OrderBy(p => p.Ac_Sta_Time)
                             select p;
-            PicInActivity first = (from p in db.PicInActivity.Where(p => p.Num == 1) select p).FirstOrDefault();
-            PicInActivity second = (from p in db.PicInActivity.Where(p => p.Num == 2) select p).FirstOrDefault();
-            PicInActivity third = (from p in db.PicInActivity.Where(p => p.Num == 3) select p).FirstOrDefault();
+            PicInActivity first = (from p in db.PicInActivity.Where(p => p.Num == 1).Where(a => a.Ac_ID==id) select p).FirstOrDefault();
+            PicInActivity second = (from p in db.PicInActivity.Where(p => p.Num == 2).Where(a => a.Ac_ID == id) select p).FirstOrDefault();
+            PicInActivity third = (from p in db.PicInActivity.Where(p => p.Num == 3).Where(a => a.Ac_ID == id) select p).FirstOrDefault();
             ViewBag.first = first;
             ViewBag.second = second;
             ViewBag.third = third;
@@ -148,7 +148,6 @@ namespace SEEWeb.Controllers
                         actpic.AP_Mes = Request["Mes"];
                         actpic.AP_Time = DateTime.Now;
                         actpicm.Add(actpic);
-
                         string ap_id = actpic.AP_ID.ToString();
                         picinact.Ac_ID = Convert.ToInt32(Request["Ac_ID"]);
                         picinact.AP_ID = Convert.ToInt32(ap_id);

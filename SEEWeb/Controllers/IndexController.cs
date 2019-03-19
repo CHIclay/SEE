@@ -13,7 +13,7 @@ namespace SEEWeb.Controllers
     public class IndexController : Controller
     {
         SEEEntities db = new SEEEntities();
-        // GET: Index
+        // 主页显示内容
         public ActionResult Index()
         {
             var picture1 = (from p in db.Picture select p).OrderByDescending(p => p.Pic_Time).Take(6);//显示最新的十张图片
@@ -47,17 +47,13 @@ namespace SEEWeb.Controllers
         [HttpPost]
         public ActionResult search(string keywords)
         {
-
             ViewBag.KeyWords = keywords;
-             
             SearchViewModel svm = new SearchViewModel();
             svm.picture = (from p in db.Picture.OrderByDescending(p => p.Pic_Time) select p).Where(p => (p.Pic_Mes.Contains(keywords)) || (p.UserInfo.User_Name.Contains(keywords)) || (p.Picture_Type.Name.Contains(keywords)));
             svm.album = (from p in db.Album.OrderByDescending(p => p.Alb_Time) select p).Where(p => (p.Alb_Mes.Contains(keywords)) || (p.Alb_Name.Contains(keywords)) || (p.UserInfo.User_Name.Contains(keywords)));
             svm.news = (from p in db.News.OrderByDescending(p => p.News_Time) select p).Where(p => (p.News_Mes.Contains(keywords)) || (p.News_Name.Contains(keywords)));
             svm.activity = (from p in db.Activity.OrderByDescending(p => p.Ac_Sta_Time) select p).Where(p => (p.Ac_Mes.Contains(keywords)) || (p.Ac_Name.Contains(keywords)));
-            return View(svm);
-            
-
+            return View(svm);           
         }
     }
 }
